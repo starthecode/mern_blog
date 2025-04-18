@@ -47,10 +47,7 @@ export default function Testimonials({ data }) {
           ))}
       </div>
       <div className="absolute top-32 -right-48 opacity-10">
-        <img
-          className="w-full"
-          src="http://localhost:3000/assets/uploads/quotes.png"
-        />
+        <img className="w-full" src="/assets/uploads/quotes.png" />
       </div>
     </div>
   );

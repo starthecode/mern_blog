@@ -78,7 +78,7 @@ export default function Choose({ data }) {
                     </div>
                     <div className="w-1/1 h-full flex justify-end items-end relative overflow-hidden">
                       <img
-                        src={`http://localhost:3000${card?.whychooseImage}`}
+                        src={`${card?.whychooseImage}`}
                         alt={card.title}
                         className={`relative rounded-2xl rounded-tr-none w-full h-[230px] object-cover ${
                           index === 0

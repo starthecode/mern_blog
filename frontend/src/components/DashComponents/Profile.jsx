@@ -140,7 +140,7 @@ export const Profile = () => {
               src={
                 imgFile
                   ? URL.createObjectURL(imgFile)
-                  : `http://localhost:3000${currentUser.profilePicture}`
+                  : `${currentUser.profilePicture}`
               }
               alt="user avatar"
             />

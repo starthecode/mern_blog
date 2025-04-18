@@ -75,7 +75,7 @@ export const LeftCard = ({ item }) => {
                   <span>
                     <img
                       className="w-[20px] flex object-contain"
-                      src="http://localhost:3000/assets/uploads/insights.svg"
+                      src="/assets/uploads/insights.svg"
                     />
                   </span>
                   <div
@@ -102,7 +102,7 @@ export const LeftCard = ({ item }) => {
                   <span>
                     <img
                       className="w-[20px] flex object-contain"
-                      src="http://localhost:3000/assets/uploads/insights.svg"
+                      src="/assets/uploads/insights.svg"
                     />
                   </span>
                   <div
@@ -127,7 +127,7 @@ export const LeftCard = ({ item }) => {
                 <span>
                   <img
                     className="w-[20px] flex object-contain"
-                    src="http://localhost:3000/assets/uploads/insights.svg"
+                    src="/assets/uploads/insights.svg"
                   />
                 </span>
                 <div

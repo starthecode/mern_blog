@@ -16,7 +16,7 @@ export default function AnimatedSlider({ data }) {
     <section
       className="m-auto relative sm:py-0 md:py-0 lg:pt-24 pb-3 overflow-hidden z-10"
       style={{
-        backgroundImage: `url(http://localhost:3000/assets/uploads/back-image.jpg)`,
+        backgroundImage: `url(/assets/uploads/back-image.jpg)`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
@@ -39,7 +39,7 @@ export default function AnimatedSlider({ data }) {
                 } p-10 border-t border-t-white`}
                 key={index}
                 style={{
-                  backgroundImage: `url(http://localhost:3000${item?.sliderImage})`,
+                  backgroundImage: `url(${item?.sliderImage})`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                 }}

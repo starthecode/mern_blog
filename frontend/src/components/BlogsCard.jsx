@@ -12,7 +12,7 @@ const blogItems = [
       'Seamlessly Integrate D365 with Microsoft Fabric: Bizmetric’s Cost-Effective Accelerator',
     date: 'DEC 28, 2024',
     time: '2 MINS TO READ',
-    image: 'http://localhost:3000/assets/uploads/blogcard-img01.jpg',
+    image: '/assets/uploads/blogcard-img01.jpg',
   },
   {
     category: 'Oracle Fusion Integration',
@@ -20,7 +20,7 @@ const blogItems = [
       'Overcoming ERP Data Challenges with Microsoft Fabric and Oracle Fusion Integration',
     date: 'DEC 28, 2024',
     time: '',
-    image: 'http://localhost:3000/assets/uploads/blogcard-img02.jpg',
+    image: '/assets/uploads/blogcard-img02.jpg',
   },
   {
     category: 'Data Transformation',
@@ -28,7 +28,7 @@ const blogItems = [
       'How to Integrate Oracle Fusion with Microsoft Fabric for Data Transformation?',
     date: 'DEC 28, 2024',
     time: '2 MINS TO READ',
-    image: 'http://localhost:3000/assets/uploads/blogcard-img03.jpg',
+    image: '/assets/uploads/blogcard-img03.jpg',
   },
 ];
 
@@ -37,7 +37,7 @@ export default function BlogsCard({ testimonialsData }) {
     <section
       className="relative px-40 pt-28 pb-40 z-10 bg-black"
       style={{
-        backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(http://localhost:3000/assets/uploads/back-image.jpg)`,
+        backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/assets/uploads/back-image.jpg)`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
@@ -128,10 +128,7 @@ export default function BlogsCard({ testimonialsData }) {
             ))}
         </div>
         <div className="absolute top-32 -right-48 opacity-10">
-          <img
-            className="w-full"
-            src="http://localhost:3000/assets/uploads/quotes.png"
-          />
+          <img className="w-full" src="/assets/uploads/quotes.png" />
         </div>
       </div>
       <GlowLight classes={'-left-10 bottom-10 bg-junglegreen-500/40'} />

@@ -30,7 +30,7 @@ export const ServiceCards = ({ item, index }) => {
         <div
           className="group bg-cover bg-center bg-no-repeat h-[320px] relative overflow-hidden rounded-3xl py-7"
           style={{
-            backgroundImage: `url('http://localhost:3000${item?.servicesImage}')`,
+            backgroundImage: `url('${item?.servicesImage}')`,
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-br from-black/90 via-black/60 to-transparent z-10"></div>

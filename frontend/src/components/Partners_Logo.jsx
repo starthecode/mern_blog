@@ -41,7 +41,7 @@ export default function PartnersLogo({ data }) {
               variants={fadeInUp}
             >
               <img
-                src={`http://localhost:3000${partner.partnersImage}`}
+                src={`${partner.partnersImage}`}
                 alt={'partner logo'}
                 className="max-w-[80%] max-h-[80%] object-contain"
               />

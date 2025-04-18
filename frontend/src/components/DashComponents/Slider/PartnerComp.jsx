@@ -109,7 +109,7 @@ const PartnerComp = forwardRef(
                     />
                     {watchAll?.partners?.[index]?.partnersImage && (
                       <img
-                        src={`http://localhost:3000${watchAll.partners[index].partnersImage}`}
+                        src={`${watchAll.partners[index].partnersImage}`}
                         alt="preview"
                         className="w-20 mt-2"
                       />
