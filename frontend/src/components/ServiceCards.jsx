@@ -1,0 +1,55 @@
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
+import { SecondaryButton } from './Buttons/SecondaryButton';
+
+export const ServiceCards = ({ item, index }) => {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: '-100px' });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, scale: 0.95, y: 50 }}
+      animate={
+        inView
+          ? {
+              opacity: 1,
+              scale: 1,
+              y: 0,
+              transition: {
+                duration: 0.6,
+                delay: index * 0.15,
+                ease: 'easeOut',
+              },
+            }
+          : {}
+      }
+      className="group overflow-hidden w-full relative z-20 ring-junglegreen-200 ring-1 p-1 rounded-3xl bg-gradient-to-t from-onyx-900"
+    >
+      <div className="relative rounded-3xl border-1 border-woodsmoke-300/70 z-10">
+        <div
+          className="group bg-cover bg-center bg-no-repeat h-[320px] relative overflow-hidden rounded-3xl py-7"
+          style={{
+            backgroundImage: `url('http://localhost:3000${item?.servicesImage}')`,
+          }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-black/90 via-black/60 to-transparent z-10"></div>
+          <div className="relative z-20 flex flex-col justify-around h-full items-start text-left mt-8">
+            <div className="w-fit px-5 shadow-xl shadow-white/10 border border-junglegreen-200 border-l-0 relative font-medium text-sm inline-flex items-center gap-2 py-2 rounded-tr-xl rounded-br-xl">
+              <span className="font-semibold text-md text-[#F4FFFA00] bg-clip-text bg-gradient-to-b from-white to-white/80">
+                {item?.servicesName}
+              </span>
+            </div>
+            <p className="text-sm font-thin text-white px-2 w-[200px]">
+              Right from development and modernization to maintenance, we
+              fulfill the end-to-end requirement of the ERP.
+            </p>
+            <div className="px-2">
+              <SecondaryButton classes={'text-white'} title={'View More'} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
