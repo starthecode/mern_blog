@@ -55,7 +55,7 @@ export const Profile = () => {
         const formData = new FormData();
         formData.append('file', imgFile);
 
-        const res1 = await fetch('http://localhost:3000/api/file/upload', {
+        const res1 = await fetch('/api/file/upload', {
           method: 'POST',
           body: formData,
         });
@@ -77,7 +77,7 @@ export const Profile = () => {
         profilePicture: uploadedImagePath,
       };
 
-      const endpoint = `http://localhost:3000/api/user/update/${currentUser._id}`;
+      const endpoint = `/api/user/update/${currentUser._id}`;
 
       const res = await fetch(endpoint, {
         method: 'PUT',
@@ -104,7 +104,7 @@ export const Profile = () => {
 
   const handleSignout = async () => {
     try {
-      const res = await fetch('http://localhost:3000/api/user/signout', {
+      const res = await fetch('/api/user/signout', {
         method: 'POST',
       });
 
@@ -118,7 +118,6 @@ export const Profile = () => {
       console.log(error.message);
     }
   };
-
 
   return (
     <div className="w-full flex flex-col items-center justify-center text-center self-center">

@@ -43,7 +43,7 @@ const WhychooseComp = forwardRef(
       formData.append('file', file);
 
       try {
-        const res = await fetch('http://localhost:3000/api/file/upload', {
+        const res = await fetch('/api/file/upload', {
           method: 'POST',
           body: formData,
         });
@@ -109,7 +109,7 @@ const WhychooseComp = forwardRef(
                     />
                     {watchAll?.whychoose?.[index]?.whychooseImage && (
                       <img
-                        src={`http://localhost:3000${watchAll.whychoose[index].whychooseImage}`}
+                        src={`/${watchAll.whychoose[index].whychooseImage}`}
                         alt="preview"
                         className="w-20 mt-2"
                       />

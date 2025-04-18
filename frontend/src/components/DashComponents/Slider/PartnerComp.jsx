@@ -43,7 +43,7 @@ const PartnerComp = forwardRef(
       formData.append('file', file);
 
       try {
-        const res = await fetch('http://localhost:3000/api/file/upload', {
+        const res = await fetch('/api/file/upload', {
           method: 'POST',
           body: formData,
         });

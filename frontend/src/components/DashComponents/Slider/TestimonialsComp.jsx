@@ -43,7 +43,7 @@ const TestimonialsComp = forwardRef(
       formData.append('file', file);
 
       try {
-        const res = await fetch('http://localhost:3000/api/file/upload', {
+        const res = await fetch('/api/file/upload', {
           method: 'POST',
           body: formData,
         });
@@ -109,7 +109,7 @@ const TestimonialsComp = forwardRef(
                     />
                     {watchAll?.testimonials?.[index]?.testimonialsImage && (
                       <img
-                        src={`http://localhost:3000${watchAll.testimonials[index].testimonialsImage}`}
+                        src={`/${watchAll.testimonials[index].testimonialsImage}`}
                         alt="preview"
                         className="w-20 mt-2"
                       />

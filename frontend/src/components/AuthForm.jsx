@@ -36,8 +36,8 @@ export const AuthForm = () => {
     try {
       dispatch(signInStart());
       const endpoint = isSignup
-        ? 'http://localhost:3000/api/auth/signup'
-        : 'http://localhost:3000/api/auth/signin';
+        ? '/api/auth/signup'
+        : '/api/auth/signin';
       const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

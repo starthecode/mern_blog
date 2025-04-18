@@ -43,7 +43,7 @@ const ServicesComp = forwardRef(
       formData.append('file', file);
 
       try {
-        const res = await fetch('http://localhost:3000/api/file/upload', {
+        const res = await fetch('/api/file/upload', {
           method: 'POST',
           body: formData,
         });
@@ -109,7 +109,7 @@ const ServicesComp = forwardRef(
                     />
                     {watchAll?.services?.[index]?.servicesImage && (
                       <img
-                        src={`http://localhost:3000${watchAll.services[index].servicesImage}`}
+                        src={`/${watchAll.services[index].servicesImage}`}
                         alt="preview"
                         className="w-20 mt-2"
                       />

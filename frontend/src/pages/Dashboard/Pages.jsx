@@ -9,7 +9,7 @@ export const Pages = () => {
   useEffect(() => {
     const fetchPages = async () => {
       try {
-        const res = await fetch('http://localhost:3000/api/page/getPages', {
+        const res = await fetch('/api/page/getPages', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

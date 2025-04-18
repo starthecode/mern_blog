@@ -29,16 +29,13 @@ export default function PublishPanel({ postid, pageDate }) {
     if (!confirmDelete) return;
 
     try {
-      const res = await fetch(
-        `http://localhost:3000/api/page/delete/${postid}`,
-        {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          credentials: 'include',
-        }
-      );
+      const res = await fetch(`/api/page/delete/${postid}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+      });
       const data = await res.json();
 
       console.log('data', data);

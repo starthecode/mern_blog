@@ -43,16 +43,13 @@ export const Page = () => {
       if (!postid) return;
 
       try {
-        const res = await fetch(
-          `http://localhost:3000/api/page/get/${postid}`,
-          {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            credentials: 'include',
-          }
-        );
+        const res = await fetch(`/api/page/get/${postid}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+        });
         const data = await res.json();
 
         if (!res.ok) {
@@ -326,17 +323,14 @@ export const Page = () => {
       // console.log('Update payload', payload);
 
       try {
-        const res = await fetch(
-          `http://localhost:3000/api/page/update/${postid}`,
-          {
-            method: 'PUT',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            credentials: 'include',
-            body: JSON.stringify(payload),
-          }
-        );
+        const res = await fetch(`/api/page/update/${postid}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+          body: JSON.stringify(payload),
+        });
 
         const data = await res.json();
 
@@ -355,7 +349,7 @@ export const Page = () => {
     } else {
       // CREATE POST
       try {
-        const res = await fetch('http://localhost:3000/api/page/create', {
+        const res = await fetch('/api/page/create', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
