@@ -67,8 +67,6 @@ router.post('/upload', upload.single('file'), async (req, res) => {
 
     const blobUrl = blockBlobClient.url;
 
-    console.log('blobUrl', blobUrl);
-
     res.status(200).json({ fileUrl: blobUrl });
   } catch (error) {
     console.error('Azure upload error:', error.message);

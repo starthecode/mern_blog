@@ -69,7 +69,6 @@ export const Profile = () => {
 
         uploadedImagePath = fileData?.fileUrl || currentUser.profilePicture;
 
-        console.log('uploadedImagePath', uploadedImagePath);
 
         // uploadedImagePath = currentUser.profilePicture;
         // if (fileData) {

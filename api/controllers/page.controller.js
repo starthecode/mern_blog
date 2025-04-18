@@ -75,8 +75,6 @@ export const getPageById = async (req, res, next) => {
 };
 
 export const getPageBySlug = async (req, res, next) => {
-  console.log(req);
-
   try {
     const page = await Page.findOne({ slug: req.params.slug });
 

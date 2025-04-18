@@ -50,9 +50,9 @@ const SliderForm = forwardRef(({ slidersData }, ref) => {
         return;
       }
 
-      const data = await res.json();
-      const uploadedUrl = data.filePath;
+      const fileData = await res.json();
 
+      const uploadedUrl = fileData?.fileUrl;
       setValue(`sliders.${index}.sliderImage`, uploadedUrl);
     } catch (err) {
       alert('Upload error: ' + err.message);
