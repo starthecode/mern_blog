@@ -66,10 +66,15 @@ export const Profile = () => {
         }
 
         const fileData = await res1.json();
-        uploadedImagePath = currentUser.profilePicture;
-        if (fileData) {
-          uploadedImagePath = fileData.filePath;
-        }
+
+        uploadedImagePath = fileData?.fileUrl || currentUser.profilePicture;
+
+        console.log('uploadedImagePath', uploadedImagePath);
+
+        // uploadedImagePath = currentUser.profilePicture;
+        // if (fileData) {
+        //   uploadedImagePath = fileData.filePath;
+        // }
       }
 
       const finalPayload = {
