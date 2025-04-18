@@ -43,15 +43,12 @@ export default function Home() {
 
       try {
         setLoading(true);
-        const res = await fetch(
-          `http://localhost:3000/api/page/getpage/${slug}`,
-          {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          }
-        );
+        const res = await fetch(`/api/page/getpage/${slug}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
 
         const json = await res.json();
 
@@ -90,7 +87,12 @@ export default function Home() {
 
         {sections.whychoose && <Choose data={sections.whychoose} />}
 
-        {sections.blog && sections.testimonials && <BlogsCard blogData={sections.blog} testimonialsData={sections.testimonials} />}
+        {sections.blog && sections.testimonials && (
+          <BlogsCard
+            blogData={sections.blog}
+            testimonialsData={sections.testimonials}
+          />
+        )}
 
         {sections.footercta && <FooterCta data={sections.footercta} />}
       </div>
