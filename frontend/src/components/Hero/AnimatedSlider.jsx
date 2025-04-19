@@ -16,7 +16,7 @@ export default function AnimatedSlider({ data }) {
     <section
       className="m-auto relative sm:py-0 md:py-0 lg:pt-24 pb-3 overflow-hidden z-10"
       style={{
-        backgroundImage: `url('https://bizsiteuploads.blob.core.windows.net/uploads/1744992778190-back-image.jpg)`,
+        backgroundImage: `url('https://bizsiteuploads.blob.core.windows.net/uploads/1744992778190-back-image.jpg')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
