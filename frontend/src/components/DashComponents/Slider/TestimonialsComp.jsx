@@ -1,6 +1,9 @@
 import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import InputLabel from '../../Form_Fields/InputLabel';
+import DropdownButton from '../../Tabs/DropdownButton';
+import RemoveButton from '../../Tabs/RemoveButton';
+import AddButton from '../../Tabs/AddButton';
 
 const TestimonialsComp = forwardRef(
   ({ testimonialsData, testimonialsTitle, setTestimonialsTitle }, ref) => {
@@ -91,72 +94,60 @@ const TestimonialsComp = forwardRef(
             >
               <div className="flex justify-between items-center p-2 bg-gray-200 rounded-t">
                 <span className="font-medium">Testimonials {index + 1}</span>
-                <button
-                  type="button"
-                  className="text-blue-600 text-sm underline"
-                  onClick={() => toggleTestimonials(index)}
-                >
-                  {isCollapsed ? 'Expand' : 'Collapse'}
-                </button>
+                <DropdownButton
+                  isCollapsed={isCollapsed}
+                  toggleAction={toggleTestimonials}
+                  index={index}
+                />
               </div>
 
               {!isCollapsed && (
-                <div className="grid grid-cols-4 gap-2 p-4">
-                  <div>
-                    <input
-                      type="file"
-                      onChange={(e) => handleImageUpload(e, index)}
-                    />
-                    {watchAll?.testimonials?.[index]?.testimonialsImage && (
-                      <img
-                        src={`/${watchAll.testimonials[index].testimonialsImage}`}
-                        alt="preview"
-                        className="w-20 mt-2"
+                <div className="w-full">
+                  <div className="grid grid-cols-4 gap-2 p-4">
+                    <div>
+                      <input
+                        type="file"
+                        onChange={(e) => handleImageUpload(e, index)}
                       />
-                    )}
+                      {watchAll?.testimonials?.[index]?.testimonialsImage && (
+                        <img
+                          src={`/${watchAll.testimonials[index].testimonialsImage}`}
+                          alt="preview"
+                          className="w-20 mt-2"
+                        />
+                      )}
+                    </div>
+
+                    <input
+                      placeholder="Name"
+                      {...register(`testimonials.${index}.testimonialsName`)}
+                    />
+
+                    <input
+                      placeholder="Subname"
+                      {...register(`testimonials.${index}.testimonialsSubName`)}
+                    />
+                    <input
+                      placeholder="Sub Text"
+                      {...register(`testimonials.${index}.testimonialsSubText`)}
+                    />
                   </div>
-
-                  <input
-                    placeholder="Name"
-                    {...register(`testimonials.${index}.testimonialsName`)}
-                  />
-
-                  <input
-                    placeholder="Subname"
-                    {...register(`testimonials.${index}.testimonialsSubName`)}
-                  />
-                  <input
-                    placeholder="Sub Text"
-                    {...register(`testimonials.${index}.testimonialsSubText`)}
-                  />
-
-                  <button
-                    type="button"
-                    className="text-red-500 mt-2"
-                    onClick={() => remove(index)}
-                  >
-                    Remove
-                  </button>
+                  <RemoveButton removeAction={remove} index={index} />
                 </div>
               )}
             </div>
           );
         })}
 
-        <button
-          type="button"
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-          onClick={() =>
-            append({
-              testimonialsImage: '',
-              testimonialsName: '',
-              testimonialsSubName: '',
-              testimonialsSubText: '',
-            })
-          }
-        >
-          Add Row
-        </button>
+        <AddButton
+          append={append}
+          defaultValues={{
+            testimonialsImage: '',
+            testimonialsName: '',
+            testimonialsSubName: '',
+            testimonialsSubText: '',
+          }}
+        />
       </>
     );
   }

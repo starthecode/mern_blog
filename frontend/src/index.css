@@ -176,6 +176,10 @@
     @apply w-full font-normal px-4 py-0 border rounded mb-3;
   }
 
+  input {
+    @apply px-2 py-2 text-sm
+  }
+
   .light-gradiant {
     background: linear-gradient(
       90deg,

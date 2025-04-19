@@ -28,20 +28,23 @@ const contentData = {
     {
       title: 'Cloud-based Custom Fleet Management Application',
       desc: 'We implemented real-time analytics and cloud-based...',
-      image: '/assets/uploads/industry-manufecturing-img.jpg',
+      image:
+        'https://bizsiteuploads.blob.core.windows.net/uploads/industry-manufecturing-img.jpg',
     },
     {
       title:
         'Designing cloud-enabled environment for cost & resource efficiency',
       desc: 'We deployed the enterprise cloud solution...',
-      image: '/assets/uploads/industry-manufecturing-img.jpg',
+      image:
+        'https://bizsiteuploads.blob.core.windows.net/uploads/industry-manufecturing-img.jpg',
     },
   ],
   logistics: [
     {
       title: 'AI-powered Logistics Optimization',
       desc: 'Streamlined delivery with predictive route planning.',
-      image: '/assets/uploads/industry-manufecturing-img.jpg',
+      image:
+        'https://bizsiteuploads.blob.core.windows.net/uploads/industry-manufecturing-img.jpg',
     },
   ],
   // Add other tab content if needed
@@ -144,7 +147,7 @@ export default function Industry({ data }) {
                 </div>
               </span>
               <img
-                src="/assets/uploads/ai-img-learnmore.jpg"
+                src="https://bizsiteuploads.blob.core.windows.net/uploads/ai-img-learnmore.jpg"
                 alt="learn more"
                 className="w-full h-[270px] object-cover rounded-xl"
               />

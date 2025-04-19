@@ -1,6 +1,12 @@
 import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import InputLabel from '../../Form_Fields/InputLabel';
+import DropdownButton from '../../Tabs/DropdownButton';
+import RemoveButton from '../../Tabs/RemoveButton';
+import AddButton from '../../Tabs/AddButton';
+import { whychooseInputFields } from '../../../utils/fields';
+import FormInput from '../../Inputs/FormInput';
+import ImageInput from '../../Inputs/ImageInput';
 
 const WhychooseComp = forwardRef(
   ({ whychooseData, whychooseTitle, setWhychooseTitle }, ref) => {
@@ -91,80 +97,51 @@ const WhychooseComp = forwardRef(
             >
               <div className="flex justify-between items-center p-2 bg-gray-200 rounded-t">
                 <span className="font-medium">Whychoose {index + 1}</span>
-                <button
-                  type="button"
-                  className="text-blue-600 text-sm underline"
-                  onClick={() => toggleWhychoose(index)}
-                >
-                  {isCollapsed ? 'Expand' : 'Collapse'}
-                </button>
+                <DropdownButton
+                  isCollapsed={isCollapsed}
+                  toggleAction={toggleWhychoose}
+                  index={index}
+                />
               </div>
 
               {!isCollapsed && (
-                <div className="grid grid-cols-4 gap-2 p-4">
-                  <div>
-                    <input
-                      type="file"
-                      onChange={(e) => handleImageUpload(e, index)}
+                <div className="w-full">
+                  <div className="grid grid-cols-4 gap-2 p-4">
+                    <ImageInput
+                      type="whychoose"
+                      title="whychooseImage"
+                      index={index}
+                      watchAll={watchAll}
+                      setValue={setValue}
                     />
-                    {watchAll?.whychoose?.[index]?.whychooseImage && (
-                      <img
-                        src={`/${watchAll.whychoose[index].whychooseImage}`}
-                        alt="preview"
-                        className="w-20 mt-2"
-                      />
-                    )}
-                  </div>
-                  <input
-                    placeholder="Icon"
-                    {...register(`whychoose.${index}.whychooseIcon`)}
-                  />
-                  <input
-                    placeholder="Name"
-                    {...register(`whychoose.${index}.whychooseName`)}
-                  />
 
-                  <input
-                    placeholder="Subname"
-                    {...register(`whychoose.${index}.whychooseSubName`)}
-                  />
-                  <input
-                    placeholder="button text"
-                    {...register(`whychoose.${index}.whychooseBtnName`)}
-                  />
-                  <input
-                    placeholder="button url"
-                    {...register(`whychoose.${index}.whychooseBtnUrl`)}
-                  />
-                  <button
-                    type="button"
-                    className="text-red-500 mt-2"
-                    onClick={() => remove(index)}
-                  >
-                    Remove
-                  </button>
+                    {whychooseInputFields.map(({ name, placeholder }) => (
+                      <FormInput
+                        key={name}
+                        placeholder={placeholder}
+                        name={`whychoose.${index}.${name}`}
+                        register={register}
+                      />
+                    ))}
+                  </div>
+                  <RemoveButton removeAction={remove} index={index} />
                 </div>
               )}
             </div>
           );
         })}
 
-        <button
-          type="button"
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-          onClick={() =>
-            append({
-              whychooseImage: '',
-              whychooseIcon: '',
-              whychooseName: '',
-              whychooseSubName: '',
-              whychooseBtnName: '',
-              whychooseBtnUrl: '',
-            })
-          }
-        >
-          Add Row
-        </button>
+        <AddButton
+          append={append}
+          defaultValues={{
+            whychooseImage: '',
+            whychooseIcon: '',
+            whychooseName: '',
+            whychooseSubName: '',
+            whychooseBtnName: '',
+            whychooseBtnUrl: '',
+          }}
+        />
       </>
     );
   }

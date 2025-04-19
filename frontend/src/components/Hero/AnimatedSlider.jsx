@@ -5,7 +5,6 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import React from 'react';
 import { LeftCard } from './LeftCard';
-// import imgG from '../../assets/imgs/gradient_dark.png';
 
 import { Navigation, Pagination } from 'swiper/modules';
 import MarqueeBanner from '../MarqueeBanner';

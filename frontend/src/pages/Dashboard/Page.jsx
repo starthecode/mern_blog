@@ -237,6 +237,12 @@ export const Page = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    e.stopPropagation();
+
+    const confirmUpdate = window.confirm(
+      'Are you sure you want to update this page.'
+    );
+    if (!confirmUpdate) return;
 
     const currentSliderData = sliderRef.current?.getSlidersData?.();
     const currentPartnerData = partnerRef.current?.getPartnersData?.();
@@ -392,8 +398,8 @@ export const Page = () => {
                 onClick={() => setActiveTab('tab-sliderForm')}
                 className={`px-4 py-2 w-full text-left ${
                   activeTab === 'tab-sliderForm'
-                    ? 'bg-gray-100 font-semibold'
-                    : ''
+                    ? 'bg-flamingo-500 text-white font-bold'
+                    : 'font-normal'
                 }`}
               >
                 Slider Section
@@ -403,8 +409,8 @@ export const Page = () => {
                 onClick={() => setActiveTab('tab-partnerComp')}
                 className={`px-4 py-2 w-full text-left ${
                   activeTab === 'tab-partnerComp'
-                    ? 'bg-gray-100 font-semibold'
-                    : ''
+                    ? 'bg-flamingo-500 text-white font-bold'
+                    : 'font-normal'
                 }`}
               >
                 Partner Section
@@ -414,8 +420,8 @@ export const Page = () => {
                 onClick={() => setActiveTab('tab-aboutComp')}
                 className={`px-4 py-2 w-full text-left ${
                   activeTab === 'tab-aboutComp'
-                    ? 'bg-gray-100 font-semibold'
-                    : ''
+                    ? 'bg-flamingo-500 text-white font-bold'
+                    : 'font-normal'
                 }`}
               >
                 About Section
@@ -425,8 +431,8 @@ export const Page = () => {
                 onClick={() => setActiveTab('tab-servicesComp')}
                 className={`px-4 py-2 w-full text-left ${
                   activeTab === 'tab-servicesComp'
-                    ? 'bg-gray-100 font-semibold'
-                    : ''
+                    ? 'bg-flamingo-500 text-white font-bold'
+                    : 'font-normal'
                 }`}
               >
                 Services Section
@@ -436,8 +442,8 @@ export const Page = () => {
                 onClick={() => setActiveTab('tab-industryComp')}
                 className={`px-4 py-2 w-full text-left ${
                   activeTab === 'tab-industryComp'
-                    ? 'bg-gray-100 font-semibold'
-                    : ''
+                    ? 'bg-flamingo-500 text-white font-bold'
+                    : 'font-normal'
                 }`}
               >
                 Industry Section
@@ -447,8 +453,8 @@ export const Page = () => {
                 onClick={() => setActiveTab('tab-whychooseComp')}
                 className={`px-4 py-2 w-full text-left ${
                   activeTab === 'tab-whychooseComp'
-                    ? 'bg-gray-100 font-semibold'
-                    : ''
+                    ? 'bg-flamingo-500 text-white font-bold'
+                    : 'font-normal'
                 }`}
               >
                 WhyChoose Section
@@ -458,8 +464,8 @@ export const Page = () => {
                 onClick={() => setActiveTab('tab-blogComp')}
                 className={`px-4 py-2 w-full text-left ${
                   activeTab === 'tab-blogComp'
-                    ? 'bg-gray-100 font-semibold'
-                    : ''
+                    ? 'bg-flamingo-500 text-white font-bold'
+                    : 'font-normal'
                 }`}
               >
                 Blog Section
@@ -469,8 +475,8 @@ export const Page = () => {
                 onClick={() => setActiveTab('tab-testimonialsComp')}
                 className={`px-4 py-2 w-full text-left ${
                   activeTab === 'tab-testimonialsComp'
-                    ? 'bg-gray-100 font-semibold'
-                    : ''
+                    ? 'bg-flamingo-500 text-white font-bold'
+                    : 'font-normal'
                 }`}
               >
                 Testimonials Section

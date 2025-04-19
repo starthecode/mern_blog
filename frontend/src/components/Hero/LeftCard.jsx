@@ -75,7 +75,7 @@ export const LeftCard = ({ item }) => {
                   <span>
                     <img
                       className="w-[20px] flex object-contain"
-                      src="/assets/uploads/insights.svg"
+                      src="https://bizsiteuploads.blob.core.windows.net/uploads/Insights.svg"
                     />
                   </span>
                   <div
@@ -102,7 +102,7 @@ export const LeftCard = ({ item }) => {
                   <span>
                     <img
                       className="w-[20px] flex object-contain"
-                      src="/assets/uploads/insights.svg"
+                      src="https://bizsiteuploads.blob.core.windows.net/uploads/Insights.svg"
                     />
                   </span>
                   <div
@@ -127,7 +127,7 @@ export const LeftCard = ({ item }) => {
                 <span>
                   <img
                     className="w-[20px] flex object-contain"
-                    src="/assets/uploads/insights.svg"
+                    src="https://bizsiteuploads.blob.core.windows.net/uploads/Insights.svg"
                   />
                 </span>
                 <div

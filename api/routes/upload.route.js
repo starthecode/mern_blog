@@ -40,19 +40,19 @@ dotenv.config();
 
 const router = express.Router();
 
-// Multer will store the file in memory instead of disk
-const storage = multer.memoryStorage();
-const upload = multer({ storage });
+// Use memory storage for Multer (we’ll directly upload to Azure)
+const upload = multer({ storage: multer.memoryStorage() });
 
 // Azure Blob Config
 const AZURE_STORAGE_CONNECTION_STRING =
   process.env.AZURE_STORAGE_CONNECTION_STRING;
-const CONTAINER_NAME = 'uploads'; // make sure this exists in your Azure Storage
+const UPLOAD_CONTAINER = 'uploads'; // you already created this in Azure
 
+// Create Azure container client
 const blobServiceClient = BlobServiceClient.fromConnectionString(
   AZURE_STORAGE_CONNECTION_STRING
 );
-const containerClient = blobServiceClient.getContainerClient(CONTAINER_NAME);
+const containerClient = blobServiceClient.getContainerClient(UPLOAD_CONTAINER);
 
 router.post('/upload', upload.single('file'), async (req, res) => {
   try {
@@ -67,10 +67,29 @@ router.post('/upload', upload.single('file'), async (req, res) => {
 
     const blobUrl = blockBlobClient.url;
 
-    res.status(200).json({ fileUrl: blobUrl });
+    res.status(200).json({ fileUrl: blobUrl }); // You can also include blobName if needed
   } catch (error) {
     console.error('Azure upload error:', error.message);
     res.status(500).json({ error: 'Failed to upload to Azure' });
+  }
+});
+
+// Media Library: List all files from "uploads" container
+router.get('/media', async (req, res) => {
+  try {
+    const blobs = [];
+
+    for await (const blob of containerClient.listBlobsFlat()) {
+      blobs.push({
+        name: blob.name,
+        url: containerClient.getBlobClient(blob.name).url,
+      });
+    }
+
+    res.status(200).json(blobs);
+  } catch (err) {
+    console.error('Azure media list error:', err.message);
+    res.status(500).json({ error: 'Failed to list blobs' });
   }
 });
 

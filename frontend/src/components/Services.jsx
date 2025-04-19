@@ -29,20 +29,23 @@ const contentData = {
     {
       title: 'Cloud-based Custom Fleet Management Application',
       desc: 'We implemented real-time analytics and cloud-based...',
-      image: '/assets/uploads/industry-manufecturing-img.jpg',
+      image:
+        'https://bizsiteuploads.blob.core.windows.net/uploads/industry-manufecturing-img.jpg',
     },
     {
       title:
         'Designing cloud-enabled environment for cost & resource efficiency',
       desc: 'We deployed the enterprise cloud solution...',
-      image: '/assets/uploads/industry-manufecturing-img.jpg',
+      image:
+        'https://bizsiteuploads.blob.core.windows.net/uploads/industry-manufecturing-img.jpg',
     },
   ],
   logistics: [
     {
       title: 'AI-powered Logistics Optimization',
       desc: 'Streamlined delivery with predictive route planning.',
-      image: '/assets/uploads/industry-manufecturing-img.jpg',
+      image:
+        'https://bizsiteuploads.blob.core.windows.net/uploads/industry-manufecturing-img.jpg',
     },
   ],
   // Add other tab content if needed
@@ -55,7 +58,7 @@ export const Services = ({ servicesdata, industrydata }) => {
     <section
       className="relative sm:py-0 md:py-0 lg:pt-24  z-10"
       style={{
-        backgroundImage: `url(/assets/uploads/back-image.jpg)`,
+        backgroundImage: `url('https://bizsiteuploads.blob.core.windows.net/uploads/1744992778190-back-image.jpg')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
@@ -164,7 +167,7 @@ export const Services = ({ servicesdata, industrydata }) => {
                 <PrimaryButton title={'Learn More'} link={'/'} />
               </span>
               <img
-                src="/assets/uploads/ai-img-learnmore.jpg"
+                src="https://bizsiteuploads.blob.core.windows.net/uploads/ai-img-learnmore.jpg"
                 alt="learn more"
                 className="w-full h-[270px] object-cover rounded-xl"
               />

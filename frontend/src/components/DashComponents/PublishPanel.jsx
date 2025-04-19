@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { formatDate } from '../../utils/utils';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { BiTrash } from 'react-icons/bi';
 
 export default function PublishPanel({ postid, pageDate }) {
   const [status, setStatus] = useState('Draft');
@@ -37,8 +38,6 @@ export default function PublishPanel({ postid, pageDate }) {
         credentials: 'include',
       });
       const data = await res.json();
-
-      console.log('data', data);
 
       if (!res.ok) {
         toast.error(data.message);
@@ -119,7 +118,7 @@ export default function PublishPanel({ postid, pageDate }) {
 
       <button
         type="submit"
-        className="bg-blue-600 text-white font-medium px-4 py-2 rounded w-full hover:bg-blue-700 transition mt-4"
+        className="bg-flamingo-500 text-white font-medium px-4 py-2 rounded w-full hover:bg-blue-700 transition mt-4"
       >
         {postid ? 'Update' : 'Publish'}
       </button>
@@ -128,9 +127,9 @@ export default function PublishPanel({ postid, pageDate }) {
         <button
           type="button"
           onClick={handleDelete}
-          className="text-red-500 font-medium px-4 py-2 rounded w-full hover:text-red-800 transition"
+          className="w-full flex justify-end px-1 pt-3"
         >
-          Move to Trash
+          <BiTrash size={25} color="red" />
         </button>
       )}
     </div>

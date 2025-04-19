@@ -1,6 +1,9 @@
 import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import InputLabel from '../../Form_Fields/InputLabel';
+import DropdownButton from '../../Tabs/DropdownButton';
+import RemoveButton from '../../Tabs/RemoveButton';
+import AddButton from '../../Tabs/AddButton';
 
 const IndustryComp = forwardRef(
   ({ industryData, industryTitle, setIndustryTitle }, ref) => {
@@ -61,56 +64,45 @@ const IndustryComp = forwardRef(
             >
               <div className="flex justify-between items-center p-2 bg-gray-200 rounded-t">
                 <span className="font-medium">Industry {index + 1}</span>
-                <button
-                  type="button"
-                  className="text-blue-600 text-sm underline"
-                  onClick={() => toggleIndustry(index)}
-                >
-                  {isCollapsed ? 'Expand' : 'Collapse'}
-                </button>
+                <DropdownButton
+                  isCollapsed={isCollapsed}
+                  toggleAction={toggleIndustry}
+                  index={index}
+                />
               </div>
 
               {!isCollapsed && (
-                <div className="grid grid-cols-4 gap-2 p-4">
-                  <input
-                    placeholder="Industry Icon"
-                    {...register(`industry.${index}.industryIcon`)}
-                  />
-                  <input
-                    placeholder="Industry Name"
-                    {...register(`industry.${index}.industryName`)}
-                  />
+                <div className="w-full">
+                  <div className="grid grid-cols-4 gap-2 p-4">
+                    <input
+                      placeholder="Industry Icon"
+                      {...register(`industry.${index}.industryIcon`)}
+                    />
+                    <input
+                      placeholder="Industry Name"
+                      {...register(`industry.${index}.industryName`)}
+                    />
 
-                  <input
-                    placeholder="Industry ID"
-                    {...register(`industry.${index}.industryId`)}
-                  />
-                  <button
-                    type="button"
-                    className="text-red-500 mt-2"
-                    onClick={() => remove(index)}
-                  >
-                    Remove
-                  </button>
+                    <input
+                      placeholder="Industry ID"
+                      {...register(`industry.${index}.industryId`)}
+                    />
+                  </div>
+                  <RemoveButton removeAction={remove} index={index} />
                 </div>
               )}
             </div>
           );
         })}
 
-        <button
-          type="button"
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-          onClick={() =>
-            append({
-              industryIcon: '',
-              industryName: '',
-              industryId: '',
-            })
-          }
-        >
-          Add Row
-        </button>
+        <AddButton
+          append={append}
+          defaultValues={{
+            industryIcon: '',
+            industryName: '',
+            industryId: '',
+          }}
+        />
       </>
     );
   }

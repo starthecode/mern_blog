@@ -12,7 +12,7 @@ import {
   FiChevronRight,
   FiChevronDown,
 } from 'react-icons/fi';
-import { MdOutlineBrush } from 'react-icons/md';
+import { MdOutlineBrush, MdOutlinePermMedia } from 'react-icons/md';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 export const DashSidebar = () => {
@@ -21,16 +21,20 @@ export const DashSidebar = () => {
 
   const currentSub = searchParams.get('sub') || '';
 
-  const [openPages, setOpenPages] = React.useState(false);
+  const [openDropdown, setOpenDropdown] = React.useState('');
 
   const navigate = useNavigate();
 
   const menuItems1 = [
-    { name: 'Dashboard', icon: <FiHome /> },
-    { name: 'Posts', link: '/customlink', icon: <FiBookOpen /> },
+    { name: 'Dashboard', icon: <FiHome color="#f2692a" /> },
+    {
+      name: 'Posts',
+      link: '/customlink',
+      icon: <FiBookOpen color="#f2692a" />,
+    },
     {
       name: 'Pages',
-      icon: <FiFileText />,
+      icon: <FiFileText color="#f2692a" />,
       subpages: [
         { name: 'All Pages', link: '/dashboard/pages' },
         { name: 'Add New Page', link: '/dashboard/page-new' },
@@ -39,9 +43,18 @@ export const DashSidebar = () => {
       ],
     },
 
-    { name: 'Tags', icon: <FiTag /> },
-    { name: 'Authors', icon: <FiUsers /> },
-    { name: 'Members', icon: <FiMail /> },
+    {
+      name: 'Media',
+      icon: <MdOutlinePermMedia color="#f2692a" />,
+      subpages: [
+        { name: 'Library', link: '/dashboard/pages' },
+        { name: 'Add New Media file', link: '/dashboard/page-new' },
+      ],
+    },
+
+    { name: 'Tags', icon: <FiTag color="#f2692a" /> },
+    { name: 'Authors', icon: <FiUsers color="#f2692a" /> },
+    { name: 'Members', icon: <FiMail color="#f2692a" /> },
   ];
 
   const menuItems2 = [
@@ -78,18 +91,20 @@ export const DashSidebar = () => {
         {menuItems1.map((item) => (
           <div key={item.name}>
             <button
-              className={`flex items-start text-left w-full px-3 py-4 text-sm rounded-lg transition ${
+              className={`flex items-start text-left w-full px-3 py-3 text-sm rounded-lg transition my-2 ${
                 item.subpages
-                  ? openPages && currentTab === item.name
-                    ? 'bg-gray-100 font-medium'
+                  ? openDropdown === item.name
+                    ? 'bg-flamingo-500/30 font-medium'
                     : 'text-gray-600 hover:bg-gray-100'
                   : currentTab === item.name
-                  ? 'bg-gray-100 font-medium'
+                  ? 'bg-flamingo-500/30 font-bold'
                   : 'text-gray-600 hover:bg-gray-100'
               }`}
               onClick={() => {
                 if (item.subpages) {
-                  setOpenPages((prev) => !prev); // Only toggle dropdown
+                  setOpenDropdown((prev) =>
+                    prev === item.name ? '' : item.name
+                  );
                 } else {
                   handleTabClick(item.name, null, item.link);
                 }
@@ -99,12 +114,16 @@ export const DashSidebar = () => {
               <span className="ml-3 flex-1">{item.name}</span>
               {item.subpages && (
                 <span className="text-sm">
-                  {openPages ? <FiChevronDown /> : <FiChevronRight />}
+                  {item.subpages && openDropdown === item.name ? (
+                    <FiChevronDown />
+                  ) : (
+                    <FiChevronRight />
+                  )}
                 </span>
               )}
             </button>
 
-            {item.subpages && openPages && (
+            {item.subpages && openDropdown === item.name && (
               <div className="ml-6 mt-1 space-y-1">
                 {item.subpages.map((sub) => (
                   <button

@@ -1,6 +1,10 @@
 import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import InputLabel from '../../Form_Fields/InputLabel';
+import DropdownButton from '../../Tabs/DropdownButton';
+import RemoveButton from '../../Tabs/RemoveButton';
+import AddButton from '../../Tabs/AddButton';
+import ImageInput from '../../Inputs/ImageInput';
 
 const PartnerComp = forwardRef(
   ({ partnersData, partnerTitle, setPartnerTitle }, ref) => {
@@ -91,59 +95,43 @@ const PartnerComp = forwardRef(
             >
               <div className="flex justify-between items-center p-2 bg-gray-200 rounded-t">
                 <span className="font-medium">Partner {index + 1}</span>
-                <button
-                  type="button"
-                  className="text-blue-600 text-sm underline"
-                  onClick={() => togglePartner(index)}
-                >
-                  {isCollapsed ? 'Expand' : 'Collapse'}
-                </button>
+
+                <DropdownButton
+                  isCollapsed={isCollapsed}
+                  toggleAction={togglePartner}
+                  index={index}
+                />
               </div>
 
               {!isCollapsed && (
-                <div className="grid grid-cols-4 gap-2 p-4">
-                  <div>
-                    <input
-                      type="file"
-                      onChange={(e) => handleImageUpload(e, index)}
+                <div className="w-full">
+                  <div className="grid grid-cols-4 gap-2 p-4">
+                    <ImageInput
+                      type="partners"
+                      title="partnersImage"
+                      index={index}
+                      watchAll={watchAll}
+                      setValue={setValue}
                     />
-                    {watchAll?.partners?.[index]?.partnersImage && (
-                      <img
-                        src={`${watchAll.partners[index].partnersImage}`}
-                        alt="preview"
-                        className="w-20 mt-2"
-                      />
-                    )}
+                    <input
+                      placeholder="Small Text"
+                      {...register(`partners.${index}.caseStudyUrl`)}
+                    />
                   </div>
-                  <input
-                    placeholder="Small Text"
-                    {...register(`partners.${index}.caseStudyUrl`)}
-                  />
-                  <button
-                    type="button"
-                    className="text-red-500 mt-2"
-                    onClick={() => remove(index)}
-                  >
-                    Remove
-                  </button>
+                  <RemoveButton removeAction={remove} index={index} />
                 </div>
               )}
             </div>
           );
         })}
 
-        <button
-          type="button"
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-          onClick={() =>
-            append({
-              partnersImage: '',
-              caseStudyUrl: '',
-            })
-          }
-        >
-          Add Row
-        </button>
+        <AddButton
+          append={append}
+          defaultValues={{
+            partnersImage: '',
+            caseStudyUrl: '',
+          }}
+        />
       </>
     );
   }
