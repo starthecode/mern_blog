@@ -94,10 +94,10 @@ export const DashSidebar = () => {
               className={`flex items-start text-left w-full px-3 py-3 text-sm rounded-lg transition my-2 ${
                 item.subpages
                   ? openDropdown === item.name
-                    ? 'bg-flamingo-500/30 font-medium'
+                    ? 'bg-flamingo-500/10 font-medium text-flamingo-500'
                     : 'text-gray-600 hover:bg-gray-100'
                   : currentTab === item.name
-                  ? 'bg-flamingo-500/30 font-bold'
+                  ? 'bg-flamingo-500/10 font-bold text-flamingo-500'
                   : 'text-gray-600 hover:bg-gray-100'
               }`}
               onClick={() => {

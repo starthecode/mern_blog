@@ -30,11 +30,11 @@ export const Logo = () => {
             style={{
               position: 'relative',
               zIndex: 10,
-              marginRight: '-12px', // tighter spacing
+              marginRight: '-10px', // tighter spacing
             }}
           >
             <img
-              className="flex w-[45px] h-[45px] object-contain"
+              className="flex w-[40px] h-[40px] object-contain"
               src="/assets/imgs/logopart1.png"
               alt="logo"
             />
@@ -49,7 +49,7 @@ export const Logo = () => {
             }}
           >
             <img
-              className="flex w-[45px] h-[45px] object-contain"
+              className="flex w-[40px] h-[40px] object-contain"
               src="/assets/imgs/logopart2.png"
               alt="logo"
             />
@@ -61,12 +61,12 @@ export const Logo = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 1.2 }}
           style={{
-            marginTop: '-30px',
-            marginLeft: '10px', // visually match your image
+            marginTop: '-25px',
+            marginLeft: '8px', // visually match your image
           }}
         >
           <img
-            className="flex w-[70px] h-[70px] object-contain"
+            className="flex w-[60px] h-[60px] object-contain"
             src="/assets/imgs/logopart3.png"
             alt="logo"
           />

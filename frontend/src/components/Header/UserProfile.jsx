@@ -1,13 +1,10 @@
 import React from 'react';
 import { BiDownArrow, BiLogOut } from 'react-icons/bi';
-import { MdDashboard } from 'react-icons/md';
 import { PrimaryButton } from '../Buttons/PrimaryButton';
 
 import { useSelector } from 'react-redux';
 
 export const UserProfile = () => {
-  // const { data: session, status } = useSession();
-
   const { currentUser } = useSelector((state) => state.user);
 
   const [active, setActive] = React.useState(false);
@@ -16,29 +13,48 @@ export const UserProfile = () => {
     setActive((prevActive) => !prevActive);
   };
 
+  console.log('currentUser', currentUser);
+
+  const username = currentUser?.email.split('@')[0];
+  if (!username) {
+    return '';
+  }
+
+  const firstLetter = username.charAt(0).toUpperCase();
+  const lastLetter = username.charAt(username.length - 1).toUpperCase();
+
+  const emailName = `${firstLetter}${lastLetter}`;
+
   return (
     <>
       {currentUser ? (
-        <div className="relative block">
+        <div className="relative block w-full">
           <button
             onClick={handleDropdown}
             type="button"
-            className="relative w-[120px] z-10 py-1 ps-1 pe-3 flex items-center gap-x-2 text-sm font-medium rounded-full border border-gray-200 bg-flamingo-500 text-gray-800 shadow-sm focus:outline-none disabled:opacity-50 disabled:pointer-events-none dark:bg-junglegreen-500 dark:border-junglegreen-500 dark:text-white dark:focus:bg-none"
+            className="relative w-[140px] z-10 py-1 ps-1 pe-3 flex items-center gap-x-2 text-sm font-medium rounded-full text-gray-800 shadow-sm focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
             aria-haspopup="menu"
             aria-expanded="false"
             aria-label="Dropdown"
           >
-            <img
-              width={20}
-              height={20}
-              className="w-8 h-auto rounded-full"
-              src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
-              alt="Avatar"
-            />
-            <span className="font-medium truncate max-w-[7.5rem] text-white">
+            {!currentUser?.profilePicture ? (
+              <span className="bg-white p-1 w-8 h-auto rounded-full">
+                {emailName}
+              </span>
+            ) : (
+              <img
+                width={20}
+                height={20}
+                className="w-8 h-auto rounded-full"
+                src={currentUser?.profilePicture}
+                alt="Avatar"
+              />
+            )}
+
+            <span className="font-medium w-full text-junglegreen-500">
               {currentUser?.userName}
             </span>
-            <BiDownArrow color="white" />
+            <BiDownArrow className='fill-junglegreen-800' />
           </button>
 
           <div

@@ -16,6 +16,7 @@ import Testimonials from '../components/Testimonials';
 import FooterCta from '../components/FooterCta';
 import Footer from '../components/Footer';
 import MultiSection from '../components/MultiSection';
+import FrontLoader from '../components/Loader/FrontLoader';
 
 const COMPONENTS = {
   slider: AnimatedSlider,
@@ -74,9 +75,7 @@ export default function Home() {
   }, [slug]);
 
   return loading ? (
-    <div className="loader-container">
-      <div className="loader">Loading...</div>
-    </div>
+    <FrontLoader />
   ) : (
     <div>
       <HeaderServer />

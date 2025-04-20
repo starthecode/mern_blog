@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function PageHead({ title, setTitle, postId }) {
   const handleTitleChange = (e) => {
@@ -16,9 +17,12 @@ export default function PageHead({ title, setTitle, postId }) {
         <h2 className="text-2xl font-semibold">
           {postId ? 'Edit Page' : 'Create Page'}
         </h2>
-        <button className="text-blue-600 border border-blue-600 px-3 py-1 rounded hover:bg-blue-50">
+        <Link
+          to="/dashboard/page-new"
+          className="text-flamingo-500 border border-flamingo-600/30 px-3 py-1 rounded hover:bg-blue-50"
+        >
           Add New Page
-        </button>
+        </Link>
       </div>
 
       <input

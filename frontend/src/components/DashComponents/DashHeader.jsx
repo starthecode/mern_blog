@@ -1,4 +1,5 @@
 import React from 'react';
+import { UserProfile } from '../Header/UserProfile';
 
 export const DashHeader = () => {
   return (
@@ -39,11 +40,7 @@ export const DashHeader = () => {
 
       {/* Right Side: Profile Image */}
       <div>
-        <img
-          src="https://randomuser.me/api/portraits/women/44.jpg" // Replace with actual user profile image
-          alt="Profile"
-          className="w-10 h-10 rounded-full border"
-        />
+        <UserProfile />
       </div>
     </header>
   );

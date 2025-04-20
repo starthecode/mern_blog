@@ -118,7 +118,7 @@ export default function PublishPanel({ postid, pageDate }) {
 
       <button
         type="submit"
-        className="bg-flamingo-500 text-white font-medium px-4 py-2 rounded w-full hover:bg-blue-700 transition mt-4"
+        className="bg-junglegreen-500 text-white font-medium px-4 py-2 rounded w-full hover:bg-blue-700 transition mt-4"
       >
         {postid ? 'Update' : 'Publish'}
       </button>
