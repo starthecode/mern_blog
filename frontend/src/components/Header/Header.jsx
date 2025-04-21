@@ -101,9 +101,9 @@ const Header = ({ menus }) => {
             <div
               className={`${
                 showSearch
-                  ? 'opacity-100 bg-[#f7f9fc] dark:bg-gradient-to-t from-onyx-950 to-woodsmoke-950 w-[70%]'
+                  ? 'opacity-100 bg-[#f7f9fc] dark:bg-gradient-to-t from-onyx-950 to-woodsmoke-950 w-[50%]'
                   : 'opacity-0 bg-transparent w-0'
-              } absolute z-10 right-[130px] h-[60px] rounded-xl transition-all ease-out duration-700 border border-woodsmoke-200/10`}
+              } absolute z-10 right-[18em] h-[60px] rounded-xl transition-all ease-out duration-700 border border-woodsmoke-200/10`}
             >
               <Search active={active} width={width} />
             </div>
