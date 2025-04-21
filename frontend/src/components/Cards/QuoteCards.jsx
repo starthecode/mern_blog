@@ -41,22 +41,24 @@ export default function QuoteCards({ data, index }) {
       initial={{ opacity: 0, scale: 0.95, x: 50 }}
       animate={controls}
       key={index}
-      class="w-[370px] relative border-l border-t border-b border-junglegreen-500/60 pt-1 pb-10 max-w-6xl rounded-2xl shadow-lg text-white"
+      className="w-[370px] relative border-l border-t border-b border-junglegreen-500/60 pt-1 pb-10 max-w-6xl rounded-2xl shadow-lg text-white"
     >
-      <div class="p-4 lg:p-6 rounded-3xl relative group h-full pt-16 pb-20 bg-opacity-30 backdrop-filter backdrop-blur-lg">
-        <div class="block items-center">
-          <div class="flex-grow">
-            <div class="text-sm text-gray-500">
-              <span class="text-xs font-bold text-gray-400 mr-1">★★★★★</span>
+      <div className="p-4 lg:p-6 rounded-3xl relative group h-full pt-16 pb-20 bg-opacity-30 backdrop-filter backdrop-blur-lg">
+        <div className="block items-center">
+          <div className="flex-grow">
+            <div className="text-sm text-gray-500">
+              <span className="text-xs font-bold text-gray-400 mr-1">
+                ★★★★★
+              </span>
             </div>
           </div>
-          <h3 class="mt-1 text-md font-bold text-white">
+          <h3 className="mt-1 text-md font-bold text-white">
             {data?.testimonialsName}
           </h3>
-          <span class="text-xs font-medium text-flamingo-500">
+          <span className="text-xs font-medium text-flamingo-500">
             Experienced Billing Manager
           </span>
-          <p class="pt-2 text-sm text-woodsmoke-300">
+          <p className="pt-2 text-sm text-woodsmoke-300">
             Bizmetric renders outstanding Oracle Services. Their expertise in
             delivering a high-performance Data Analytics Solu...
           </p>

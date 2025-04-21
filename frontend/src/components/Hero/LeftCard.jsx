@@ -9,7 +9,7 @@ import { SecondaryButton } from '../Buttons/SecondaryButton';
 
 export const LeftCard = ({ item }) => {
   const services_items =
-    'text-base md:text-md lg:text-lg xl:text-xl xl:px-0 block !text-white font-inter font-normal flex flex-1';
+    'text-base md:text-md lg:text-lg xl:text-xl block text-white font-inter font-normal';
 
   return (
     <>
@@ -19,10 +19,10 @@ export const LeftCard = ({ item }) => {
           className="relative z-[1] shadow-xl overflow-hidden inline-flex justify-between items-center py-1 px-1 pr-4 mb-7 text-sm bg-white rounded-full dark:bg-onyx-900 hover:bg-gray-200 dark:hover:bg-gray-700"
           role="alert"
         >
-          <p className="glow_animation relative text-xs bg-junglegreen-500 rounded-full !text-white px-4 py-1.5 mr-3">
+          <p className="glow_animation relative text-xs bg-junglegreen-500 rounded-full text-white px-4 py-1.5 mr-3">
             New
-          </p>{' '}
-          <p className="text-sm font-medium dark:!text-white">
+          </p>
+          <p className="text-sm font-medium dark:text-white">
             {item?.homeSliderMiniText}
           </p>
           <BiChevronRight className="ml-2 w-4 h-4" />
@@ -33,10 +33,10 @@ export const LeftCard = ({ item }) => {
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, ease: 'easeInOut' }}
-        className="mb-4 text-center font-inter lg:text-left text-foreground text-3xl sm:text-xl md:text-xl xl:text-5xl sm:leading-none"
+        className="mb-4 text-center font-inter lg:text-left text-foreground sm:text-xl md:text-3xl xl:text-5xl !leading-tight"
       >
         <span
-          className="block text-[#F4FFFA00] bg-clip-text bg-gradient-to-b from-junglegreen-400 via-junglegreen-100 to-white leading-[60px]"
+          className="block text-[#F4FFFA00] bg-clip-text bg-gradient-to-b from-junglegreen-400 via-junglegreen-100 to-white"
           dangerouslySetInnerHTML={{ __html: item.titleText }}
         />
 
@@ -44,16 +44,16 @@ export const LeftCard = ({ item }) => {
           {item.homeSliderTitle2}
         </span>
       </motion.h1>
+
       {item.homeSliderDesc && (
-        <p className="mb-8 max-w-md text-center text-lg font-medium text-ebony-700 dark:text-[#9ca3af]  lg:text-left">
+        <p className="mb-8 max-w-md text-center text-lg font-medium text-ebony-700 dark:text-[#9ca3af] lg:text-left">
           {item.homeSliderDesc}
         </p>
       )}
 
       {item.buttonText && (
-        <div className="flex group align-baseline gap-5">
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 items-center sm:items-start mt-5">
           <PrimaryButton title={item.buttonText} link={item.buttonUrl} />
-
           <SecondaryButton
             title={item.buttonTextTwo}
             link={item.homeSliderBtn2Url}
@@ -62,84 +62,38 @@ export const LeftCard = ({ item }) => {
       )}
 
       {item.subText && item.subTextTwo && item.subTextThree && (
-        <div className="flex flex-col items-center justify-center sm:justify-center md:justify-start w-full mt-14 border border-white bg-[linear-gradient(182deg,_#000000e0,_transparent)] rounded-3xl px-5 py-2">
-          <div className="w-full flex gap-5 items-center sm:text-center md:text-left 2xl:text-left 2xl:gap-10">
-            <motion.div
-              initial={{ opacity: 0, y: -50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, ease: 'easeInOut' }}
-              className={services_items}
-            >
-              {item.subText && (
-                <div className="block">
-                  <span>
-                    <img
-                      className="w-[20px] flex object-contain"
-                      src="https://bizsiteuploads.blob.core.windows.net/uploads/Insights.svg"
+        <div className="flex flex-col items-center justify-center md:items-start w-full mt-5 mb-5 md:mt-10 sm:mt-10 border border-white bg-[linear-gradient(182deg,_#000000e0,_transparent)] rounded-3xl px-5 py-3">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full text-center md:text-left">
+            {[item.subText, item.subTextTwo, item.subTextThree].map(
+              (text, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: -50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1, ease: 'easeInOut' }}
+                  className={services_items}
+                >
+                  <div className="block">
+                    <span>
+                      <img
+                        className="w-[20px] h-auto object-contain mx-auto md:mx-0 mb-0"
+                        src="https://bizsiteuploads.blob.core.windows.net/uploads/Insights.svg"
+                        alt="Insight Icon"
+                      />
+                    </span>
+                    <div
+                      className="hover:text-flamingo-400 font-medium"
+                      dangerouslySetInnerHTML={{ __html: text }}
                     />
-                  </span>
-                  <div
-                    className="hover:text-flamingo-400 !text-white font-medium"
-                    dangerouslySetInnerHTML={{ __html: item.subText }}
-                  />
-
-                  <span className="text-[10px] leading-4 block text-slate-300">
-                    Transform your legacy <br />
-                    technology with AI-enabled processes.
-                  </span>
-                </div>
-              )}
-            </motion.div>
-            <div className="border__seprator" />
-            <motion.div
-              initial={{ opacity: 0, y: -50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, ease: 'easeInOut' }}
-              className={services_items}
-            >
-              {item.subTextTwo && (
-                <div className="block">
-                  <span>
-                    <img
-                      className="w-[20px] flex object-contain"
-                      src="https://bizsiteuploads.blob.core.windows.net/uploads/Insights.svg"
-                    />
-                  </span>
-                  <div
-                    className="hover:text-flamingo-400 font-medium"
-                    dangerouslySetInnerHTML={{ __html: item.subTextTwo }}
-                  />
-                  <span className="text-[10px] leading-4 block text-slate-300">
-                    Adopt the best analytics <br />
-                    and Data Analytics Services methodologies
-                  </span>
-                </div>
-              )}
-            </motion.div>
-            <div className="border__seprator" />
-            <motion.div
-              initial={{ opacity: 0, y: -50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, ease: 'easeInOut' }}
-              className={services_items}
-            >
-              <div className="block">
-                <span>
-                  <img
-                    className="w-[20px] flex object-contain"
-                    src="https://bizsiteuploads.blob.core.windows.net/uploads/Insights.svg"
-                  />
-                </span>
-                <div
-                  className="hover:text-flamingo-400 font-medium"
-                  dangerouslySetInnerHTML={{ __html: item.subTextThree }}
-                />
-                <span className="text-[10px] leading-4 block text-slate-300">
-                  Adopt the best analytics <br />
-                  and Data Analytics Services methodologies
-                </span>
-              </div>
-            </motion.div>
+                    <span className="text-[10px] leading-4 block text-slate-300">
+                      {idx === 0
+                        ? 'Transform your legacy technology with AI-enabled processes.'
+                        : 'Adopt the best analytics and Data Analytics Services methodologies'}
+                    </span>
+                  </div>
+                </motion.div>
+              )
+            )}
           </div>
         </div>
       )}

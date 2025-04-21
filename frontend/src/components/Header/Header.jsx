@@ -1,4 +1,4 @@
-import { FaMagnifyingGlass } from 'react-icons/fa6';
+import { FaMagnifyingGlass, FaXmark, FaBars } from 'react-icons/fa6';
 import { HiXMark } from 'react-icons/hi2';
 
 import { flatListToHierarchical } from '../../utils/flatListToHierarchical';
@@ -13,9 +13,13 @@ import { UserProfile } from './UserProfile';
 
 const Header = ({ menus }) => {
   const menuList = flatListToHierarchical(menus?.nodes);
-  const [active] = useState(false);
+  const [active, setActive] = useState(false);
 
   // const { openPopup } = useContext(PopupContext);
+
+  const menuHandler = () => {
+    setActive(!active);
+  };
 
   const [width, setWidth] = useState(0);
   const [scroll, setScroll] = useState(false);
@@ -58,6 +62,8 @@ const Header = ({ menus }) => {
       : 'w-full'
   }`;
 
+  console.log('width', width);
+
   return (
     <>
       <header>
@@ -80,10 +86,43 @@ const Header = ({ menus }) => {
                 active={active}
                 width={width}
               />
-
+            </div>
+            <div
+              className={`${
+                showSearch
+                  ? 'opacity-100 bg-[#f7f9fc] dark:bg-gradient-to-t from-onyx-950 to-woodsmoke-950 w-[50%]'
+                  : 'opacity-0 bg-transparent w-0'
+              } absolute z-10 right-[18em] h-[60px] rounded-xl transition-all ease-out duration-700 border border-woodsmoke-200/10`}
+            >
+              <Search active={active} width={width} />
+            </div>
+            <div className="ml-4">
               <div className="flex relative items-center">
                 {/* Menu Open-Close Button */}
-
+                <div className="ml-auto flex">
+                  <button
+                    onClick={menuHandler}
+                    className={`${
+                      active ? 'dark:border-slate-500 ' : ''
+                    } lg:hidden relative z-20 border-onyx-400 dark:border-onyx-700 hover:bg-white/[.15] dark:hover:bg-accent
+                focus:bg-white ml-2 flex h-7 w-7 items-center justify-center rounded-full
+                border bg-white transition-colors focus:border-slate-400
+                 dark:bg-white/[.15]"
+                  aria-label="open mobile menu`}
+                  >
+                    {active ? (
+                      <FaXmark
+                        className={`${
+                          active ? 'dark:fill-slate-500 ' : ''
+                        } fill-slate-500 h-4 w-4 transition-colors`}
+                      />
+                    ) : (
+                      <FaBars
+                        className={`fill-slate-500 h-4 w-4 transition-colors hover:fill-flamingo-500 focus:fill-flamingo-500`}
+                      />
+                    )}
+                  </button>
+                </div>
                 <div className="relative z-20">
                   <button
                     onClick={() => handleSearch()}
@@ -97,27 +136,15 @@ const Header = ({ menus }) => {
                   </button>
                 </div>
               </div>
-            </div>
-            <div
-              className={`${
-                showSearch
-                  ? 'opacity-100 bg-[#f7f9fc] dark:bg-gradient-to-t from-onyx-950 to-woodsmoke-950 w-[50%]'
-                  : 'opacity-0 bg-transparent w-0'
-              } absolute z-10 right-[18em] h-[60px] rounded-xl transition-all ease-out duration-700 border border-woodsmoke-200/10`}
-            >
-              <Search active={active} width={width} />
-            </div>
-            <div className="ml-4">
+
               <UserProfile />
             </div>
           </div>
         </div>
         <div
           className={`${
-            width < 1024 && active
-              ? 'block absolute z-20 inset-0 px-10 py-10'
-              : 'hidden'
-          } lg:relative h-fit lg:flex bg-[#f7f9fc] dark:bg-gradient-to-t from-onyx-950 to-woodsmoke-950`}
+            width < 1024 && active ? '' : 'hidden'
+          } h-fit absolute z-20 inset-0 px-10 py-10 bg-[#f7f9fc] dark:bg-gradient-to-t from-onyx-950 to-woodsmoke-950`}
         >
           {/* Mobile Menu */}
           <MobileNav menuList={menuList} />
