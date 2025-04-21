@@ -14,6 +14,7 @@ import GlowLight from './extras/GlowLight';
 import { SecondaryButton } from './Buttons/SecondaryButton';
 import { PrimaryButton } from './Buttons/PrimaryButton';
 import { ServiceCards } from './ServiceCards';
+import IndustryTabButton from './Buttons/IndustryTabButton';
 
 const iconMap = {
   FiTruck,
@@ -95,36 +96,14 @@ export const Services = ({ servicesdata, industrydata }) => {
                 const IconComponent = iconMap[tab.industryIcon]; // get actual icon component
 
                 return (
-                  <button
+                  <IndustryTabButton
                     key={index}
-                    onClick={() => setActiveTab(tab.industryName)}
-                    className={`px-5 py-8 w-[200px] rounded-lg shadow-sm text-center border ${
-                      activeTab === tab.industryName
-                        ? 'bg-junglegreen-500 border-junglegreen-200'
-                        : 'bg-white'
-                    } transition-all`}
-                  >
-                    <div className="flex flex-col items-center gap-1">
-                      <span
-                        className={`text-md font-medium ${
-                          activeTab === tab.industryName
-                            ? 'text-white'
-                            : 'text-junglegreen-500'
-                        } transition-all`}
-                      >
-                        {IconComponent && <IconComponent size={24} />}
-                      </span>
-                      <span
-                        className={`text-md font-medium ${
-                          activeTab === tab.industryName
-                            ? 'text-white'
-                            : 'text-black'
-                        } transition-all`}
-                      >
-                        {tab.industryName}
-                      </span>
-                    </div>
-                  </button>
+                    tab={tab}
+                    index={index}
+                    activeTab={activeTab}
+                    setActiveTab={setActiveTab}
+                    IconComponent={IconComponent}
+                  />
                 );
               })}
           </div>

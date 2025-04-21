@@ -1,29 +1,45 @@
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useInView } from 'react-intersection-observer';
+import { motion, useAnimation } from 'framer-motion';
+import React from 'react';
 import { SecondaryButton } from './Buttons/SecondaryButton';
 
 export const ServiceCards = ({ item, index }) => {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-100px' });
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    triggerOnce: false,
+    threshold: 0.2,
+  });
+
+  React.useEffect(() => {
+    if (inView) {
+      controls.start({
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        transition: {
+          duration: 0.6,
+          delay: index * 0.15,
+          ease: 'easeOut',
+        },
+      });
+    } else {
+      controls.start({
+        opacity: 0,
+        scale: 0.95,
+        y: 50,
+        transition: {
+          duration: 0.4,
+          ease: 'easeIn',
+        },
+      });
+    }
+  }, [inView, controls, index]);
 
   return (
     <motion.div
       ref={ref}
       initial={{ opacity: 0, scale: 0.95, y: 50 }}
-      animate={
-        inView
-          ? {
-              opacity: 1,
-              scale: 1,
-              y: 0,
-              transition: {
-                duration: 0.6,
-                delay: index * 0.15,
-                ease: 'easeOut',
-              },
-            }
-          : {}
-      }
+      animate={controls}
       className="group overflow-hidden w-full relative z-20 ring-junglegreen-200 ring-1 p-1 rounded-3xl bg-gradient-to-t from-onyx-900"
     >
       <div className="relative rounded-3xl border-1 border-woodsmoke-300/70 z-10">

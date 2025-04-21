@@ -17,6 +17,7 @@ import FooterCta from '../components/FooterCta';
 import Footer from '../components/Footer';
 import MultiSection from '../components/MultiSection';
 import FrontLoader from '../components/Loader/FrontLoader';
+import { Poll } from '../components/Poll/Poll';
 
 const COMPONENTS = {
   slider: AnimatedSlider,
@@ -78,6 +79,7 @@ export default function Home() {
     <FrontLoader />
   ) : (
     <div>
+      <Poll />
       <HeaderServer />
       <div className="h-full" style={{ display: 'inherit' }}>
         {sections.slider && <AnimatedSlider data={sections.slider} />}

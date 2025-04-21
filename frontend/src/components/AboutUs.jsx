@@ -3,8 +3,22 @@ import React from 'react';
 import { PrimaryButton } from './Buttons/PrimaryButton';
 import { Heading } from './Heading/Heading';
 import GlowLight from './extras/GlowLight';
+import { useInView } from 'react-intersection-observer';
+
+import { motion, useAnimation } from 'framer-motion';
 
 const AboutUs = ({ data }) => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.2 });
+
+  React.useEffect(() => {
+    if (inView) {
+      controls.start({ x: 0, opacity: 1 });
+    } else {
+      controls.start({ x: -100, opacity: 0 });
+    }
+  }, [inView, controls]);
+
   return (
     <section className="px-24 pb-24 -mt-[300px]">
       <GlowLight classes={'top-[25%] left-0 bg-flamingo-600/40'} />
@@ -16,8 +30,11 @@ const AboutUs = ({ data }) => {
         />
         <div className="grid md:grid-cols-2 gap-12 items-start pt-10">
           {/* Video */}
-          <div className="w-full">
-            <div
+          <div className="w-full" ref={ref}>
+            <motion.div
+              initial={{ x: -100, opacity: 0 }}
+              animate={controls}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
               className="relative border border-junglegreen-400 rounded-xl p-3 w-fit"
               dangerouslySetInnerHTML={{ __html: data?.embedField }}
             />
