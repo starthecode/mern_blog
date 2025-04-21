@@ -26,7 +26,7 @@ const SubItem = ({ menuAcfFields, childrenItem }) => {
     <>
       {menuAcfFields?.showServicesMegaMenu ? (
         <motion.div
-          className="cursor-pointer w-[750px] h-full"
+          className="cursor-pointer w-[750px] h-full bg-white"
           layout
           variants={SubItemVariants}
         >

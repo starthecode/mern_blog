@@ -46,7 +46,7 @@ const MenuItem = ({ item, scroll, children, ...props }) => {
           <motion.div
             {...props}
             layoutId="menu"
-            className="absolute shadow-lg bg-black rounded-lg -left-2/4"
+            className="absolute shadow-lg bg-white rounded-lg -left-2/4"
             variants={MenuItemVariants}
             style={{ minWidth: 400 }}
             initial="hidden"

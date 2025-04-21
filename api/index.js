@@ -14,6 +14,7 @@ import authRoutes from './routes/auth.route.js';
 import uploadRoutes from './routes/upload.route.js';
 
 import pageRoutes from './routes/pages/page.route.js';
+import compression from 'compression';
 
 dotenv.config();
 
@@ -27,6 +28,8 @@ mongoose
 const __dirname = path.resolve();
 
 const app = express();
+
+app.use(compression());
 
 // Middleware
 app.use(express.json()); // Add this if you're handling JSON requests
