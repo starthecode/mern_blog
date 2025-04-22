@@ -118,3 +118,24 @@
   color: #4b5563; /* Approx for gray-600 */
   margin-top: 0.5rem;
 }
+
+@media (min-width: 1281px) {
+  .iframe__div iframe {
+    width: 500px;
+    height: 300px;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1280px) {
+  .iframe__div iframe {
+    width: 380px;
+    height: 250px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .iframe__div iframe {
+    width: 500px;
+    height: 300px;
+  }
+}

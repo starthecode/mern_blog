@@ -42,7 +42,7 @@ const IndustryTabButton = ({
       animate={controls}
       key={index}
       onClick={() => setActiveTab(tab.industryName)}
-      className={`px-5 py-8 w-[200px] rounded-lg shadow-sm text-center border ${
+      className={`px-5 py-8 w-[200px] sm:w-[100px] md:w-[100px] lg:w-[200px] rounded-lg shadow-sm text-center border ${
         activeTab === tab.industryName
           ? 'bg-junglegreen-500 border-junglegreen-200'
           : 'bg-white'
@@ -59,7 +59,7 @@ const IndustryTabButton = ({
           {IconComponent && <IconComponent size={24} />}
         </span>
         <span
-          className={`text-md font-medium ${
+          className={`text-xs sm:text-xs md:text-sm lg:text-md xl:text-md 2xl:text-md font-medium ${
             activeTab === tab.industryName ? 'text-white' : 'text-black'
           } transition-all`}
         >

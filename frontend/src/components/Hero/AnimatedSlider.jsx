@@ -13,14 +13,14 @@ import { IoMdArrowRoundBack, IoMdArrowRoundForward } from 'react-icons/io';
 export default function AnimatedSlider({ data }) {
   return (
     <section
-      className="relative sm:py-0 md:py-0 lg:pt-24 pb-3 overflow-hidden z-10"
+      className="relative py-24 sm:py-0 md:py-24 lg:py-24 xl:py-24 pb-3 overflow-hidden z-10"
       style={{
         backgroundImage: `url('https://bizsiteuploads.blob.core.windows.net/uploads/1744992778190-back-image.jpg')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
     >
-      <div className="h-full max-w-full px-5 sm:px-5 md:px-24 2xl:px-56">
+      <div className="h-full max-w-full px-0 sm:px-5 md:px-24 2xl:px-56">
         <div className="relative">
           <Swiper
             navigation={{
@@ -44,7 +44,7 @@ export default function AnimatedSlider({ data }) {
                 }}
               >
                 <div className="grid h-full items-start w-full max-w-3xl relative z-20">
-                  <div className="flex h-full flex-col items-center col-span-2 justify-center mt-16 sm:mt-8 md:mt-0 lg:mt-0 lg:items-start">
+                  <div className="flex h-full flex-col items-center col-span-2 justify-center mt-0 sm:mt-8 md:mt-0 lg:mt-0 lg:items-start">
                     <LeftCard item={item} />
                   </div>
                 </div>

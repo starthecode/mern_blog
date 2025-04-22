@@ -33,7 +33,7 @@ export const LeftCard = ({ item }) => {
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, ease: 'easeInOut' }}
-        className="mb-4 text-center font-inter lg:text-left text-foreground sm:text-xl md:text-3xl xl:text-5xl !leading-tight"
+        className="mb-0 text-center font-inter lg:text-left text-foreground sm:text-xl md:text-3xl xl:text-5xl !leading-tight"
       >
         <span
           className="block text-[#F4FFFA00] bg-clip-text bg-gradient-to-b from-junglegreen-400 via-junglegreen-100 to-white"

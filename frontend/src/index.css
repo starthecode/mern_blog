@@ -177,7 +177,7 @@
   }
 
   input {
-    @apply px-2 py-2 text-sm
+    @apply px-2 py-2 text-sm;
   }
 
   .light-gradiant {
@@ -327,7 +327,7 @@
 }
 
 .large-menu {
-  @apply fixed top-0 z-20 w-full transition-all;
+  @apply top-0 z-20 w-full transition-all;
 }
 
 .badge {

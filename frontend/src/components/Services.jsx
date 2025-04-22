@@ -57,14 +57,14 @@ export const Services = ({ servicesdata, industrydata }) => {
 
   return (
     <section
-      className="relative sm:py-0 md:py-0 lg:pt-24  z-10"
+      className="relative pt-24 sm:pt-24 md:pt-24 lg:pt-24 z-10"
       style={{
         backgroundImage: `url('https://bizsiteuploads.blob.core.windows.net/uploads/1744992778190-back-image.jpg')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
     >
-      <div className="h-full max-w-full px-40">
+      <div className="h-full max-w-full px-0 sm:px-0 md:px-40 lg:px-40 xl:px-40">
         <div className="flex text-center justify-center">
           <Heading
             type=""
@@ -72,14 +72,14 @@ export const Services = ({ servicesdata, industrydata }) => {
             title={servicesdata?.title}
           />
         </div>{' '}
-        <div className="grid grid-cols-3 gap-10 mt-10 ">
+        <div className="w-full flex flex-col justify-center items-center sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 xl:grid xl:grid-cols-3 gap-10 mt-10 ">
           {servicesdata?.items?.map((item, index) => (
             <ServiceCards item={item} index={index} />
           ))}
         </div>
       </div>
       <SvgLine2 />
-      <div className="h-full max-w-full px-40 mt-20 pb-20 bg-white">
+      <div className="h-full max-w-full px-0 sm:px-0 md:px-10 lg:px-20 xl:px-40 mt-20 pb-20 bg-white">
         <div className="flex w-full mb-10 pt-10">
           <Heading
             type="dark"
@@ -89,8 +89,8 @@ export const Services = ({ servicesdata, industrydata }) => {
         </div>
         {/* Tabs */}
         <GlowLight classes={'-left-20 bg-flamingo-600/40'} />
-        <div className="ml-auto mr-auto h-full max-w-full relative z-10">
-          <div className="flex gap-10 overflow-x-auto pb-4">
+        <div className="h-full max-w-full relative z-10">
+          <div className="flex gap-10 sm:gap-5 md:gap-5 lg:gap-8 overflow-x-auto pb-4">
             {industrydata?.items &&
               industrydata?.items?.map((tab, index) => {
                 const IconComponent = iconMap[tab.industryIcon]; // get actual icon component

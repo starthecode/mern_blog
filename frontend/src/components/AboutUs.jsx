@@ -20,7 +20,7 @@ const AboutUs = ({ data }) => {
   }, [inView, controls]);
 
   return (
-    <section className="px-24 pb-24 -mt-[300px]">
+    <section className="px-24 pb-24 xl:-mt-[300px]">
       <GlowLight classes={'top-[25%] left-0 bg-flamingo-600/40'} />
       <div className="max-w-7xl mx-auto">
         <Heading
@@ -28,9 +28,12 @@ const AboutUs = ({ data }) => {
           smallTitle={data?.smallTitle}
           title={data?.aboutTitle}
         />
-        <div className="grid md:grid-cols-2 gap-12 items-start pt-10">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-12 items-start pt-10">
           {/* Video */}
-          <div className="w-full" ref={ref}>
+          <div
+            className="iframe__div relative w-full sm:max-w-[300px] md:max-w-[450px] lg:max-w-[570px] xl:max-w-[700px]"
+            ref={ref}
+          >
             <motion.div
               initial={{ x: -100, opacity: 0 }}
               animate={controls}

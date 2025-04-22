@@ -5,10 +5,10 @@ import { SecondaryButton } from './Buttons/SecondaryButton';
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white px-40 pt-12">
+    <footer className="bg-black text-white px-10 lg:px-40 xl:px-40 pt-12">
       <GlowLight classes={'top-1/1 right-0 bg-junglegreen-500/40'} />
 
-      <div className="max-w-7xl mx-auto grid grid-cols-3 gap-10">
+      <div className="max-w-7xl grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-3 gap-10">
         {/* Logo and Social */}
         <div className="w-[200px]">
           <div>
@@ -45,7 +45,7 @@ const Footer = () => {
                 ].map((item) => (
                   <li
                     key={item}
-                    className="cursor-pointer text-woodsmoke-200 hover:text-orange-500 py-1"
+                    className="cursor-pointer text-sm xl:text-md text-woodsmoke-200 hover:text-orange-500 py-1"
                   >
                     &rarr; {item}
                   </li>

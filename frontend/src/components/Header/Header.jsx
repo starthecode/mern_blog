@@ -62,16 +62,14 @@ const Header = ({ menus }) => {
       : 'w-full'
   }`;
 
-  console.log('width', width);
-
   return (
     <>
       <header>
         <div
-          className={`relative flex justify-center items-center w-full ${
+          className={`flex relative justify-center items-center w-full ${
             width < 1024 && active
               ? 'mobile-nav--active inset-0 z-30 fixed'
-              : 'large-menu'
+              : 'large-menu relative sm:fixed md:fixed lg:fixed xl:fixed'
           } `}
         >
           <div
@@ -90,13 +88,13 @@ const Header = ({ menus }) => {
             <div
               className={`${
                 showSearch
-                  ? 'opacity-100 bg-[#f7f9fc] dark:bg-gradient-to-t from-onyx-950 to-woodsmoke-950 w-[50%]'
+                  ? 'opacity-100 bg-[#f7f9fc] w-[50%]'
                   : 'opacity-0 bg-transparent w-0'
               } absolute z-10 right-[18em] h-[60px] rounded-xl transition-all ease-out duration-700 border border-woodsmoke-200/10`}
             >
               <Search active={active} width={width} />
             </div>
-            <div className="ml-4">
+            <div className="ml-4 flex items-center gap-5">
               <div className="flex relative items-center">
                 {/* Menu Open-Close Button */}
                 <div className="ml-auto flex">

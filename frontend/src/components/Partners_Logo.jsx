@@ -20,7 +20,7 @@ export default function PartnersLogo({ data }) {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <section className="relative p-8 px-24 py-20 mb-10 overflow-hidden">
+    <section className="relative p-8 px-24 py-20 overflow-hidden">
       <GlowLight classes={'top-1/1 right-0 bg-flamingo-600/40'} />
       <div>
         <Heading type={'dark'} title={data?.title} />
@@ -28,7 +28,7 @@ export default function PartnersLogo({ data }) {
 
       <div
         ref={ref}
-        className="flex flex-wrap justify-start gap-6 md:gap-10 px-4 mt-10"
+        className="flex flex-wrap justify-start gap-6 md:gap-10 mt-10"
       >
         {data?.items &&
           data?.items?.map((partner, i) => (

@@ -15,12 +15,12 @@ const iconMap = {
 
 export default function Choose({ data }) {
   return (
-    <section className="bg-white py-20 px-20">
+    <section className="bg-white py-20 px-5 sm:px-0 md:px-10 lg:px-10 xl:px-20">
       <SvgLine3 />
 
       <GlowLight classes={'top-1/1 right-0 bg-flamingo-600/40'} />
 
-      <div className="grid grid-cols-4">
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-4">
         <div className="text-left mb-10">
           <Heading
             type={'dark'}
@@ -37,7 +37,9 @@ export default function Choose({ data }) {
                   <div
                     key={index}
                     className={`${card.bg} ${card.textColor} ${
-                      index === 1 || index === 2 ? 'w-[420px]' : 'w-[530px] '
+                      index === 1 || index === 2
+                        ? 'w-full sm:w-full md:w-full lg:w-full xl:w-[420px]'
+                        : 'w-full sm:w-full md:w-full lg:w-full xl:[530px]'
                     } ${
                       index === 0
                         ? 'relative left-0 bg-gradient-to-br from-blue-800 to-blue-500'
@@ -45,21 +47,21 @@ export default function Choose({ data }) {
                     }
               ${
                 index === 1
-                  ? 'relative left-16 bg-gradient-to-br from-onyx-900 to-onyx-600'
+                  ? 'relative left-0 sm:left-0 md:left-0 lg:left-0 xl:left-0 bg-gradient-to-br from-onyx-900 to-onyx-600'
                   : ''
               }
               ${
                 index === 2
-                  ? 'relative right-24 bg-gradient-to-br from-black to-onyx-600'
+                  ? 'relative right-0 sm:right-0 md:right-0 lg:right-0 xl:right-24 bg-gradient-to-br from-black to-onyx-600'
                   : ''
               }
               ${
                 index === 3
-                  ? 'relative right-36 bg-gradient-to-br from-[#7C4DFF] to-[#7C4DFF]'
+                  ? 'relative right-0 sm:right-0 md:right-0 lg:right-0 xl:right-36 bg-gradient-to-br from-[#7C4DFF] to-[#7C4DFF]'
                   : ''
               } rounded-3xl flex justify-between items-center shadow-lg transition-transform duration-300 overflow-hidden`}
                   >
-                    <div className="group w-[260px] relative overflow-hidden px-5 py-5">
+                    <div className="group w-full md:w-full lg:w-full xl:w-[260px] relative overflow-hidden px-5 py-5">
                       <div className="text-3xl mb-2 bg-white/30 w-fit p-2 rounded-full">
                         {IconComponent && (
                           <IconComponent color={'white'} size={24} />
@@ -76,7 +78,7 @@ export default function Choose({ data }) {
                         link={card.whychooseBtnUrl}
                       />
                     </div>
-                    <div className="w-1/1 h-full flex justify-end items-end relative overflow-hidden">
+                    <div className="w-1/1 md:w-full h-full flex justify-end items-end relative overflow-hidden">
                       <img
                         src={`${card?.whychooseImage}`}
                         alt={card.title}

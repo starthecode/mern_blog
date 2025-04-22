@@ -20,7 +20,7 @@ export const Heading = ({ type, smallTitle, title, subText }) => {
   }, [inView, controls]);
 
   return (
-    <div>
+    <div className="w-full text-center sm:text-center md:text-center xl:text-left">
       {smallTitle && (
         <div
           ref={ref}
@@ -33,7 +33,7 @@ export const Heading = ({ type, smallTitle, title, subText }) => {
           } transition-shadow relative inline-flex items-center rounded-tl-2xl rounded-tr-2xl rounded-br-2xl`}
         >
           <h5
-            className={`text-sm font-inter font-semibold text-foreground sm:leading-none uppercase block text-[#F4FFFA00] bg-clip-text bg-gradient-to-b ${
+            className={`text-sm font-semibold text-foreground sm:leading-none uppercase block text-[#F4FFFA00] bg-clip-text bg-gradient-to-b ${
               type == 'dark'
                 ? 'from-flamingo-600 to-ebony-950'
                 : 'from-junglegreen-500 to-white'
@@ -48,7 +48,7 @@ export const Heading = ({ type, smallTitle, title, subText }) => {
         ref={ref}
         initial={{ opacity: 0 }}
         animate={controls}
-        className={`block mb-5 text-3xl text-[#F4FFFA00] bg-clip-text bg-gradient-to-b ${
+        className={`block mb-5 sm:text-center md:text-center xl:text-left text-md sm:text-xl md:text-3xl xl:text-4xl text-[#F4FFFA00] bg-clip-text bg-gradient-to-b ${
           type == 'dark'
             ? 'from-black to-junglegreen-500'
             : 'from-white to-white/35'

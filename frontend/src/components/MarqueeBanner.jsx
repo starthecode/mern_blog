@@ -27,9 +27,9 @@ const links = [
 
 const MarqueeBanner = () => {
   return (
-    <div className="relative w-full overflow-hidden border-y border-junglegreen-500/60 bg-gradient-to-r from-[#0F172A] to-[#1E293B] py-3 mt-8 mb-8 flex items-center">
+    <div className="relative w-full overflow-hidden border-y border-junglegreen-500/60 bg-gradient-to-r from-[#0F172A] to-[#1E293B] py-3 mt-8 mb-8 text-center sm:text-center md:text-center lg:text-left xl:text-left grid sm:block md:flex xl:flex sm:justify-center md:justify-start xl:justify-start items-center">
       {/* Fixed "What’s New" */}
-      <div className="min-w-[160px] pl-4">
+      <div className="sm:w-full md:w-[200px] lg:w-[200px] xl:w-[200px] pl-4">
         <span className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-junglegreen-500 to-blue-500">
           What’s New:
         </span>

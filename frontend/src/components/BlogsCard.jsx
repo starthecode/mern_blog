@@ -40,7 +40,7 @@ const blogItems = [
 export default function BlogsCard({ testimonialsData }) {
   return (
     <section
-      className="relative px-40 pt-28 pb-40 z-10 bg-black"
+      className="relative px-0 sm:px-0 md:px-10 lg:px-40 xl:px-40 pt-28 xl:pb-40 z-10 bg-black"
       style={{
         backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://bizsiteuploads.blob.core.windows.net/uploads/1744992778190-back-image.jpg')`,
         backgroundSize: 'cover',
@@ -54,7 +54,7 @@ export default function BlogsCard({ testimonialsData }) {
       <GlowLight classes={'top-1/1 right-0 bg-junglegreen-500/40'} />
 
       <div className="">
-        <div className="flex justify-end mb-6">
+        <div className="flex justify-end sm:justify-center md:justify-center lg:justify-center xl:justify-center mb-6">
           <PrimaryButton title={'View All'} link={'/'} />
         </div>
 
@@ -66,7 +66,7 @@ export default function BlogsCard({ testimonialsData }) {
       </div>
       <SvgLine4 />
 
-      <div className="relative overflow-hidden z-10 mt-48">
+      <div className="relative overflow-hidden z-10 mt-28 pb-20 xl:pb-0 xl:mt-48">
         <div>
           <Heading
             type={''}
@@ -74,7 +74,7 @@ export default function BlogsCard({ testimonialsData }) {
             title={testimonialsData?.title}
           />
         </div>
-        <div className="grid grid-cols-3 mt-5 gap-10 relative z-10">
+        <div className="flex flex-col justify-between items-center lg:grid lg:grid-cols-3 xl:grid-cols-3 mt-5 gap-10 relative z-10">
           {testimonialsData?.items &&
             testimonialsData.items.map((item, index) => (
               <QuoteCards data={item} index={index} />

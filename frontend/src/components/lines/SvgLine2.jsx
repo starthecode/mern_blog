@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export default function SvgLine2() {
   return (
-    <div className="absolute w-full z-10 top-[500px] px-10">
+    <div className="absolute w-full z-10 top-[500px] px-10 hidden xl:block">
       <svg
         fill="none"
         viewBox="0 0 1784 897"

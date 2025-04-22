@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export default function SvgLine1() {
   return (
-    <div className="relative px-10 -mt-[300px]">
+    <div className="relative px-10 -mt-[300px] hidden xl:block">
       <svg
         fill="none"
         viewBox="0 0 1723 774"
