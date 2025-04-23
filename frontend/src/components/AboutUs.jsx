@@ -6,6 +6,7 @@ import GlowLight from './extras/GlowLight';
 import { useInView } from 'react-intersection-observer';
 
 import { motion, useAnimation } from 'framer-motion';
+import LiteYouTubeEmbed from './extras/LiteYouTubeEmbed';
 
 const AboutUs = ({ data }) => {
   const controls = useAnimation();
@@ -39,8 +40,10 @@ const AboutUs = ({ data }) => {
               animate={controls}
               transition={{ duration: 0.6, ease: 'easeOut' }}
               className="relative border border-junglegreen-400 rounded-xl p-3 w-fit"
-              dangerouslySetInnerHTML={{ __html: data?.embedField }}
-            />
+            >
+              {' '}
+              <LiteYouTubeEmbed videoId="0DysrE4uCsk" />
+            </motion.div>
           </div>
 
           {/* Text Content */}
