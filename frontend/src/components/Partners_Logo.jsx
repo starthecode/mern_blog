@@ -20,7 +20,7 @@ export default function PartnersLogo({ data }) {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <section className="relative p-8 px-24 py-20 overflow-hidden">
+    <section className="relative px-10 md:px-24 xl:px-24 pt-20 py-10 overflow-hidden">
       <GlowLight classes={'top-1/1 right-0 bg-flamingo-600/40'} />
       <div>
         <Heading type={'dark'} title={data?.title} />
@@ -28,13 +28,13 @@ export default function PartnersLogo({ data }) {
 
       <div
         ref={ref}
-        className="flex flex-wrap justify-start gap-6 md:gap-10 mt-10"
+        className="grid grid-cols-3 place-items-center md:flex md:flex-wrap lg:flex lg:flex-wrap xl:flex xl:flex-wrap justify-center sm:justify-center md:justify-center lg:justify-center xl:justify-start gap-5 md:gap-10 mt-10"
       >
         {data?.items &&
           data?.items?.map((partner, i) => (
             <motion.div
               key={i}
-              className="w-28 h-28 md:w-25 md:h-25 rounded-full border border-junglegreen-400 flex items-center justify-center bg-white shadow-sm"
+              className="w-20 h-20 md:w-28 md:h-28 xl:w-28 xl:h-28 rounded-full border border-junglegreen-400 flex items-center justify-center bg-white shadow-sm"
               custom={i}
               initial="hidden"
               animate={inView ? 'visible' : 'hidden'}

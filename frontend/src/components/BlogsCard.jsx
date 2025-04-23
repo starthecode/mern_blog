@@ -54,7 +54,7 @@ export default function BlogsCard({ testimonialsData }) {
       <GlowLight classes={'top-1/1 right-0 bg-junglegreen-500/40'} />
 
       <div className="">
-        <div className="flex justify-end sm:justify-center md:justify-center lg:justify-center xl:justify-center mb-6">
+        <div className="flex justify-end sm:justify-center md:justify-center lg:justify-center xl:justify-end mb-6">
           <PrimaryButton title={'View All'} link={'/'} />
         </div>
 

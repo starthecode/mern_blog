@@ -327,7 +327,7 @@
 }
 
 .large-menu {
-  @apply top-0 z-20 w-full transition-all;
+  @apply top-[50px] z-20 w-full transition-all;
 }
 
 .badge {
@@ -342,7 +342,7 @@
   @apply rounded-full bg-zinc-900/5 ring-1 ring-zinc-900/25;
 }
 .mobile-nav-btns {
-  @apply relative left-0 z-10 items-center justify-between;
+  @apply fixed left-0 right-0 mx-auto z-10 items-center justify-between;
 }
 
 .slick-list .slick-track {

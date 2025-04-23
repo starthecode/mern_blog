@@ -29,7 +29,7 @@ export default function Choose({ data }) {
           />
         </div>
         <div className="col-span-3 w-full">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6 relative">
             {data?.items &&
               data?.items?.map((card, index) => {
                 const IconComponent = iconMap[card.whychooseIcon];
@@ -38,8 +38,8 @@ export default function Choose({ data }) {
                     key={index}
                     className={`${card.bg} ${card.textColor} ${
                       index === 1 || index === 2
-                        ? 'w-full sm:w-full md:w-full lg:w-full xl:w-[420px]'
-                        : 'w-full sm:w-full md:w-full lg:w-full xl:[530px]'
+                        ? 'w-full sm:w-full md:w-full lg:w-full xl:w-[400px]'
+                        : 'w-full sm:w-full md:w-full lg:w-full xl:w-[530px]'
                     } ${
                       index === 0
                         ? 'relative left-0 bg-gradient-to-br from-blue-800 to-blue-500'
@@ -47,21 +47,21 @@ export default function Choose({ data }) {
                     }
               ${
                 index === 1
-                  ? 'relative left-0 sm:left-0 md:left-0 lg:left-0 xl:left-0 bg-gradient-to-br from-onyx-900 to-onyx-600'
+                  ? 'relative left-0 sm:left-0 md:left-0 lg:left-0 xl:left-16 bg-gradient-to-br from-onyx-900 to-onyx-600'
                   : ''
               }
               ${
                 index === 2
-                  ? 'relative right-0 sm:right-0 md:right-0 lg:right-0 xl:right-24 bg-gradient-to-br from-black to-onyx-600'
+                  ? 'relative right-0 sm:right-0 md:right-0 lg:right-0 xl:right-16 bg-gradient-to-br from-black to-onyx-600'
                   : ''
               }
               ${
                 index === 3
-                  ? 'relative right-0 sm:right-0 md:right-0 lg:right-0 xl:right-36 bg-gradient-to-br from-[#7C4DFF] to-[#7C4DFF]'
+                  ? 'relative right-0 sm:right-0 md:right-0 lg:right-0 xl:right-32 bg-gradient-to-br from-[#7C4DFF] to-[#7C4DFF]'
                   : ''
               } rounded-3xl flex justify-between items-center shadow-lg transition-transform duration-300 overflow-hidden`}
                   >
-                    <div className="group w-full md:w-full lg:w-full xl:w-[260px] relative overflow-hidden px-5 py-5">
+                    <div className="group w-full md:w-full lg:w-full xl:w-[350px] relative overflow-hidden px-5 py-5">
                       <div className="text-3xl mb-2 bg-white/30 w-fit p-2 rounded-full">
                         {IconComponent && (
                           <IconComponent color={'white'} size={24} />
@@ -78,7 +78,7 @@ export default function Choose({ data }) {
                         link={card.whychooseBtnUrl}
                       />
                     </div>
-                    <div className="w-1/1 md:w-full h-full flex justify-end items-end relative overflow-hidden">
+                    <div className="w-1/1 md:w-full xl:w-1/1 h-full flex justify-end items-end relative overflow-hidden">
                       <img
                         src={`${card?.whychooseImage}`}
                         alt={card.title}

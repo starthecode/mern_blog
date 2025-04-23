@@ -5,7 +5,8 @@ export default function SvgLine3() {
   return (
     <div className="absolute w-full left-[22rem] mt-[70px] hidden xl:block">
       <svg
-        width={1300}
+        width={1250}
+        height={800}
         fill="none"
         viewBox="0 0 1784 897"
         xmlns="http://www.w3.org/2000/svg"

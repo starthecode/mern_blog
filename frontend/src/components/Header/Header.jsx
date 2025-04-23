@@ -142,7 +142,7 @@ const Header = ({ menus }) => {
         <div
           className={`${
             width < 1024 && active ? '' : 'hidden'
-          } h-fit absolute z-20 inset-0 px-10 py-10 bg-[#f7f9fc] dark:bg-gradient-to-t from-onyx-950 to-woodsmoke-950`}
+          } h-fit fixed z-20 inset-0 px-10 py-10 bg-[#f7f9fc] dark:bg-gradient-to-t from-onyx-950 to-woodsmoke-950`}
         >
           {/* Mobile Menu */}
           <MobileNav menuList={menuList} />

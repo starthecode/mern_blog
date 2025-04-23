@@ -79,7 +79,7 @@ export const Services = ({ servicesdata, industrydata }) => {
         </div>
       </div>
       <SvgLine2 />
-      <div className="h-full max-w-full px-0 sm:px-0 md:px-10 lg:px-20 xl:px-40 mt-20 pb-20 bg-white">
+      <div className="h-full max-w-full px-10 sm:px-0 md:px-10 lg:px-20 xl:px-40 mt-20 pb-20 bg-white">
         <div className="flex w-full mb-10 pt-10">
           <Heading
             type="dark"

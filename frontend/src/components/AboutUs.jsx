@@ -20,7 +20,7 @@ const AboutUs = ({ data }) => {
   }, [inView, controls]);
 
   return (
-    <section className="px-24 pb-24 xl:-mt-[300px]">
+    <section className="px-10 md:px-24 xl:px-24 pt-10 xl:pt-0 py-10 xl:-mt-[300px]">
       <GlowLight classes={'top-[25%] left-0 bg-flamingo-600/40'} />
       <div className="max-w-7xl mx-auto">
         <Heading

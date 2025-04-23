@@ -6,6 +6,8 @@ export default function SvgLine1() {
   return (
     <div className="relative px-10 -mt-[300px] hidden xl:block">
       <svg
+        width={1300}
+        height={700}
         fill="none"
         viewBox="0 0 1723 774"
         xmlns="http://www.w3.org/2000/svg"
