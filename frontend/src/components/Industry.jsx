@@ -147,7 +147,7 @@ export default function Industry({ data }) {
                 </div>
               </span>
               <img
-                src="https://bizsiteuploads.blob.core.windows.net/uploads/ai-img-learnmore.jpg"
+                src="https://bizsiteuploads.blob.core.windows.net/uploads/1745383381182-learnmoreimg.webp"
                 alt="learn more"
                 className="w-full h-[270px] object-cover rounded-xl"
               />

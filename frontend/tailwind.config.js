@@ -142,9 +142,7 @@ export default {
         },
       },
       fontFamily: {
-        inter: ['Inter, sans-serif', 'sans-serif'],
-        cursive: ['Nothing You Could Do,cursive'],
-        figtree: ['Figtree, sans-serif'],
+        manrope: ['Manrope', 'sans-serif'],
       },
     },
   },
