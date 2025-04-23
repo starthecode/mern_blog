@@ -15,7 +15,7 @@ const blogItems = [
     date: 'DEC 28, 2024',
     time: '2 MINS TO READ',
     image:
-      'https://bizsiteuploads.blob.core.windows.net/uploads/blogcard-img01.jpg',
+      'https://bizsiteuploads.blob.core.windows.net/uploads/1745393586343-blogcardimg01.webp',
   },
   {
     category: 'Oracle Fusion Integration',
@@ -24,7 +24,7 @@ const blogItems = [
     date: 'DEC 28, 2024',
     time: '',
     image:
-      'https://bizsiteuploads.blob.core.windows.net/uploads/blogcard-img02.jpg',
+      'https://bizsiteuploads.blob.core.windows.net/uploads/1745393596619-blogcardimg02.webp',
   },
   {
     category: 'Data Transformation',
@@ -33,7 +33,7 @@ const blogItems = [
     date: 'DEC 28, 2024',
     time: '2 MINS TO READ',
     image:
-      'https://bizsiteuploads.blob.core.windows.net/uploads/blogcard-img03.jpg',
+      'https://bizsiteuploads.blob.core.windows.net/uploads/1745393610946-blogcardimg03.webp',
   },
 ];
 
