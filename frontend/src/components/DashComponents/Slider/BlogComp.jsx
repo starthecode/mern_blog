@@ -18,7 +18,6 @@ export default function BlogComp({ blogTitle, setBlogTitle }) {
         placeholder="enter blog title"
         value={blogTitle?.blogTitle || ''}
         onChange={handleChange('blogTitle')}
-        required
       />
     </div>
   );

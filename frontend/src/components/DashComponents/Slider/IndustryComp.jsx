@@ -51,7 +51,6 @@ const IndustryComp = forwardRef(
           placeholder="Enter Text"
           value={industryTitle}
           onChange={handleIndustryTitleChange}
-          required
         />
 
         {fields.map((item, index) => {

@@ -4,7 +4,7 @@ import PageHead from '../../components/DashComponents/PageHead';
 import PublishPanel from '../../components/DashComponents/PublishPanel';
 import TextEditor from '../../components/TextEditor';
 import toast from 'react-hot-toast';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import PartnerComp from '../../components/DashComponents/Slider/PartnerComp';
 import AboutComp from '../../components/DashComponents/Slider/AboutComp';
 import ServicesComp from '../../components/DashComponents/Slider/ServicesComp';
@@ -13,6 +13,7 @@ import WhychooseComp from '../../components/DashComponents/Slider/WhychooseComp'
 import BlogComp from '../../components/DashComponents/Slider/BlogComp';
 import TestimonialsComp from '../../components/DashComponents/Slider/TestimonialsComp';
 import FooterCtaComp from '../../components/DashComponents/FooterCtaComp';
+import SeoPanel from '../../components/DashComponents/SeoPanel';
 
 export const Page = () => {
   const navigate = useNavigate();
@@ -38,6 +39,17 @@ export const Page = () => {
     }
   }, [location]);
 
+  const [searchParams] = useSearchParams();
+  const isEditing = !!searchParams.get('action'); // or check both `page` and `action`
+
+  React.useEffect(() => {
+    if (!isEditing && actionType === 'edit') {
+      setActionType('new');
+      window.location.reload();
+      // optional safety
+    }
+  }, [isEditing, actionType]);
+
   React.useEffect(() => {
     const fetchPage = async () => {
       if (!postid) return;
@@ -52,6 +64,8 @@ export const Page = () => {
         });
         const data = await res.json();
 
+        console.log('data', data);
+
         if (!res.ok) {
           toast.error(data.message || 'Failed to fetch page data');
           return;
@@ -62,6 +76,8 @@ export const Page = () => {
         setPageDate(data.updatedAt);
 
         const contentArray = data.content || [];
+
+        setSeoFields(data?.seo);
 
         const textContent = contentArray.find((item) => item.type === 'text');
         const sliderContent = contentArray.find(
@@ -144,7 +160,7 @@ export const Page = () => {
 
   const [ctaField, setCtaField] = React.useState(false);
 
-  const [title, setTitle] = React.useState('home');
+  const [title, setTitle] = React.useState('');
   const [editorContent, setEditorContent] = React.useState('<p>Typing...</p>');
   const [slidersData, setSlidersData] = React.useState([
     {
@@ -220,6 +236,12 @@ export const Page = () => {
       testimonialsSubText: '',
     },
   ]);
+
+  const [seoFields, setSeoFields] = React.useState({
+    focusKeyphrase: '',
+    seoTitle: '',
+    seoDescription: '',
+  });
 
   const [blogTitle, setBlogTitle] = React.useState('');
 
@@ -320,13 +342,12 @@ export const Page = () => {
           data: blogTitle,
         },
       ],
+      seoFields: seoFields,
     };
-
-    // console.log('payload', payload);
 
     if (postid || actionType === 'edit') {
       // UPDATE POST
-      // console.log('Update payload', payload);
+      //console.log('Update payload', payload);
 
       try {
         const res = await fetch(`/api/page/update/${postid}`, {
@@ -373,6 +394,7 @@ export const Page = () => {
 
         if (data.success) {
           toast.success('Page Created');
+          setActionType('edit');
           navigate(`/dashboard/page-new?page=${randomPageId}&action=edit`);
         }
       } catch (error) {
@@ -570,6 +592,9 @@ export const Page = () => {
                 />
               </div>
             </div>
+          </div>
+          <div>
+            <SeoPanel seoFields={seoFields} setSeoFields={setSeoFields} />
           </div>
         </div>
         <div>

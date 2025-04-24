@@ -73,6 +73,24 @@ export const DashSidebar = () => {
       return;
     }
 
+    if (customLink === '/dashboard/page-new') {
+      const currentSearch = window.location.search;
+      const isEditing =
+        currentSearch.includes('action=edit') ||
+        currentSearch.includes('page=');
+
+      if (isEditing) {
+        const confirmReset = window.confirm(
+          'You have unsaved changes. Are you sure you want to start a new page?'
+        );
+        if (!confirmReset) return;
+      }
+      // Navigate cleanly, removing query params
+      navigate('/dashboard/page-new', { replace: true });
+      return;
+    }
+
+    // Default behavior
     if (customLink) {
       navigate(customLink);
       return;
@@ -80,8 +98,8 @@ export const DashSidebar = () => {
 
     const params = { tab };
     if (sub) params.sub = sub;
-    const search = new URLSearchParams(params);
 
+    const search = new URLSearchParams(params);
     navigate(`/dashboard?${search}`);
   };
 

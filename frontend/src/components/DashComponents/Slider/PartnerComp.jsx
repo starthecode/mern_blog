@@ -82,7 +82,6 @@ const PartnerComp = forwardRef(
           placeholder="Enter Text"
           value={partnerTitle}
           onChange={handlePartnerTitleChange}
-          required
         />
 
         {fields.map((item, index) => {

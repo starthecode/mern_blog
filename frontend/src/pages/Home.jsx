@@ -18,6 +18,7 @@ import Footer from '../components/Footer';
 import MultiSection from '../components/MultiSection';
 import FrontLoader from '../components/Loader/FrontLoader';
 import { Poll } from '../components/Poll/Poll';
+import SeoComp from '../components/SeoComp';
 
 const COMPONENTS = {
   slider: AnimatedSlider,
@@ -37,6 +38,9 @@ export default function Home() {
     location.pathname === '/' ? 'home' : location.pathname.replace('/', '');
 
   const [sections, setSections] = useState({});
+
+  const [seoData, setSeoData] = useState({});
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -63,7 +67,7 @@ export default function Home() {
         for (const section of json?.content || []) {
           newSections[section.type] = section.data || [];
         }
-
+        setSeoData(json?.seo);
         setSections(newSections);
       } catch (error) {
         toast.error(error.message || 'Something went wrong');
@@ -75,10 +79,19 @@ export default function Home() {
     fetchPage();
   }, [slug]);
 
+  console.log('addasas', seoData?.seoTitle);
+
   return loading ? (
     <FrontLoader />
   ) : (
     <div>
+      <SeoComp
+        seoTitle={seoData?.seoTitle}
+        description={seoData?.seoDescription}
+        keywords={seoData?.focusKeyphrase}
+        image={seoData?.image}
+        url={`https://yourdomain.com/blog/${seoData?.slug}`}
+      />
       <Poll />
       <HeaderServer />
       <div className="h-full" style={{ display: 'inherit' }}>

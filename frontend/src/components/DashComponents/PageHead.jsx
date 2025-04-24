@@ -6,7 +6,7 @@ export default function PageHead({ title, setTitle, postId }) {
     setTitle(e.target.value);
   };
 
-  const safeTitle = String(title || 'home');
+  const safeTitle = String(title || '');
   const permalink = `https://www.bizmetric.com/${safeTitle
     .toLowerCase()
     .replace(/\s+/g, '-')}`;

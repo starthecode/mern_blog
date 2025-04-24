@@ -49,6 +49,14 @@ const pageSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+pageSchema.virtual('seo', {
+  ref: 'Seo',
+  localField: '_id',
+  foreignField: 'pageId',
+  justOne: true,
+  options: { match: { pageType: 'Page' } },
+});
+
 const Page = mongoose.model('Page', pageSchema);
 
 export default Page;

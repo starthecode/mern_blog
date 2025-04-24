@@ -81,7 +81,6 @@ const TestimonialsComp = forwardRef(
           placeholder="Enter Text"
           value={testimonialsTitle}
           onChange={handleTestimonialsTitleChange}
-          required
         />
 
         {fields.map((item, index) => {

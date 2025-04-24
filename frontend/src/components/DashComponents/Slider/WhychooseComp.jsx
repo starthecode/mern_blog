@@ -84,7 +84,6 @@ const WhychooseComp = forwardRef(
           placeholder="Enter Text"
           value={whychooseTitle}
           onChange={handleWhychooseTitleChange}
-          required
         />
 
         {fields.map((item, index) => {

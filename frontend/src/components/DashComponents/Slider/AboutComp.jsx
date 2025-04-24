@@ -30,7 +30,6 @@ export default function AboutComp({ aboutFields, setAboutFields }) {
           placeholder={`Enter ${label}`}
           value={aboutFields[key]}
           onChange={handleChange(key)}
-          required
         />
       ))}
     </div>

@@ -1,4 +1,9 @@
 import Page from '../models/page.model.js';
+
+import Seo from '../models/seo.model.js';
+
+import generateSEO from '../utils/aiSeoGenerator.js';
+
 import { errorhandler } from '../utils/error.js';
 
 export const createPage = async (req, res, next) => {
@@ -6,28 +11,46 @@ export const createPage = async (req, res, next) => {
     return next(errorhandler(403, 'You are not allowed to create the post'));
   }
 
-  if (!req.body.title || !req.body.content) {
+  const { title, content, pageId, seoFields } = req.body;
+
+  if (!title || !content) {
     return next(errorhandler(400, 'Please provide all required fields'));
   }
 
-  const slug = req.body.title
+  // Generate slug
+  const slug = title
     .split(' ')
     .join('-')
     .toLowerCase()
     .replace(/[^a-zA-Z0-9-]/g, '');
 
-  const newPage = new Page({
-    ...req.body,
-    slug,
-    pageId: req.body.pageId,
-    userId: req.user.id,
-  });
-
   try {
+    // Save the new page
+    const newPage = new Page({
+      ...req.body,
+      slug,
+      pageId,
+      userId: req.user.id,
+    });
+
     const savedPage = await newPage.save();
+
+    // 🔮 Generate SEO metadata with AI
+    // const seoData = await generateSEO({ title, content });
+
+    // 📝 Save SEO entry with reference to the page
+    const seoEntry = new Seo({
+      pageType: 'Page',
+      pageId: savedPage._id,
+      ...seoFields,
+    });
+
+    await seoEntry.save();
+
     res.status(201).json({
       success: true,
       page: savedPage,
+      seo: seoEntry,
     });
   } catch (error) {
     next(error);
@@ -62,7 +85,9 @@ export const getPages = async (req, res, next) => {
 
 export const getPageById = async (req, res, next) => {
   try {
-    const page = await Page.findOne({ pageId: req.params.pageId });
+    const page = await Page.findOne({ pageId: req.params.pageId })
+      .populate('seo')
+      .lean();
 
     if (!page) {
       return res.status(404).json({ message: 'Page not found' });
@@ -76,7 +101,9 @@ export const getPageById = async (req, res, next) => {
 
 export const getPageBySlug = async (req, res, next) => {
   try {
-    const page = await Page.findOne({ slug: req.params.slug });
+    const page = await Page.findOne({ slug: req.params.slug })
+      .populate('seo')
+      .lean();
 
     if (!page) {
       return res.status(404).json({ message: 'Page not found' });
@@ -107,8 +134,10 @@ export const deletePageById = async (req, res, next) => {
 };
 
 export const updatePageById = async (req, res, next) => {
+  const { title, content, seoFields } = req.body;
+
   try {
-    const slug = req.body.title
+    const slug = title
       .split(' ')
       .join('-')
       .toLowerCase()
@@ -124,6 +153,18 @@ export const updatePageById = async (req, res, next) => {
       return res
         .status(404)
         .json({ success: false, message: 'Page not found' });
+    }
+
+    if (seoFields) {
+      await Seo.findOneAndUpdate(
+        { pageId: updatedPage._id, pageType: 'Page' },
+        {
+          $set: {
+            ...seoFields,
+          },
+        },
+        { upsert: true, new: true }
+      );
     }
 
     res.status(200).json({ success: true, message: 'Page Updated' });

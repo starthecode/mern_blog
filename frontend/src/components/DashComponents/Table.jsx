@@ -70,18 +70,18 @@ export default function TableComp({ data = [] }) {
               </td>
               <td className="p-2">
                 <div className="font-medium text-blue-700">{page.title}</div>
-                <div className="text-xs text-gray-500 space-x-2">
+                <div className="text-xs text-gray-500 space-x-2 mt-2">
                   <Link
                     to={`/dashboard/page-new?page=${page.pageId}&action=edit`}
                     className="hover:underline"
                   >
                     Edit
                   </Link>{' '}
-                  <button className="hover:underline text-red-500">
+                  <button className="hover:underline text-[1.3em] text-red-500">
                     Trash
                   </button>
                   <Link
-                    to={page.title === 'home' ? '/' : `/${page.title}`}
+                    to={page.title === 'home' ? '/' : `/${page.slug}`}
                     className="hover:underline"
                   >
                     View

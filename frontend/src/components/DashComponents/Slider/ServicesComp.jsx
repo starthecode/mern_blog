@@ -82,7 +82,6 @@ const ServicesComp = forwardRef(
           placeholder="Enter Text"
           value={servicesTitle}
           onChange={handleServicesTitleChange}
-          required
         />
 
         {fields.map((item, index) => {
