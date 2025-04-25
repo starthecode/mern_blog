@@ -9,6 +9,11 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
+  "overrides": {
+    "react-helmet-async": {
+      "react": "18.3.1"
+    }
+  },
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.1",
     "@tiptap/react": "^2.11.7",
