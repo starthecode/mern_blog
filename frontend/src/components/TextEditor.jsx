@@ -1,83 +1,61 @@
-import React from 'react';
-import { useEditor, EditorContent } from '@tiptap/react';
-import StarterKit from '@tiptap/starter-kit';
+import React, { useEffect, useRef } from 'react';
+import EditorJS from '@editorjs/editorjs';
+import Header from '@editorjs/header';
+import List from '@editorjs/list';
+import Paragraph from '@editorjs/paragraph';
+import ImageTool from '@editorjs/image';
 
 const TextEditor = ({ editorContent, setEditorContent }) => {
-  const editor = useEditor({
-    extensions: [StarterKit],
-    content: editorContent,
-    onUpdate: ({ editor }) => {
-      setEditorContent(editor.getHTML());
-    },
-  });
+  const editorInstanceRef = useRef(null);
+  const holderId = 'editorjs-container';
 
-  // Update the editor content if it changes from parent
-  React.useEffect(() => {
-    if (editor && editorContent !== editor.getHTML()) {
-      editor.commands.setContent(editorContent);
+  useEffect(() => {
+    if (!editorInstanceRef.current) {
+      editorInstanceRef.current = new EditorJS({
+        holder: holderId,
+        tools: {
+          header: Header,
+          list: List,
+          paragraph: Paragraph,
+          image: {
+            class: ImageTool,
+            config: {
+              endpoints: {
+                byFile: '/api/uploadFile', // Your file upload endpoint (POST)
+                byUrl: '/api/fetchUrl', // Optional: upload by image URL
+              },
+            },
+          },
+        },
+        data: editorContent ? JSON.parse(editorContent) : {},
+        onChange: async (api) => {
+          const savedData = await api.saver.save();
+          setEditorContent(JSON.stringify(savedData));
+        },
+      });
     }
-  }, [editorContent, editor]);
 
-  if (!editor) return null;
+    return () => {
+      if (editorInstanceRef.current?.destroy) {
+        editorInstanceRef.current.destroy();
+        editorInstanceRef.current = null;
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (editorInstanceRef.current && editorContent) {
+      editorInstanceRef.current.isReady
+        .then(() => {
+          editorInstanceRef.current.render(JSON.parse(editorContent));
+        })
+        .catch((err) => console.error('Editor.js initialization error', err));
+    }
+  }, [editorContent]);
 
   return (
-    <div className="my-8" key={editorContent}>
-      {/* 🧰 Toolbar */}
-      <div className="flex gap-2 mb-4">
-        <button
-          onClick={() => editor.chain().focus().toggleBold().run()}
-          className={
-            editor.isActive('bold')
-              ? 'bg-black text-white px-2 py-1 rounded'
-              : 'border px-2 py-1 rounded'
-          }
-        >
-          Bold
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleItalic().run()}
-          className={
-            editor.isActive('italic')
-              ? 'bg-black text-white px-2 py-1 rounded'
-              : 'border px-2 py-1 rounded'
-          }
-        >
-          Italic
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleBulletList().run()}
-          className={
-            editor.isActive('bulletList')
-              ? 'bg-black text-white px-2 py-1 rounded'
-              : 'border px-2 py-1 rounded'
-          }
-        >
-          Bullet List
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleOrderedList().run()}
-          className={
-            editor.isActive('orderedList')
-              ? 'bg-black text-white px-2 py-1 rounded'
-              : 'border px-2 py-1 rounded'
-          }
-        >
-          Ordered List
-        </button>
-        <button
-          onClick={() =>
-            editor.chain().focus().unsetAllMarks().clearNodes().run()
-          }
-          className="border px-2 py-1 rounded"
-        >
-          Clear
-        </button>
-      </div>
-
-      {/* 📝 Editor */}
-      <div className="border p-4 rounded-lg min-h-[150px]">
-        <EditorContent editor={editor} />
-      </div>
+    <div className="border p-4 rounded-lg min-h-[150px] my-8">
+      <div id={holderId} />
     </div>
   );
 };

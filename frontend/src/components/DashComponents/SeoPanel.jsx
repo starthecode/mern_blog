@@ -7,9 +7,7 @@ const fieldList = [
   { key: 'seoDescription', label: 'Seo Description' },
 ];
 
-export default function SeoPanel({ seoFields, setSeoFields }) {
-  console.log('seoFields:', seoFields);
-
+export default function SeoPanel({ seoFields, setSeoFields, pageName }) {
   const handleChange = (key) => (e) => {
     setSeoFields((prev) => ({
       ...prev,
@@ -19,7 +17,7 @@ export default function SeoPanel({ seoFields, setSeoFields }) {
 
   return (
     <div className="w-full px-4 border border-gray-300 rounded-md mt-5">
-      <h2 className="text-xl font-bold mb-10 mt-4">Page Seo</h2>
+      <h2 className="text-xl font-bold mb-10 mt-4">{pageName} Seo</h2>
       {fieldList.map(({ key, label }) => (
         <InputLabel
           key={key}

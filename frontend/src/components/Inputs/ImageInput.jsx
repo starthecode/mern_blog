@@ -6,16 +6,23 @@ const ImageInput = ({ index, watchAll, setValue, type, title }) => {
   const [showMediaModal, setShowMediaModal] = useState(false);
 
   const handleSelectImage = (url) => {
-    setValue(`${type}.${index}.${title}`, url);
+    setValue(`${type}.${index}.${title}`, url); // This sends URL to parent
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setValue(`${type}.${index}.${title}`, e); // This sends event to parent
+    }
   };
 
   const imageUrl = watchAll?.[type]?.[index]?.[title];
 
   return (
-    <div className="relative w-24">
+    <div className="relative w-24 flex flex-col items-center gap-2">
       {imageUrl ? (
         <img
-          src={imageUrl}
+          src={typeof imageUrl === 'string' ? imageUrl : ''}
           alt="preview"
           className="w-18 h-18 object-cover rounded"
         />
@@ -25,13 +32,25 @@ const ImageInput = ({ index, watchAll, setValue, type, title }) => {
         </div>
       )}
 
-      <button
-        type="button"
-        onClick={() => setShowMediaModal(true)}
-        className="absolute bottom-0 right-0 bg-white p-1 rounded-full shadow cursor-pointer"
-      >
-        <BiPencil className="w-4 h-4 text-gray-600" />
-      </button>
+      <div className="flex gap-2">
+        <label className="text-xs text-blue-600 cursor-pointer">
+          Upload
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
+            className="hidden"
+          />
+        </label>
+
+        <button
+          type="button"
+          onClick={() => setShowMediaModal(true)}
+          className="text-xs text-gray-700 underline"
+        >
+          Choose
+        </button>
+      </div>
 
       <MediaLibraryModal
         isOpen={showMediaModal}

@@ -6,6 +6,8 @@ import { DashHeader } from '../../components/DashComponents/DashHeader';
 import { DashHome } from '../../components/DashComponents/DashHome';
 import { Profile } from '../../components/DashComponents/Profile';
 import { Pages } from './Pages';
+import Settings from './Settings/Settings';
+// import MenuBuilder from '../../components/DashComponents/Menu/MenuBuilder';
 
 export default function Dashboard() {
   const location = useLocation();
@@ -30,13 +32,14 @@ export default function Dashboard() {
         {tab === 'main' && <DashHome />}
         {tab === 'Posts' && <div>Posts content</div>}
         {tab === 'Pages' && <Pages />}
+        {/* {tab === 'menu' && <MenuBuilder />} */}
         {tab === 'Tags' && <div>Tags content</div>}
         {tab === 'Authors' && <div>Authors content</div>}
         {tab === 'Members' && <div>Members content</div>}
         {tab === 'Domains' && <div>Domains content</div>}
         {tab === 'Analytics' && <div>Analytics content</div>}
         {tab === 'profile' && <Profile />}
-        {tab === 'Settings' && <div>Settings content</div>}
+        {tab === 'settings' && <Settings />}
       </div>
     </main>
   );

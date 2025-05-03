@@ -12,11 +12,13 @@ import {
   FiChevronRight,
   FiChevronDown,
 } from 'react-icons/fi';
-import { MdOutlineBrush, MdOutlinePermMedia } from 'react-icons/md';
+import { BsFillMenuButtonFill } from 'react-icons/bs';
+
+import { MdOutlineBrush, MdOutlinePermMedia, MdPostAdd } from 'react-icons/md';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 export const DashSidebar = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const currentTab = searchParams.get('tab') || 'Dashboard';
 
   const currentSub = searchParams.get('sub') || '';
@@ -44,12 +46,28 @@ export const DashSidebar = () => {
     },
 
     {
+      name: 'Posts',
+      icon: <MdPostAdd color="#f2692a" />,
+      subpages: [
+        { name: 'All Posts', link: '/dashboard/posts' },
+        { name: 'Add New Post', link: '/dashboard/post-new' },
+        { name: 'Categories', link: '/dashboard/pages/categories' },
+        { name: 'Tags', link: '/dashboard/pages/tags' },
+      ],
+    },
+
+    {
       name: 'Media',
       icon: <MdOutlinePermMedia color="#f2692a" />,
       subpages: [
         { name: 'Library', link: '/dashboard/pages' },
         { name: 'Add New Media file', link: '/dashboard/page-new' },
       ],
+    },
+
+    {
+      name: 'Menu',
+      icon: <BsFillMenuButtonFill color="#f2692a" />,
     },
 
     { name: 'Tags', icon: <FiTag color="#f2692a" /> },
@@ -109,7 +127,7 @@ export const DashSidebar = () => {
         {menuItems1.map((item) => (
           <div key={item.name}>
             <button
-              className={`flex items-start text-left w-full px-3 py-3 text-sm rounded-lg transition my-2 ${
+              className={`flex items-start text-left w-full px-3 py-4 text-sm rounded-lg transition ${
                 item.subpages
                   ? openDropdown === item.name
                     ? 'bg-flamingo-500/10 font-medium text-flamingo-500'

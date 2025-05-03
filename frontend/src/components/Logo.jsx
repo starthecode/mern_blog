@@ -19,7 +19,7 @@ import { motion } from 'framer-motion';
 
 export const Logo = () => {
   return (
-    <div className="flex flex-col mt-2">
+    <div className="flex flex-col mt-2 w-[200px]">
       {/* Top "bm" part */}
       <div className="flex flex-col">
         <div className="flex items-center">

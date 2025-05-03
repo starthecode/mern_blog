@@ -45,7 +45,7 @@ const SubItem = ({ menuAcfFields, childrenItem }) => {
                   onMouseEnter={() => handleMenuHover(item.title)}
                   // onMouseLeave={() => setIsOpen(null)}
                 >
-                  <Link href={item.path}>
+                  <Link to={item.path}>
                     {isOpen === item.title ? (
                       <span className="absolute top-[45px] -right-[12px] shadow-xl">
                         <BiSolidRightArrow className="h-4 w-4 fill-white" />
@@ -75,7 +75,7 @@ const SubItem = ({ menuAcfFields, childrenItem }) => {
                         <li key={child.key} className="w-[240px]">
                           <Link
                             className="flex items-center rounded-xl px-5 py-5 justify-between"
-                            href={child.path}
+                            to={child.path}
                           >
                             <span className="flex gap-2 items-center text-ebony-900 dark:text-white text-sm dark:hover:text-flamingo-400 hover:text-flamingo-400">
                               {child.menuAcfFields?.menuIcon?.mediaItemUrl ? (
@@ -114,7 +114,7 @@ const SubItem = ({ menuAcfFields, childrenItem }) => {
         >
           <div className="grid grid-cols-2 px-5 py-5 h-[350px]">
             {childrenItem?.map((item, index) => (
-              <Link key={index} className="flex m-3" href={item.path}>
+              <Link key={index} className="flex m-3" to={item.path}>
                 <span className="group relative flex gap-3 rounded-md items-start w-[280px] hover:bg-flamingo-200/40 dark:hover:bg-junglegreen-200/20 px-3 py-3 font-bold text-ebonyclay-900 text-md hover:text-flamingo-400">
                   {item.menuAcfFields?.menuIcon?.mediaItemUrl && (
                     <img
@@ -154,7 +154,7 @@ const SubItem = ({ menuAcfFields, childrenItem }) => {
         >
           <div className="grid grid-cols-2 px-5 py-5 h-fit">
             {childrenItem?.map((item, index) => (
-              <Link key={index} className="flex m-3" href={item.path}>
+              <Link key={index} className="flex m-3" to={item.path}>
                 <span className="group relative flex gap-3 rounded-md items-start w-[150px] hover:bg-flamingo-200/40 dark:hover:bg-junglegreen-200/20 px-3 py-3 font-bold text-ebonyclay-900 text-md hover:text-flamingo-400">
                   {item.menuAcfFields?.menuIcon?.mediaItemUrl && (
                     <img

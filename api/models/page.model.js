@@ -2,6 +2,10 @@ import mongoose from 'mongoose';
 
 const pageSchema = new mongoose.Schema(
   {
+    postType: {
+      type: String,
+      default: 'page',
+    },
     userId: {
       type: String,
       required: true,

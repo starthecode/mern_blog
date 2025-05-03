@@ -4,7 +4,7 @@ import { motion, useAnimation } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 import { useInView } from 'framer-motion';
 
-export const Heading = ({ type, smallTitle, title, subText }) => {
+export const Heading = ({ type, smallTitle, title, subText, classes }) => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '0px 0px -100px 0px' });
   const controls = useAnimation();
@@ -20,7 +20,9 @@ export const Heading = ({ type, smallTitle, title, subText }) => {
   }, [inView, controls]);
 
   return (
-    <div className="w-full text-center sm:text-center md:text-center xl:text-left">
+    <div
+      className={`flex flex-col ${classes} w-full  sm:text-center md:text-center xl:text-left`}
+    >
       {smallTitle && (
         <div
           ref={ref}

@@ -11,7 +11,7 @@ import { Services } from '../components/Services';
 import '../styles/HomePage.css';
 import Industry from '../components/Industry';
 import Choose from '../components/Choose';
-import BlogsCard from '../components/BlogsCard';
+import BlogsCard from '../components/ThreeBlogs';
 import Testimonials from '../components/Testimonials';
 import FooterCta from '../components/FooterCta';
 import Footer from '../components/Footer';
@@ -78,8 +78,6 @@ export default function Home() {
 
     fetchPage();
   }, [slug]);
-
-  console.log('addasas', seoData?.seoTitle);
 
   return loading ? (
     <FrontLoader />

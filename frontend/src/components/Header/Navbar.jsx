@@ -8,10 +8,12 @@ import SubItem from './SubItem';
 import { motion } from 'framer-motion';
 
 const Navbar = ({ scroll, menuList }) => {
+  console.log('menuList', menuList);
+
   return (
     <>
       <div
-        className="hidden invisible z-10
+        className="w-full flex justify-center hidden invisible z-10
   items-center opacity-0 lg:visible lg:relative lg:flex lg:bg-transparent lg:opacity-100"
       >
         <motion.div className="flex justify-center gap-4">

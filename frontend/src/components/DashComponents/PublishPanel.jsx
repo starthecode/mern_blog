@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { BiTrash } from 'react-icons/bi';
 
-export default function PublishPanel({ postid, pageDate }) {
+export default function PublishPanel({ postid, postDate }) {
   const [status, setStatus] = useState('Draft');
   const [editing, setEditing] = useState(false);
   const [tempStatus, setTempStatus] = useState(status);
@@ -112,7 +112,7 @@ export default function PublishPanel({ postid, pageDate }) {
 
       <div className="text-sm mb-3">
         <span className="text-gray-700">Publish on:</span>{' '}
-        {pageDate ? formatDate(pageDate) : 'immediately '}{' '}
+        {postDate ? formatDate(postDate) : 'immediately '}{' '}
         <button className="text-blue-600 underline text-xs ml-1">Edit</button>
       </div>
 
@@ -123,7 +123,7 @@ export default function PublishPanel({ postid, pageDate }) {
         {postid ? 'Update' : 'Publish'}
       </button>
 
-      {pageDate && postid && (
+      {postDate && postid && (
         <button
           type="button"
           onClick={handleDelete}

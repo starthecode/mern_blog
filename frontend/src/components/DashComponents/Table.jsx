@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const ITEMS_PER_PAGE = 10;
 
-export default function TableComp({ data = [] }) {
+export default function TableComp({ data = [], type }) {
   const [selectedItems, setSelectedItems] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -25,13 +25,18 @@ export default function TableComp({ data = [] }) {
     setCurrentPage(page);
   };
 
+  console.log('data', data);
+
   return (
     <div className="p-6">
       <div className="flex items-center justify-between mb-4">
         <div className="space-x-4">
-          <button className="bg-blue-600 text-white px-3 py-1 rounded text-sm">
-            Add New Page
-          </button>
+          <Link
+            to={`/dashboard/${type + '-new'} `}
+            className="bg-blue-600 text-white px-3 py-1 rounded text-sm"
+          >
+            Add New {type}
+          </Link>
           <span className="text-sm text-gray-600">
             All ({data.length}) {/* Can add count by status if needed */}
           </span>
@@ -59,21 +64,25 @@ export default function TableComp({ data = [] }) {
           </tr>
         </thead>
         <tbody>
-          {paginatedPages.map((page) => (
-            <tr key={page.id} className="border-t hover:bg-gray-50">
+          {paginatedPages.map((item) => (
+            <tr key={item.id} className="border-t hover:bg-gray-50">
               <td className="p-2">
                 <input
                   type="checkbox"
-                  checked={selectedItems.includes(page.id)}
-                  onChange={() => toggleSelect(page.id)}
+                  checked={selectedItems.includes(item.id)}
+                  onChange={() => toggleSelect(item.id)}
                 />
               </td>
               <td className="p-2">
-                <div className="font-medium text-blue-700">{page.title}</div>
+                <div className="font-medium text-blue-700">{item.title}</div>
                 <div className="text-xs text-gray-500 space-x-2 mt-2">
                   <Link
-                    to={`/dashboard/page-new?page=${page.pageId}&action=edit`}
-                    className="hover:underline"
+                    to={`/dashboard/${
+                      item.postType === 'post'
+                        ? 'post-new?post'
+                        : 'page-new?page'
+                    }=${item.pageId}&action=edit`}
+                    className={`hover:underline ${item}`}
                   >
                     Edit
                   </Link>{' '}
@@ -81,27 +90,27 @@ export default function TableComp({ data = [] }) {
                     Trash
                   </button>
                   <Link
-                    to={page.title === 'home' ? '/' : `/${page.slug}`}
+                    to={item.title === 'home' ? '/' : `/${item.slug}`}
                     className="hover:underline"
                   >
                     View
                   </Link>
                 </div>
               </td>
-              <td className="p-2">{page.author}</td>
+              <td className="p-2">{item.author}</td>
 
               <td className="p-2">
-                {page.status === 'Draft' ? (
+                {item.status === 'Draft' ? (
                   <span className="italic text-gray-500">
                     Last Modified
                     <br />
-                    {page.date}
+                    {item.date}
                   </span>
                 ) : (
                   <>
                     <span className="text-gray-700">Published</span>
                     <br />
-                    {page.date}
+                    {item.date}
                   </>
                 )}
               </td>

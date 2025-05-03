@@ -37,7 +37,7 @@ const blogItems = [
   },
 ];
 
-export default function BlogsCard({ testimonialsData }) {
+export default function ThreeBlogs({ testimonialsData }) {
   return (
     <section
       className="relative px-0 sm:px-0 md:px-10 lg:px-40 xl:px-40 pt-28 xl:pb-40 z-10 bg-black"

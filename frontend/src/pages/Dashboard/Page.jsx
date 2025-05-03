@@ -14,6 +14,7 @@ import BlogComp from '../../components/DashComponents/Slider/BlogComp';
 import TestimonialsComp from '../../components/DashComponents/Slider/TestimonialsComp';
 import FooterCtaComp from '../../components/DashComponents/FooterCtaComp';
 import SeoPanel from '../../components/DashComponents/SeoPanel';
+import { usePageTitle } from '../../utils/pathName';
 
 export const Page = () => {
   const navigate = useNavigate();
@@ -64,8 +65,6 @@ export const Page = () => {
         });
         const data = await res.json();
 
-        console.log('data', data);
-
         if (!res.ok) {
           toast.error(data.message || 'Failed to fetch page data');
           return;
@@ -79,7 +78,20 @@ export const Page = () => {
 
         setSeoFields(data?.seo);
 
-        const textContent = contentArray.find((item) => item.type === 'text');
+        // const textContent = contentArray.find((item) => item.type === 'text');
+
+        // Handle editorJs content separately
+        const editorContentData = contentArray.find(
+          (item) => item.type === 'editorJs'
+        );
+        if (editorContentData?.data) {
+          setEditorContent(
+            typeof editorContentData.data === 'string'
+              ? editorContentData.data
+              : JSON.stringify(editorContentData.data)
+          );
+        }
+
         const sliderContent = contentArray.find(
           (item) => item.type === 'slider'
         );
@@ -104,7 +116,7 @@ export const Page = () => {
           (item) => item.type === 'testimonials'
         );
 
-        if (textContent?.data) setEditorContent(textContent.data);
+        // if (textContent?.data) setEditorContent(textContent.data);
         if (sliderContent?.data) setSlidersData(sliderContent.data);
         // if (partnerContent?.data) setPartnersData(partnerContent.data);
         if (partnerContent?.data) {
@@ -161,7 +173,7 @@ export const Page = () => {
   const [ctaField, setCtaField] = React.useState(false);
 
   const [title, setTitle] = React.useState('');
-  const [editorContent, setEditorContent] = React.useState('<p>Typing...</p>');
+  const [editorContent, setEditorContent] = React.useState('{}'); // <-- empty JSON initially
   const [slidersData, setSlidersData] = React.useState([
     {
       sliderImage: null,
@@ -286,8 +298,8 @@ export const Page = () => {
       pageId: postid ? postid : randomPageId,
       content: [
         {
-          type: 'text',
-          data: editorContent,
+          type: 'editorJs',
+          data: JSON.parse(editorContent),
         },
         {
           type: 'footercta',
@@ -402,6 +414,8 @@ export const Page = () => {
       }
     }
   };
+
+  const pageName = usePageTitle(postid);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -594,7 +608,11 @@ export const Page = () => {
             </div>
           </div>
           <div>
-            <SeoPanel seoFields={seoFields} setSeoFields={setSeoFields} />
+            <SeoPanel
+              seoFields={seoFields}
+              setSeoFields={setSeoFields}
+              pageName={pageName}
+            />{' '}
           </div>
         </div>
         <div>

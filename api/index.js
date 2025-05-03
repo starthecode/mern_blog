@@ -14,6 +14,10 @@ import authRoutes from './routes/auth.route.js';
 import uploadRoutes from './routes/upload.route.js';
 
 import pageRoutes from './routes/pages/page.route.js';
+
+import postRoutes from './routes/post.route.js';
+import settingsRoutes from './routes/settings.route.js';
+
 import compression from 'compression';
 
 dotenv.config();
@@ -58,6 +62,10 @@ app.use('/api/auth', authRoutes);
 app.use('/api/file', uploadRoutes);
 
 app.use('/api/page', pageRoutes);
+
+app.use('/api/post', postRoutes);
+
+app.use('/api/settings', settingsRoutes);
 
 app.use(express.static(path.join(__dirname, '/frontend/dist')));
 
