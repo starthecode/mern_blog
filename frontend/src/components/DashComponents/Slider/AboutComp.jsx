@@ -28,7 +28,7 @@ export default function AboutComp({ aboutFields, setAboutFields }) {
           name={key}
           type="text"
           placeholder={`Enter ${label}`}
-          value={aboutFields[key]}
+          value={aboutFields?.[key]}
           onChange={handleChange(key)}
         />
       ))}

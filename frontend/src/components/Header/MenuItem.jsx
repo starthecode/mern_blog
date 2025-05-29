@@ -21,7 +21,7 @@ const MenuItem = ({ item, scroll, children, ...props }) => {
 
   return (
     <motion.div
-      className="px-4 relative cursor-pointer py-8"
+      className="px-3 relative cursor-pointer py-8"
       onHoverStart={() => setIsBeingHovered(true)}
       onHoverEnd={() => setIsBeingHovered(false)}
     >

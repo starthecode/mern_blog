@@ -21,6 +21,44 @@ const menuData = {
             menuLabel098: null,
           },
         },
+
+        {
+          key: 'cG9zdDh9',
+          parentId: null,
+          title: 'Industries',
+          url: '#',
+          path: '#',
+          description: null,
+          menuAcfFields: {
+            showMenuLabel: null,
+            menuLabelText: null,
+            showMegaMenu: true,
+            showServicesMegaMenu: null,
+            menuClasses: null,
+            menuIcon: null,
+            menuLabel098: null,
+          },
+        },
+        {
+          key: 'cG9zdDo3MzZd',
+          parentId: 'cG9zdDh9',
+          title: 'Energy',
+          url: '/industries/energy/',
+          path: '/industries/energy/',
+          description: 'Real time (Sensor) Data Analytics Solutions',
+          menuAcfFields: {
+            showMenuLabel: true,
+            menuLabelText: 'New',
+            showMegaMenu: true,
+            showServicesMegaMenu: null,
+            menuClasses: null,
+            menuIcon: {
+              mediaItemUrl:
+                'https://experimentalapp.xyz/wp-content/uploads/2024/05/sensor-icon-icon.svg',
+            },
+            menuLabel098: null,
+          },
+        },
         {
           key: 'cG9zdDo4',
           parentId: null,

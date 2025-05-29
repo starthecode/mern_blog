@@ -1,10 +1,43 @@
 import React from 'react';
-
 import { useInView } from 'react-intersection-observer';
 import { motion, useAnimation } from 'framer-motion';
 import { SecondaryButton } from '../Buttons/SecondaryButton';
+import { PrimaryButton } from '../Buttons/PrimaryButton';
+import GlowLight from '../extras/GlowLight';
+import { LuShare2 } from 'react-icons/lu';
+import { Heading } from '../Heading/Heading';
 
-export default function NewsCards({ data, index }) {
+const blogItems = [
+  {
+    category: 'Fabric Integration',
+    title:
+      'Seamlessly Integrate D365 with Microsoft Fabric: Bizmetric’s Cost-Effective Accelerator',
+    date: 'DEC 28, 2024',
+    time: '2 MINS TO READ',
+    image:
+      'https://bizsiteuploads.blob.core.windows.net/uploads/1745393586343-blogcardimg01.webp',
+  },
+  {
+    category: 'Oracle Fusion Integration',
+    title:
+      'Overcoming ERP Data Challenges with Microsoft Fabric and Oracle Fusion Integration',
+    date: 'DEC 28, 2024',
+    time: '',
+    image:
+      'https://bizsiteuploads.blob.core.windows.net/uploads/1745393596619-blogcardimg02.webp',
+  },
+  {
+    category: 'Data Transformation',
+    title:
+      'How to Integrate Oracle Fusion with Microsoft Fabric for Data Transformation?',
+    date: 'DEC 28, 2024',
+    time: '2 MINS TO READ',
+    image:
+      'https://bizsiteuploads.blob.core.windows.net/uploads/1745393610946-blogcardimg03.webp',
+  },
+];
+
+function AnimatedBlogCards({ blog, index }) {
   const controls = useAnimation();
   const [ref, inView] = useInView({
     triggerOnce: false,
@@ -41,31 +74,79 @@ export default function NewsCards({ data, index }) {
       ref={ref}
       initial={{ opacity: 0, scale: 0.95, y: 50 }}
       animate={controls}
-      key={index}
-      className="group relative rounded-xl overflow-hidden shadow-lg group"
+      className="group relative rounded-xl overflow-hidden"
     >
-      <img
-        src={data.image}
-        alt={data.title}
-        className="w-full h-[400px] object-cover"
-      />
-      <div className="absolute top-4 right-4 text-white transition">
-        <SecondaryButton title={'Read More'} link={'/'} />
-      </div>
-      <div className="flex relative justify-center w-full items-center">
-        <div className="w-[250px] absolute bottom-0 bg-black px-6 py-10">
-          <div className="inline-block mb-4 px-3 py-1 bg-junglegreen-500 text-xs rounded-full">
-            {data.category}
+      <div className="max-w-xs rounded-3xl overflow-hidden">
+        {/* Image Section */}
+        <div className="relative">
+          <img
+            src={blog.image}
+            alt={blog.title}
+            className="w-full h-64 object-cover rounded-t-3xl"
+          />
+          {/* Share Icon (top-right) */}
+          <div className="absolute top-3 right-3 bg-white rounded-full p-2 shadow">
+            <LuShare2 size={18} />
           </div>
-          <h2 className="text-xs font-medium leading-snug text-white">
-            {data.title}
-          </h2>
-          <div className="text-xs mt-4 text-gray-400">
-            {data.date} {data.time && <span className="mx-2">|</span>}
-            {data.time}
+        </div>
+
+        {/* Content Section */}
+        <div className="bg-flamingo-200 text-white p-4 rounded-b-3xl space-y-3">
+          <p className="text-sm uppercase tracking-wide text-woodsmoke-800 relative z-10">
+            {' '}
+            {blog.date} {blog.time && <span className="mx-2">|</span>}
+            {blog.time}
+          </p>
+          <h3 className="text-md font-semibold leading-tight text-black relative z-10">
+            {blog.title.substring(0, 40)} {blog.title.length >= 20 && '...'}
+          </h3>
+
+          {/* Tags */}
+          <div className="flex gap-2 mt-2 relative z-10">
+            <span className="bg-flamingo-500 text-white text-xs px-3 py-1 rounded-xl font-medium">
+              Healthcare
+            </span>
+            <span className="bg-white text-[#D45A2E] text-xs px-3 py-1 rounded-xl font-medium">
+              {blog.category}
+            </span>
+          </div>
+
+          {/* Read time */}
+          <div className="w-full flex items-end justify-end relative z-10">
+            <SecondaryButton
+              classes={'text-flamingo-500 text-sm'}
+              title={'Read More'}
+              link={'/'}
+            />
           </div>
         </div>
       </div>
     </motion.div>
+  );
+}
+
+export default function NewsCards() {
+  return (
+    <div className="container">
+      <GlowLight classes={'top-1/1 right-0 bg-junglegreen-500/40'} />
+      <div className="flex text-center items-center justify-center">
+        <Heading
+          type=""
+          smallTitle={'Our Blogs'}
+          title={'Tech Talks & News'}
+          classes={'items-center'}
+        />
+      </div>
+      <div className="">
+        <div className="flex justify-end sm:justify-center md:justify-center lg:justify-center xl:justify-end mb-6">
+          <PrimaryButton title={'View All'} link={'/'} />
+        </div>
+        <div className="grid-cols-1 md:grid-cols-3 flex gap-20 items-center justify-center">
+          {blogItems.map((blog, index) => (
+            <AnimatedBlogCards key={index} blog={blog} index={index} />
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }

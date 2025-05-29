@@ -57,12 +57,14 @@ export const ServiceCards = ({ item, index }) => {
               </span>
             </div>
             <p className="text-sm font-thin text-white px-2 w-[200px]">
-              Right from development and modernization to maintenance, we
-              fulfill the end-to-end requirement of the ERP.
+              {item?.servicesDesc}
             </p>
-            <div className="px-2">
-              <SecondaryButton classes={'text-white'} title={'View More'} />
-            </div>
+
+            {item?.servicesLink && (
+              <div className="px-2">
+                <SecondaryButton classes={'text-white'} title={'View More'} />
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -16,12 +16,13 @@
 // };
 
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 export const Logo = () => {
   return (
     <div className="flex flex-col mt-2 w-[200px]">
       {/* Top "bm" part */}
-      <div className="flex flex-col">
+      <Link to={window.location.origin} className="flex flex-col">
         <div className="flex items-center">
           <motion.span
             initial={{ x: -50, opacity: 0 }}
@@ -71,7 +72,7 @@ export const Logo = () => {
             alt="logo"
           />
         </motion.div>
-      </div>
+      </Link>
     </div>
   );
 };

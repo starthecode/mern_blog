@@ -78,6 +78,7 @@ export const DashSidebar = () => {
   const menuItems2 = [
     { name: 'Domains', icon: <FiGlobe /> },
     { name: 'Analytics', icon: <FiBarChart /> },
+    { name: 'Appearance', icon: <MdOutlineBrush /> },
     { name: 'Profile', icon: <MdOutlineBrush /> },
     { name: 'Settings', icon: <FiSettings /> },
   ];
@@ -124,8 +125,8 @@ export const DashSidebar = () => {
   return (
     <div className="w-64 h-screen bg-white shadow-md p-4">
       <nav className="mt-4">
-        {menuItems1.map((item) => (
-          <div key={item.name}>
+        {menuItems1.map((item, index) => (
+          <div key={index}>
             <button
               className={`flex items-start text-left w-full px-3 py-4 text-sm rounded-lg transition ${
                 item.subpages
@@ -186,7 +187,7 @@ export const DashSidebar = () => {
         {menuItems2.map((item) => (
           <button
             key={item.name}
-            className={`flex items-center w-full px-3 py-4 text-sm rounded-lg transition ${
+            className={`flex items-center w-full px-3 py-3 text-sm rounded-lg transition ${
               currentTab === item.name
                 ? 'bg-gray-100 font-medium'
                 : 'text-gray-600 hover:bg-gray-100'

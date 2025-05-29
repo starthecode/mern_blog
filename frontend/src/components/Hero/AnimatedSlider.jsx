@@ -3,7 +3,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
-import React from 'react';
 import { LeftCard } from './LeftCard';
 
 import { Navigation, Pagination } from 'swiper/modules';

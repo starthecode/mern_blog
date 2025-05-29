@@ -15,34 +15,33 @@ const iconMap = {
 
 export default function Choose({ data }) {
   return (
-    <section className="bg-white py-20 px-5 sm:px-0 md:px-10 lg:px-10 xl:px-20">
+    <section className="max-w-full px-10 sm:px-0 md:px-10 lg:px-20 xl:px-40 mt-20 pb-20 bg-white">
       <SvgLine3 />
 
       <GlowLight classes={'top-1/1 right-0 bg-flamingo-600/40'} />
-
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-4">
-        <div className="text-left mb-10">
-          <Heading
-            type={'dark'}
-            title={data?.title}
-            smallTitle={'Why Choose Our Services'}
-          />
-        </div>
-        <div className="col-span-3 w-full">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6 relative">
+      <div className="text-left mb-10">
+        <Heading
+          type={'dark'}
+          title={data?.title}
+          smallTitle={'Why Choose Our Services'}
+        />
+      </div>
+      <div className="mt-20">
+        <div className="w-full flex flex-col justify-center items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 relative">
             {data?.items &&
               data?.items?.map((card, index) => {
                 const IconComponent = iconMap[card.whychooseIcon];
                 return (
                   <div
                     key={index}
-                    className={`${card.bg} ${card.textColor} ${
+                    className={`mb-10 ${card.bg} ${card.textColor} ${
                       index === 1 || index === 2
                         ? 'w-full sm:w-full md:w-full lg:w-full xl:w-[400px]'
                         : 'w-full sm:w-full md:w-full lg:w-full xl:w-[530px]'
                     } ${
                       index === 0
-                        ? 'relative left-0 bg-gradient-to-br from-blue-800 to-blue-500'
+                        ? 'relative left-5 bg-gradient-to-br from-blue-800 to-blue-500'
                         : ''
                     }
               ${
@@ -52,7 +51,7 @@ export default function Choose({ data }) {
               }
               ${
                 index === 2
-                  ? 'relative right-0 sm:right-0 md:right-0 lg:right-0 xl:right-16 bg-gradient-to-br from-black to-onyx-600'
+                  ? 'relative right-0 sm:right-0 md:right-0 lg:right-0 xl:right-10 bg-gradient-to-br from-black to-onyx-600'
                   : ''
               }
               ${
@@ -78,7 +77,7 @@ export default function Choose({ data }) {
                         link={card.whychooseBtnUrl}
                       />
                     </div>
-                    <div className="w-1/1 md:w-full xl:w-1/1 h-full flex justify-end items-end relative overflow-hidden">
+                    <div className="w-1/1 md:max-w-md xl:w-1/1 h-full flex justify-end items-end relative overflow-hidden">
                       <img
                         src={`${card?.whychooseImage}`}
                         alt={card.title}

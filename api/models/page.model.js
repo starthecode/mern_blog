@@ -17,6 +17,22 @@ const pageSchema = new mongoose.Schema(
       unique: true,
     },
 
+    template: {
+      type: String,
+    },
+
+    parentPage: {
+      type: String,
+    },
+
+    editorJs: {
+      type: mongoose.Schema.Types.Mixed,
+    },
+
+    footercta: {
+      type: Boolean,
+    },
+
     content: {
       type: [
         {
@@ -31,6 +47,13 @@ const pageSchema = new mongoose.Schema(
         },
       ],
       required: true,
+    },
+
+    metaFields: {
+      featuredImage: {
+        type: String,
+        default: '',
+      },
     },
 
     featuredImage: {
@@ -48,6 +71,12 @@ const pageSchema = new mongoose.Schema(
       type: Number,
       required: true,
       unique: true,
+    },
+
+    customMetaFields: {
+      customMetaTitle: { type: String, default: '' },
+      customMetaDesc: { type: String, default: '' },
+      customMetaLink: { type: String, default: '' },
     },
   },
   { timestamps: true }

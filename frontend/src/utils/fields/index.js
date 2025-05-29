@@ -20,3 +20,37 @@ export const whychooseInputFields = [
   { name: 'whychooseBtnName', placeholder: 'Button Text' },
   { name: 'whychooseBtnUrl', placeholder: 'Button URL' },
 ];
+
+//services
+export const threeboxesInputFields = [
+  { name: 'threeboxesIcon', placeholder: 'Icon' },
+  { name: 'threeboxesName', placeholder: 'Name' },
+  { name: 'threeboxesSubtext', placeholder: 'Sub Text' },
+];
+
+export const overviewboxesInputFields = [
+  { name: 'servicesImage', placeholder: 'Image' },
+  { name: 'servicesName', placeholder: 'Name' },
+  { name: 'servicesDesc', placeholder: 'Sub Text' },
+  { name: 'servicesLink', placeholder: 'Link' },
+];
+
+export const approachInputFields = [
+  { name: 'approachInput1', placeholder: 'Title' },
+  { name: 'approachInput2', placeholder: 'Icon' },
+  { name: 'approachInput3', placeholder: 'Details' },
+];
+
+export const otherservicesInputFields = [
+  { name: 'otherservicesInput1', placeholder: 'Image' },
+  { name: 'otherservicesInput2', placeholder: 'Title' },
+  { name: 'otherservicesInput3', placeholder: 'Details' },
+  { name: 'otherservicesInput4', placeholder: 'Link' },
+];
+
+//All page
+export const threeInputFields = [
+  { name: 'textInput1', placeholder: 'Text One' },
+  { name: 'textInput2', placeholder: 'Text Two' },
+  { name: 'textInput3', placeholder: 'Text Three' },
+];

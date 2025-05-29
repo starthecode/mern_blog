@@ -29,7 +29,6 @@ export default function General() {
           return;
         }
 
-        console.log('data', data);
 
         // Update formData with data from response
         if (data?.settings?.length > 0) {

@@ -7,7 +7,7 @@ const texts = [
   'Enterprise Applications',
   'Operational Technology',
 ];
-const colors = ['text-junglegreen-500', 'text-orange-500'];
+const colors = ['text-junglegreen-500', 'text-flamingo-500'];
 
 const FrontLoader = () => {
   const [index, setIndex] = React.useState(0);

@@ -1,15 +1,10 @@
-import Page from '../models/page.model.js';
 import Post from '../models/post.model.js';
 
 import Seo from '../models/seo.model.js';
 
-import generateSEO from '../utils/aiSeoGenerator.js';
-
 import { errorhandler } from '../utils/error.js';
 
 export const createPost = async (req, res, next) => {
-  console.log('req.body', req.body);
-
   if (!req.user.isAdmin) {
     return next(errorhandler(403, 'You are not allowed to create the post'));
   }

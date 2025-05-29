@@ -3,6 +3,7 @@ import { formatDate } from '../../utils/utils';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { BiTrash } from 'react-icons/bi';
+import { handlePageDelete } from '../../utils/handlePageDelete';
 
 export default function PublishPanel({ postid, postDate }) {
   const [status, setStatus] = useState('Draft');
@@ -21,36 +22,8 @@ export default function PublishPanel({ postid, postDate }) {
     setEditing(false);
   };
 
-  const handleDelete = async (e) => {
-    e.preventDefault();
-
-    const confirmDelete = window.confirm(
-      'Are you sure you want to delete this page? This action cannot be undone.'
-    );
-    if (!confirmDelete) return;
-
-    try {
-      const res = await fetch(`/api/page/delete/${postid}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-      });
-      const data = await res.json();
-
-      if (!res.ok) {
-        toast.error(data.message);
-        return;
-      }
-
-      if (data.success) {
-        toast.success('Page Deleted');
-        navigate(`/dashboard/pages`);
-      }
-    } catch (error) {
-      toast.error(error.message);
-    }
+  const handleDelete = (postid) => {
+    handlePageDelete({ postid, navigate, toast });
   };
 
   React.useEffect(() => {
@@ -123,10 +96,10 @@ export default function PublishPanel({ postid, postDate }) {
         {postid ? 'Update' : 'Publish'}
       </button>
 
-      {postDate && postid && (
+      {postid && (
         <button
           type="button"
-          onClick={handleDelete}
+          onClick={() => handleDelete(postid)}
           className="w-full flex justify-end px-1 pt-3"
         >
           <BiTrash size={25} color="red" />

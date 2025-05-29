@@ -13,9 +13,16 @@ const PostMetaFields = ({ setMetaData, initialMetaData }) => {
 
   // Sync local state when initialMetaData changes
   useEffect(() => {
-    setCategories(initialMetaData?.categories || []);
-    setTags(initialMetaData?.tags || []);
-    setFeaturedImage(initialMetaData?.featuredImage || '');
+    if (
+      JSON.stringify(initialMetaData?.categories || []) !==
+        JSON.stringify(categories) ||
+      JSON.stringify(initialMetaData?.tags || []) !== JSON.stringify(tags) ||
+      (initialMetaData?.featuredImage || '') !== featuredImage
+    ) {
+      setCategories(initialMetaData?.categories || []);
+      setTags(initialMetaData?.tags || []);
+      setFeaturedImage(initialMetaData?.featuredImage || '');
+    }
   }, [initialMetaData]);
 
   // Update parent whenever local state changes

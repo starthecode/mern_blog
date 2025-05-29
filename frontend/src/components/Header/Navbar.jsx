@@ -8,8 +8,6 @@ import SubItem from './SubItem';
 import { motion } from 'framer-motion';
 
 const Navbar = ({ scroll, menuList }) => {
-  console.log('menuList', menuList);
-
   return (
     <>
       <div

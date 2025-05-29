@@ -18,6 +18,8 @@ import pageRoutes from './routes/pages/page.route.js';
 import postRoutes from './routes/post.route.js';
 import settingsRoutes from './routes/settings.route.js';
 
+import customizerRoutes from './routes/customizer.route.js';
+
 import compression from 'compression';
 
 dotenv.config();
@@ -66,6 +68,8 @@ app.use('/api/page', pageRoutes);
 app.use('/api/post', postRoutes);
 
 app.use('/api/settings', settingsRoutes);
+
+app.use('/api/customizer', customizerRoutes);
 
 app.use(express.static(path.join(__dirname, '/frontend/dist')));
 

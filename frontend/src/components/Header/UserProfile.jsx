@@ -13,11 +13,9 @@ export const UserProfile = () => {
     setActive((prevActive) => !prevActive);
   };
 
-  console.log('currentUser', currentUser);
-
   const username = currentUser?.email.split('@')[0];
   if (!username) {
-    return '';
+    return <PrimaryButton title="Contact Us" link="/contact-us" />;
   }
 
   const firstLetter = username.charAt(0).toUpperCase();
@@ -54,7 +52,7 @@ export const UserProfile = () => {
             <span className="font-medium w-full text-junglegreen-500">
               {currentUser?.userName}
             </span>
-            <BiDownArrow className='fill-junglegreen-800' />
+            <BiDownArrow className="fill-junglegreen-800" />
           </button>
 
           <div
@@ -102,10 +100,7 @@ export const UserProfile = () => {
           </div>
         </div>
       ) : (
-        // <Link href={'/login'} className="relative z-10">
-        //   Signin
-        // </Link>
-        <PrimaryButton title="Contact Us" link="/contact-us" />
+        ''
       )}
     </>
   );

@@ -3,22 +3,21 @@ import { motion } from 'framer-motion';
 
 export default function SvgLine3() {
   return (
-    <div className="absolute w-full left-[22rem] mt-[70px] hidden xl:block">
+    <div className="absolute w-full left-[10rem] mt-[7rem] hidden xl:block">
       <svg
-        width={1250}
-        height={800}
+        width={1150}
         fill="none"
-        viewBox="0 0 1784 897"
+        viewBox="0 0 1539 655"
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
           <linearGradient
-            id="paint0_linear_1_824"
+            id="paint0_linear_2864_6948"
+            x1="1463.6"
+            y1="-17.8589"
+            x2="1463.6"
+            y2="649.974"
             gradientUnits="userSpaceOnUse"
-            x1="1334.97"
-            x2="1334.97"
-            y1="3"
-            y2="1299"
           >
             <stop stopColor="#04c89e" />
             <stop offset="0.019868" stopColor="#04c89e" />
@@ -28,8 +27,8 @@ export default function SvgLine3() {
         </defs>
 
         <motion.path
-          d="M1337 1033L1340.05 1034.05C1369.91 1044.31 1401 1022.12 1401 990.546V818.718V577.882C1401 552.477 1380.41 531.882 1355 531.882H49C23.5949 531.882 3 511.287 3 485.882V49C3 23.5949 23.5949 3 49 3H76.9626"
-          stroke="url(#paint0_linear_1_824)"
+          d="M1287 652H1490C1515.41 652 1536 631.405 1536 606V402.484V300.676C1536 275.271 1515.41 254.676 1490 254.676H929M769.5 3H49C23.5949 3 3 23.5949 3 49V208.676C3 234.081 23.5949 254.676 49 254.676H386.25"
+          stroke="url(#paint0_linear_2864_6948)"
           strokeWidth="5"
           opacity="0.8"
           fill="none"

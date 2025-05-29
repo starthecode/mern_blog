@@ -21,7 +21,7 @@ export const Heading = ({ type, smallTitle, title, subText, classes }) => {
 
   return (
     <div
-      className={`flex flex-col ${classes} w-full  sm:text-center md:text-center xl:text-left`}
+      className={`flex flex-col ${classes} w-full sm:text-center md:text-center xl:text-left`}
     >
       {smallTitle && (
         <div
@@ -50,15 +50,23 @@ export const Heading = ({ type, smallTitle, title, subText, classes }) => {
         ref={ref}
         initial={{ opacity: 0 }}
         animate={controls}
-        className={`block mb-5 sm:text-center md:text-center xl:text-left text-2xl sm:text-xl md:text-3xl xl:text-4xl text-[#F4FFFA00] bg-clip-text bg-gradient-to-b ${
-          type == 'dark'
+        className={`block pb-3 sm:text-center md:text-center xl:text-left text-2xl sm:text-xl md:text-3xl xl:text-3xl text-[#F4FFFA00] bg-clip-text bg-gradient-to-b ${
+          type === 'dark'
             ? 'from-black to-junglegreen-500'
             : 'from-white to-white/35'
         } leading-[40px]`}
       >
         {title}
       </motion.h2>
-      <p>{subText}</p>
+      {subText && (
+        <p
+          className={`block mb-5 leading-tight ${
+            type == 'dark' ? 'text-gray-600' : ' text-white'
+          } leading-[40px]`}
+        >
+          {subText}
+        </p>
+      )}
     </div>
   );
 };

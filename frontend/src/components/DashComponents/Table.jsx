@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
+import toast from 'react-hot-toast';
+
+import { handlePageDelete } from '../../utils/handlePageDelete';
 
 const ITEMS_PER_PAGE = 10;
 
 export default function TableComp({ data = [], type }) {
+  const navigate = useNavigate();
+
   const [selectedItems, setSelectedItems] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -25,7 +31,9 @@ export default function TableComp({ data = [], type }) {
     setCurrentPage(page);
   };
 
-  console.log('data', data);
+  const handleDelete = (pageId) => {
+    handlePageDelete({ postid: pageId, navigate, toast });
+  };
 
   return (
     <div className="p-6">
@@ -86,7 +94,11 @@ export default function TableComp({ data = [], type }) {
                   >
                     Edit
                   </Link>{' '}
-                  <button className="hover:underline text-[1.3em] text-red-500">
+                  <button
+                    type="button"
+                    onClick={() => handleDelete(item?.pageId)}
+                    className="hover:underline text-[1.3em] text-red-500"
+                  >
                     Trash
                   </button>
                   <Link

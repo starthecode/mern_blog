@@ -6,7 +6,7 @@ export default function LiteYouTubeEmbed({ videoId }) {
 
   return (
     <div
-      className="relative cursor-pointer group overflow-hidden rounded-xl border border-junglegreen-400"
+      className="relative cursor-pointer group overflow-hidden rounded-xl border border-junglegreen-400 h-[280px]"
       onClick={() => setIsIframeVisible(true)}
     >
       {isIframeVisible ? (
@@ -16,7 +16,7 @@ export default function LiteYouTubeEmbed({ videoId }) {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
           title="YouTube video"
-          className="w-full h-[200px] sm:h-[250px] md:h-[315px]"
+          className="w-full h-[200px] sm:h-[250px] md:h-[300px]"
         />
       ) : (
         <>
@@ -25,7 +25,7 @@ export default function LiteYouTubeEmbed({ videoId }) {
             alt="YouTube video thumbnail"
             className="w-full h-auto"
           />
-          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="absolute inset-0 bg-transparent bg-opacity-50 flex items-center justify-center">
             <span className="text-white text-xl">▶</span>
           </div>
         </>

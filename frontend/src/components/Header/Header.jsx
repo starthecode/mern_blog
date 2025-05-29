@@ -57,16 +57,14 @@ const Header = ({ menus }) => {
   }, [scroll]);
 
   const headerClasses = `rounded-xl relative z-20 transition-all ease-in-out duration-500 ${
-    scroll
-      ? 'w-[80%] bg-[#f7f9fc] dark:bg-gradient-to-bl from-onyx-800 via-onyx-900 to-onyx-950 shadow-lg'
-      : 'w-full'
+    scroll ? 'w-[80%] bg-[#f7f9fc] shadow-lg' : 'w-full'
   }`;
 
   return (
     <>
       <header>
         <div
-          className={`flex relative justify-center items-center w-full ${
+          className={`flex mt-3 relative justify-center items-center w-full ${
             width < 1024 && active
               ? 'mobile-nav--active inset-0 z-30 fixed'
               : 'large-menu relative sm:fixed md:fixed lg:fixed xl:fixed'

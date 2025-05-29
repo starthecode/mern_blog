@@ -8,7 +8,7 @@ export const SecondaryButton = ({ title, link, classes }) => {
       href={link}
       className={`relative ${
         classes ? classes : 'text-flamingo-500'
-      } inline-flex items-center gap-1.5 rounded-full py-3 ease-in duration-300 hover:shadow-button`}
+      } inline-flex items-center gap-1.5 rounded-full ease-in duration-300 hover:shadow-button`}
     >
       {title}
       <IoMdArrowRoundForward

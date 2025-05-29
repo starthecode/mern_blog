@@ -9,7 +9,7 @@ export default function FooterCta() {
     <section className="bg-white px-5 md:px-20 relative z-10">
       <div className="relative overflow-hidden w-full flex flex-col justify-center items-center -top-10">
         {/* Top Banner */}
-        <div className="bg-orange-500 text-white text-center py-4 w-1/2 flex flex-col items-center border-b-2 border-b-junglegreen-500">
+        <div className="bg-flamingo-500 text-white text-center py-4 w-1/2 flex flex-col items-center border-b-2 border-b-junglegreen-500">
           <p className="text-2xl font-semibold py-3">Let's Think Digital!</p>
           <PrimaryButton title={'Contact Us'} />
         </div>

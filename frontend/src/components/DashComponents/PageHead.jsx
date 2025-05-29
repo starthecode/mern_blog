@@ -2,15 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { usePageTitle } from '../../utils/pathName';
 
-export default function PageHead({ title, setTitle, postId }) {
+export default function PageHead({ templateField, title, setTitle, postId }) {
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
   };
 
+  const parentPage = templateField == 'homepage' ? '' : templateField;
+
   const safeTitle = String(title || '');
-  const permalink = `https://www.bizmetric.com/${safeTitle
-    .toLowerCase()
-    .replace(/\s+/g, '-')}`;
+  const permalink = `${window.location.origin}/${
+    parentPage && parentPage + '/'
+  }${safeTitle.toLowerCase().replace(/\s+/g, '-')}`;
 
   const pageName = usePageTitle(postId);
 

@@ -1,20 +1,34 @@
 import React from 'react';
-import SliderForm from '../../components/DashComponents/Slider/SliderComp';
 import PageHead from '../../components/DashComponents/PageHead';
 import PublishPanel from '../../components/DashComponents/PublishPanel';
 import TextEditor from '../../components/TextEditor';
 import toast from 'react-hot-toast';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import PartnerComp from '../../components/DashComponents/Slider/PartnerComp';
-import AboutComp from '../../components/DashComponents/Slider/AboutComp';
-import ServicesComp from '../../components/DashComponents/Slider/ServicesComp';
-import IndustryComp from '../../components/DashComponents/Slider/IndustryComp';
-import WhychooseComp from '../../components/DashComponents/Slider/WhychooseComp';
-import BlogComp from '../../components/DashComponents/Slider/BlogComp';
-import TestimonialsComp from '../../components/DashComponents/Slider/TestimonialsComp';
 import FooterCtaComp from '../../components/DashComponents/FooterCtaComp';
 import SeoPanel from '../../components/DashComponents/SeoPanel';
 import { usePageTitle } from '../../utils/pathName';
+import {
+  defaultAboutData,
+  defaultApproachBoxesData,
+  defaultIndustryData,
+  defaultOtherServicesData,
+  defaultSliderData,
+  defaultTestimonialsData,
+  defaultThreeBoxesData,
+  defaultWhyChooseData,
+  ThreeInputs,
+  tabsHomes,
+  tabsIndustry,
+  tabsServices,
+  TwoInputs,
+} from '../../lib/pageFields';
+import HomeFields from '../../components/DashComponents/Slider/HomeFields';
+import ServicesFields from '../../components/DashComponents/Slider/ServicesFields';
+import TemplateDropdown from '../../components/DashComponents/TemplateDropdown';
+import IndustryFields from '../../components/DashComponents/Slider/IndustryFields';
+import ParentPageDropdown from '../../components/DashComponents/ParentPageDropdown';
+import CustomMeta from '../../components/DashComponents/CustomMeta';
+import PostMetaFields from '../../components/DashComponents/PostMetaFields';
 
 export const Page = () => {
   const navigate = useNavigate();
@@ -27,7 +41,112 @@ export const Page = () => {
 
   const [actionType, setActionType] = React.useState('');
 
-  const [activeTab, setActiveTab] = React.useState('tab-sliderForm');
+  const [ctaField, setCtaField] = React.useState(false);
+
+  const [templateField, setTemplateField] = React.useState('default');
+
+  const [parentpageField, setParentPageField] = React.useState([]);
+
+  const [title, setTitle] = React.useState('');
+  const [editorContent, setEditorContent] = React.useState('{}');
+
+  const [metaData, setMetaData] = React.useState({
+    featuredImage: '',
+  });
+
+  const [homepageFields, setHomepageFields] = React.useState({
+    slidersData: [defaultSliderData],
+    aboutFields: [defaultAboutData],
+    partnerTitle: '',
+    partnersData: [
+      {
+        partnerImage: null,
+        caseStudyUrl: '',
+      },
+    ],
+    servicesTitle: '',
+    servicesData: [
+      {
+        servicesImage: null,
+        servicesName: '',
+        servicesDesc: '',
+      },
+    ],
+    industryTitle: '',
+    industryData: [defaultIndustryData],
+    whychooseTitle: '',
+    whychooseData: [defaultWhyChooseData],
+    testimonialsTitle: '',
+    testimonialsData: [defaultTestimonialsData],
+    blogTitle: '',
+  });
+
+  //Services Page Fields State
+  const [servicesFields, setServicesFields] = React.useState({
+    ThreeBoxesData: [defaultThreeBoxesData],
+    OverviewBoxesData: [
+      {
+        servicesImage: '',
+        servicesName: '',
+        servicesDesc: '',
+      },
+    ],
+
+    whyboxFields: [
+      {
+        whyboxDesc: '',
+        whyboxImage: '',
+      },
+    ],
+    approachData: [defaultApproachBoxesData],
+    otherservicesData: [defaultOtherServicesData],
+  });
+
+  //Industry Page Fields State
+  const [industryState, setIndustryState] = React.useState({
+    industryBox1Fields: [TwoInputs],
+    industryBox2Fields: [ThreeInputs],
+    industryBox3Fields: [ThreeInputs],
+    industryBox4Fields: [ThreeInputs],
+    industryBox5Fields: [ThreeInputs],
+    industryBox6Fields: [ThreeInputs],
+  });
+
+  const [seoFields, setSeoFields] = React.useState({
+    focusKeyphrase: '',
+    seoTitle: '',
+    seoDescription: '',
+  });
+
+  const [customMetaFields, setCustomMetaFields] = React.useState({
+    customMetaTitle: '',
+    customMetaDesc: '',
+    customMetaLink: '',
+  });
+
+  const [activeTab, setActiveTab] = React.useState(
+    templateField === 'services'
+      ? 'tab-serviceBox1'
+      : templateField == 'homepage'
+      ? 'tab-sliderForm'
+      : templateField == 'industries'
+      ? 'tab-industryBox1'
+      : null
+  );
+
+  React.useEffect(() => {
+    if (templateField) {
+      setActiveTab(
+        templateField === 'services'
+          ? 'tab-serviceBox1'
+          : templateField == 'homepage'
+          ? 'tab-sliderForm'
+          : templateField == 'industries'
+          ? 'tab-industryBox1'
+          : null
+      );
+    }
+  }, [templateField]);
 
   React.useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
@@ -72,26 +191,163 @@ export const Page = () => {
 
         setTitle(data.title);
 
+        setTemplateField(data.template);
+
+        setParentPageField(data.parentPage);
+
         setPageDate(data.updatedAt);
 
         const contentArray = data.content || [];
 
         setSeoFields(data?.seo);
 
-        // const textContent = contentArray.find((item) => item.type === 'text');
+        setCustomMetaFields(data?.customMetaFields);
 
-        // Handle editorJs content separately
-        const editorContentData = contentArray.find(
-          (item) => item.type === 'editorJs'
-        );
-        if (editorContentData?.data) {
-          setEditorContent(
-            typeof editorContentData.data === 'string'
-              ? editorContentData.data
-              : JSON.stringify(editorContentData.data)
-          );
+        if (data.metaFields) {
+          // Handle metaFields with proper defaults
+          setMetaData({
+            featuredImage: data.metaFields?.featuredImage || '',
+          });
         }
 
+        if (data?.editorJs) {
+          try {
+            const content =
+              typeof data.editorJs === 'string'
+                ? JSON.parse(data.editorJs) // safely parse stringified data
+                : data.editorJs; // already parsed object
+
+            setEditorContent(JSON.stringify(content));
+          } catch (err) {
+            console.error('Invalid editorJs format', err);
+            setEditorContent(JSON.stringify({ blocks: [] })); // fallback to empty content
+          }
+        }
+
+        //Industry
+        const industryBox1Content = contentArray.find(
+          (item) => item.type === 'industrybox1'
+        );
+
+        if (industryBox1Content?.data) {
+          setIndustryState((prev) => ({
+            ...prev,
+            industryBox1Fields: industryBox1Content.data,
+          }));
+        }
+
+        const industryBox2Content = contentArray.find(
+          (item) => item.type === 'industrybox2'
+        );
+
+        if (industryBox2Content?.data) {
+          setIndustryState((prev) => ({
+            ...prev,
+            industryBox2Fields: industryBox2Content.data,
+          }));
+        }
+
+        const industryBox3Content = contentArray.find(
+          (item) => item.type === 'industrybox3'
+        );
+
+        if (industryBox3Content?.data) {
+          setIndustryState((prev) => ({
+            ...prev,
+            industryBox3Fields: industryBox3Content.data,
+          }));
+        }
+
+        const industryBox4Content = contentArray.find(
+          (item) => item.type === 'industrybox4'
+        );
+
+        if (industryBox4Content?.data) {
+          setIndustryState((prev) => ({
+            ...prev,
+            industryBox4Fields: industryBox4Content.data,
+          }));
+        }
+
+        const industryBox5Content = contentArray.find(
+          (item) => item.type === 'industrybox5'
+        );
+
+        if (industryBox5Content?.data) {
+          setIndustryState((prev) => ({
+            ...prev,
+            industryBox5Fields: industryBox5Content.data,
+          }));
+        }
+
+        const industryBox6Content = contentArray.find(
+          (item) => item.type === 'industrybox6'
+        );
+
+        if (industryBox6Content?.data) {
+          setIndustryState((prev) => ({
+            ...prev,
+            industryBox6Fields: industryBox6Content.data,
+          }));
+        }
+
+        //services
+        const threeBoxesContent = contentArray.find(
+          (item) => item.type === 'threeboxes'
+        );
+
+        const overviewBoxesContent = contentArray.find(
+          (item) => item.type === 'overviewboxes'
+        );
+
+        const whyboxContent = contentArray.find(
+          (item) => item.type === 'whybizmetricbox'
+        );
+
+        const approachBoxContent = contentArray.find(
+          (item) => item.type === 'approach'
+        );
+
+        const otherServicesContent = contentArray.find(
+          (item) => item.type === 'otherservices'
+        );
+
+        if (threeBoxesContent?.data) {
+          setServicesFields((prev) => ({
+            ...prev,
+            threeBoxesData: threeBoxesContent.data,
+          }));
+        }
+
+        if (overviewBoxesContent?.data) {
+          setServicesFields((prev) => ({
+            ...prev,
+            overviewBoxesData: overviewBoxesContent.data,
+          }));
+        }
+
+        if (whyboxContent?.data) {
+          setServicesFields((prev) => ({
+            ...prev,
+            whyboxFields: whyboxContent.data,
+          }));
+        }
+
+        if (approachBoxContent?.data) {
+          setServicesFields((prev) => ({
+            ...prev,
+            approachData: approachBoxContent.data,
+          }));
+        }
+
+        if (otherServicesContent?.data) {
+          setServicesFields((prev) => ({
+            ...prev,
+            otherservicesData: otherServicesContent.data,
+          }));
+        }
+
+        //homepage
         const sliderContent = contentArray.find(
           (item) => item.type === 'slider'
         );
@@ -116,158 +372,97 @@ export const Page = () => {
           (item) => item.type === 'testimonials'
         );
 
-        // if (textContent?.data) setEditorContent(textContent.data);
-        if (sliderContent?.data) setSlidersData(sliderContent.data);
-        // if (partnerContent?.data) setPartnersData(partnerContent.data);
+        if (sliderContent?.data) {
+          setHomepageFields((prev) => ({
+            ...prev,
+            slidersData: sliderContent.data,
+          }));
+        }
+
         if (partnerContent?.data) {
-          setPartnerTitle(partnerContent.data.title || '');
-          setPartnersData(partnerContent.data.items || []);
+          setHomepageFields((prev) => ({
+            ...prev,
+            partnerTitle: partnerContent.data.title || '',
+            partnersData: partnerContent.data.items || [],
+          }));
         }
 
         if (servicesContent?.data) {
-          setServicesTitle(servicesContent.data.title || '');
-          setServicesData(servicesContent.data.items || []);
+          setHomepageFields((prev) => ({
+            ...prev,
+            servicesTitle: servicesContent.data.title || '',
+            servicesData: servicesContent.data.items || [],
+          }));
         }
 
         if (industryContent?.data) {
-          setIndustryTitle(industryContent.data.title || '');
-          setIndustryData(industryContent.data.items || []);
+          setHomepageFields((prev) => ({
+            ...prev,
+            industryTitle: industryContent.data.title || '',
+            industryData: industryContent.data.items || [],
+          }));
         }
 
         if (whychooseContent?.data) {
-          setWhychooseTitle(whychooseContent.data.title || '');
-          setWhychooseData(whychooseContent.data.items || []);
+          setHomepageFields((prev) => ({
+            ...prev,
+            whychooseTitle: whychooseContent.data.title || '',
+            whychooseData: whychooseContent.data.items || [],
+          }));
         }
 
         if (testimonialsContent?.data) {
-          setTestimonialsTitle(testimonialsContent.data.title || '');
-          setTestimonialsData(testimonialsContent.data.items || []);
+          setHomepageFields((prev) => ({
+            ...prev,
+            testimonialsTitle: testimonialsContent.data.title || '',
+            testimonialsData: testimonialsContent.data.items || [],
+          }));
         }
 
         const aboutContent = contentArray.find(
           (item) => item.type === 'aboutus'
         );
         if (aboutContent?.data) {
-          setAboutFields(aboutContent.data);
-        }
-
-        const footerCtaContent = contentArray.find(
-          (item) => item.type === 'footercta'
-        );
-        if (footerCtaContent?.data) {
-          setCtaField(footerCtaContent.data);
+          setHomepageFields((prev) => ({
+            ...prev,
+            aboutFields: aboutContent.data,
+          }));
         }
 
         const blogContent = contentArray.find((item) => item.type === 'blog');
         if (blogContent?.data) {
-          setBlogTitle(blogContent.data);
+          setHomepageFields((prev) => ({
+            ...prev,
+            blogTitle: blogContent.data,
+          }));
+        }
+        if (data?.footercta) {
+          setCtaField(data?.footercta);
         }
       } catch (error) {
-        toast.error(error);
+        toast.error(error.message || 'Something went wrong');
       }
     };
 
     fetchPage();
   }, [postid]);
 
-  const [ctaField, setCtaField] = React.useState(false);
-
-  const [title, setTitle] = React.useState('');
-  const [editorContent, setEditorContent] = React.useState('{}'); // <-- empty JSON initially
-  const [slidersData, setSlidersData] = React.useState([
-    {
-      sliderImage: null,
-      smallText: '',
-      titleText: '',
-      subText: '',
-      subTextTwo: '',
-      subTextThree: '',
-      buttonText: '',
-      buttonUrl: '',
-      buttonTextTwo: '',
-      buttonUrlTwo: '',
-      customClass: '',
-      customClassTwo: '',
-      isCustom: '',
-    },
-  ]);
-
-  const [aboutFields, setAboutFields] = React.useState({
-    smallTitle: '',
-    aboutTitle: '',
-    embedField: '',
-    descField: '',
-    buttonText: '',
-    buttonUrl: '',
-    moreField: '',
+  const sectionsRef = React.useRef({
+    slider: null,
+    partner: null,
+    services: null,
+    industry: null,
+    whychoose: null,
+    testimonials: null,
+    ThreeBoxes: null,
+    OverviewBoxes: null,
+    approach: null,
+    otherservices: null,
+    industrybox2: null,
+    industrybox3: null,
+    industrybox4: null,
+    industrybox6: null,
   });
-
-  const [partnerTitle, setPartnerTitle] = React.useState('');
-  const [partnersData, setPartnersData] = React.useState([
-    {
-      partnerImage: null,
-      caseStudyUrl: '',
-    },
-  ]);
-
-  const [servicesTitle, setServicesTitle] = React.useState('');
-  const [servicesData, setServicesData] = React.useState([
-    {
-      servicesImage: null,
-      servicesName: '',
-    },
-  ]);
-
-  const [industryTitle, setIndustryTitle] = React.useState('');
-  const [industryData, setIndustryData] = React.useState([
-    {
-      industryIcon: '',
-      industryName: '',
-      industryId: '',
-    },
-  ]);
-
-  const [whychooseTitle, setWhychooseTitle] = React.useState('');
-  const [whychooseData, setWhychooseData] = React.useState([
-    {
-      whychooseIcon: '',
-      whychooseName: '',
-      whychooseSubName: '',
-      whychooseBtnName: '',
-      whychooseBtnUrl: '',
-      whychooseImage: '',
-    },
-  ]);
-
-  const [testimonialsTitle, setTestimonialsTitle] = React.useState('');
-  const [testimonialsData, setTestimonialsData] = React.useState([
-    {
-      testimonialsImage: '',
-      testimonialsName: '',
-      testimonialsSubName: '',
-      testimonialsSubText: '',
-    },
-  ]);
-
-  const [seoFields, setSeoFields] = React.useState({
-    focusKeyphrase: '',
-    seoTitle: '',
-    seoDescription: '',
-  });
-
-  const [blogTitle, setBlogTitle] = React.useState('');
-
-  const sliderRef = React.useRef();
-
-  const partnerRef = React.useRef();
-
-  const servicesRef = React.useRef();
-
-  const industryRef = React.useRef();
-
-  const whychooseRef = React.useRef();
-
-  const testimonialsRef = React.useRef();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -278,88 +473,180 @@ export const Page = () => {
     );
     if (!confirmUpdate) return;
 
-    const currentSliderData = sliderRef.current?.getSlidersData?.();
-    const currentPartnerData = partnerRef.current?.getPartnersData?.();
-    const currentServicesData = servicesRef.current?.getServicesData?.();
+    if (!title) {
+      toast.error('Enter Page Title');
+      return;
+    } else if (!templateField) {
+      toast.error('Select template');
+      return;
+    }
 
-    const currentIndustryData = industryRef.current?.getIndustryData?.();
+    //industries page
+    const currentIndustryBox2Data =
+      sectionsRef.current.industrybox2?.getIndustryBox2Data?.();
+    const currentIndustryBox3Data =
+      sectionsRef.current.industrybox3?.getIndustryBox3Data?.();
 
-    const currentWhychooseData = whychooseRef.current?.getWhychooseData?.();
+    const currentIndustryBox4Data =
+      sectionsRef.current.industrybox4?.getIndustryBox4Data?.();
 
+    const currentIndustryBox6Data =
+      sectionsRef.current.industrybox6?.getIndustryBox6Data?.();
+
+    //homepage
+    const currentSliderData = sectionsRef.current.slider?.getSlidersData?.();
+    const currentPartnerData = sectionsRef.current.partner?.getPartnersData?.();
+    const currentServicesData =
+      sectionsRef.current.services?.getServicesData?.();
+    const currentIndustryData =
+      sectionsRef.current.industry?.getIndustryData?.();
+    const currentWhychooseData =
+      sectionsRef.current.whychoose?.getWhychooseData?.();
     const currentTestimonialsData =
-      testimonialsRef.current?.getTestimonialsData?.();
+      sectionsRef.current.testimonials?.getTestimonialsData?.();
 
-    //setSlidersData(currentSliderData);
+    //services page
+    const currentThreeBoxesData =
+      sectionsRef.current.ThreeBoxes?.getThreeBoxesData?.();
+
+    const currentOverviewBoxesData =
+      sectionsRef.current.OverviewBoxes?.getOverviewBoxesData?.();
+
+    const currentApproachBoxesData =
+      sectionsRef.current.approach?.getApproachBoxesData?.();
+
+    const currentOtherServicesData =
+      sectionsRef.current.otherservices?.getOtherServicesData?.();
 
     const randomPageId = Math.floor(1000 + Math.random() * 9000); // 4-digit number
+
+    const isHomepage = templateField === 'homepage';
+    const isServices = templateField === 'services';
+    // const isIndustry = templateField === 'industries';
+
+    const homepageContent = [
+      {
+        type: 'slider',
+        data: currentSliderData,
+      },
+      {
+        type: 'partner',
+        data: {
+          title: homepageFields?.partnerTitle,
+          items: currentPartnerData,
+        },
+      },
+      {
+        type: 'services',
+        data: {
+          title: homepageFields?.servicesTitle,
+          items: currentServicesData,
+        },
+      },
+      {
+        type: 'aboutus',
+        data: homepageFields.aboutFields,
+      },
+      {
+        type: 'industry',
+        data: {
+          title: homepageFields.industryTitle,
+          items: currentIndustryData,
+        },
+      },
+      {
+        type: 'whychoose',
+        data: {
+          title: homepageFields.whychooseTitle,
+          items: currentWhychooseData,
+        },
+      },
+      {
+        type: 'testimonials',
+        data: {
+          title: homepageFields.testimonialsTitle,
+          items: currentTestimonialsData,
+        },
+      },
+      {
+        type: 'blog',
+        data: homepageFields.blogTitle,
+      },
+    ];
+
+    // You can customize this part with a different structure for non-homepage templates
+    const servicesTemplateContent = [
+      {
+        type: 'threeboxes',
+        data: currentThreeBoxesData,
+      },
+      {
+        type: 'overviewboxes',
+        data: currentOverviewBoxesData,
+      },
+
+      {
+        type: 'whybizmetricbox',
+        data: servicesFields.whyboxFields,
+      },
+
+      {
+        type: 'approach',
+        data: currentApproachBoxesData,
+      },
+
+      {
+        type: 'otherservices',
+        data: currentOtherServicesData,
+      },
+    ];
+
+    const industryTemplateContent = [
+      {
+        type: 'industrybox1',
+        data: industryState.industryBox1Fields,
+      },
+      {
+        type: 'industrybox2',
+        data: currentIndustryBox2Data,
+      },
+      {
+        type: 'industrybox3',
+        data: currentIndustryBox3Data,
+      },
+      {
+        type: 'industrybox4',
+        data: currentIndustryBox4Data,
+      },
+      {
+        type: 'industrybox5',
+        data: industryState.industryBox5Fields,
+      },
+      {
+        type: 'industrybox6',
+        data: currentIndustryBox6Data,
+      },
+    ];
 
     const payload = {
       title,
       pageId: postid ? postid : randomPageId,
-      content: [
-        {
-          type: 'editorJs',
-          data: JSON.parse(editorContent),
-        },
-        {
-          type: 'footercta',
-          data: ctaField,
-        },
-        {
-          type: 'slider',
-          data: currentSliderData,
-        },
-        {
-          type: 'partner',
-          data: {
-            title: partnerTitle,
-            items: currentPartnerData,
-          },
-        },
-        {
-          type: 'services',
-          data: {
-            title: servicesTitle,
-            items: currentServicesData,
-          },
-        },
-
-        {
-          type: 'aboutus',
-          data: aboutFields, // ✅ This line adds the aboutFields data
-        },
-        {
-          type: 'industry',
-          data: {
-            title: industryTitle,
-            items: currentIndustryData,
-          },
-        },
-        {
-          type: 'whychoose',
-          data: {
-            title: whychooseTitle,
-            items: currentWhychooseData,
-          },
-        },
-        {
-          type: 'testimonials',
-          data: {
-            title: testimonialsTitle,
-            items: currentTestimonialsData,
-          },
-        },
-        {
-          type: 'blog',
-          data: blogTitle,
-        },
-      ],
+      template: templateField,
+      parentPage: parentpageField,
+      editorJs: JSON.parse(editorContent),
+      footercta: ctaField,
+      content: isHomepage
+        ? homepageContent
+        : isServices
+        ? servicesTemplateContent
+        : industryTemplateContent,
       seoFields: seoFields,
+      metaFields: metaData,
+      customMetaFields: customMetaFields,
     };
 
     if (postid || actionType === 'edit') {
-      // UPDATE POST
-      //console.log('Update payload', payload);
+      console.log('payload edit', payload);
 
       try {
         const res = await fetch(`/api/page/update/${postid}`, {
@@ -417,196 +704,74 @@ export const Page = () => {
 
   const pageName = usePageTitle(postid);
 
+  const selectedTabs =
+    templateField === 'homepage'
+      ? tabsHomes
+      : templateField === 'services'
+      ? tabsServices
+      : templateField === 'industries'
+      ? tabsIndustry
+      : null;
+
   return (
     <form onSubmit={handleSubmit}>
       <div className="grid grid-cols-3 gap-5">
         <div className="col-span-2">
-          <PageHead title={title} setTitle={setTitle} postId={postid} />
+          <PageHead
+            templateField={templateField}
+            title={title}
+            setTitle={setTitle}
+            postId={postid}
+          />
           <TextEditor
             editorContent={editorContent}
             setEditorContent={setEditorContent}
           />
 
-          <div className="border border-gray-300 rounded-md">
-            <div className="border-b border-gray-200 flex text-sm">
-              <button
-                type="button"
-                onClick={() => setActiveTab('tab-sliderForm')}
-                className={`px-4 py-2 w-full text-left ${
-                  activeTab === 'tab-sliderForm'
-                    ? 'bg-flamingo-500 text-white font-bold'
-                    : 'font-normal'
-                }`}
-              >
-                Slider Section
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveTab('tab-partnerComp')}
-                className={`px-4 py-2 w-full text-left ${
-                  activeTab === 'tab-partnerComp'
-                    ? 'bg-flamingo-500 text-white font-bold'
-                    : 'font-normal'
-                }`}
-              >
-                Partner Section
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveTab('tab-aboutComp')}
-                className={`px-4 py-2 w-full text-left ${
-                  activeTab === 'tab-aboutComp'
-                    ? 'bg-flamingo-500 text-white font-bold'
-                    : 'font-normal'
-                }`}
-              >
-                About Section
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveTab('tab-servicesComp')}
-                className={`px-4 py-2 w-full text-left ${
-                  activeTab === 'tab-servicesComp'
-                    ? 'bg-flamingo-500 text-white font-bold'
-                    : 'font-normal'
-                }`}
-              >
-                Services Section
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveTab('tab-industryComp')}
-                className={`px-4 py-2 w-full text-left ${
-                  activeTab === 'tab-industryComp'
-                    ? 'bg-flamingo-500 text-white font-bold'
-                    : 'font-normal'
-                }`}
-              >
-                Industry Section
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveTab('tab-whychooseComp')}
-                className={`px-4 py-2 w-full text-left ${
-                  activeTab === 'tab-whychooseComp'
-                    ? 'bg-flamingo-500 text-white font-bold'
-                    : 'font-normal'
-                }`}
-              >
-                WhyChoose Section
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveTab('tab-blogComp')}
-                className={`px-4 py-2 w-full text-left ${
-                  activeTab === 'tab-blogComp'
-                    ? 'bg-flamingo-500 text-white font-bold'
-                    : 'font-normal'
-                }`}
-              >
-                Blog Section
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveTab('tab-testimonialsComp')}
-                className={`px-4 py-2 w-full text-left ${
-                  activeTab === 'tab-testimonialsComp'
-                    ? 'bg-flamingo-500 text-white font-bold'
-                    : 'font-normal'
-                }`}
-              >
-                Testimonials Section
-              </button>
-            </div>
+          {selectedTabs && (
+            <div className="border border-gray-300 rounded-md">
+              <div className="border-b border-gray-200 flex text-xs">
+                {selectedTabs.map((tab) => (
+                  <button
+                    key={tab.id}
+                    type="button"
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`px-4 py-2 w-full text-left ${
+                      activeTab === tab.id
+                        ? 'bg-flamingo-500 text-white font-bold'
+                        : 'font-normal'
+                    }`}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
 
-            <div className="p-4">
-              <div
-                style={{
-                  display: activeTab === 'tab-sliderForm' ? 'block' : 'none',
-                }}
-              >
-                <SliderForm ref={sliderRef} slidersData={slidersData} />
-              </div>
-              <div
-                style={{
-                  display: activeTab === 'tab-partnerComp' ? 'block' : 'none',
-                }}
-              >
-                <PartnerComp
-                  ref={partnerRef}
-                  partnersData={partnersData}
-                  partnerTitle={partnerTitle}
-                  setPartnerTitle={setPartnerTitle}
+              {templateField === 'homepage' ? (
+                <HomeFields
+                  activeTab={activeTab}
+                  sectionsRef={sectionsRef}
+                  homepageFields={homepageFields}
+                  setHomepageFields={setHomepageFields}
                 />
-              </div>
-              <div
-                style={{
-                  display: activeTab === 'tab-aboutComp' ? 'block' : 'none',
-                }}
-              >
-                <AboutComp
-                  aboutFields={aboutFields}
-                  setAboutFields={setAboutFields}
+              ) : templateField === 'services' ? (
+                <ServicesFields
+                  activeTab={activeTab}
+                  sectionsRef={sectionsRef}
+                  servicesFields={servicesFields}
+                  setServicesFields={setServicesFields}
                 />
-              </div>
-              <div
-                style={{
-                  display: activeTab === 'tab-servicesComp' ? 'block' : 'none',
-                }}
-              >
-                <ServicesComp
-                  ref={servicesRef}
-                  servicesData={servicesData}
-                  servicesTitle={servicesTitle}
-                  setServicesTitle={setServicesTitle}
+              ) : templateField === 'industries' ? (
+                <IndustryFields
+                  activeTab={activeTab}
+                  sectionsRef={sectionsRef}
+                  industryState={industryState}
+                  setIndustryState={setIndustryState}
                 />
-              </div>
-              <div
-                style={{
-                  display: activeTab === 'tab-industryComp' ? 'block' : 'none',
-                }}
-              >
-                <IndustryComp
-                  ref={industryRef}
-                  industryData={industryData}
-                  industryTitle={industryTitle}
-                  setIndustryTitle={setIndustryTitle}
-                />
-              </div>
-              <div
-                style={{
-                  display: activeTab === 'tab-whychooseComp' ? 'block' : 'none',
-                }}
-              >
-                <WhychooseComp
-                  ref={whychooseRef}
-                  whychooseData={whychooseData}
-                  whychooseTitle={whychooseTitle}
-                  setWhychooseTitle={setWhychooseTitle}
-                />
-              </div>
-              <div
-                style={{
-                  display: activeTab === 'tab-blogComp' ? 'block' : 'none',
-                }}
-              >
-                <BlogComp blogTitle={blogTitle} setBlogTitle={setBlogTitle} />
-              </div>
-              <div
-                style={{
-                  display:
-                    activeTab === 'tab-testimonialsComp' ? 'block' : 'none',
-                }}
-              >
-                <TestimonialsComp
-                  ref={testimonialsRef}
-                  testimonialsData={testimonialsData}
-                  testimonialsTitle={testimonialsTitle}
-                  setTestimonialsTitle={setTestimonialsTitle}
-                />
-              </div>
+              ) : null}
             </div>
-          </div>
+          )}
+
           <div>
             <SeoPanel
               seoFields={seoFields}
@@ -617,7 +782,23 @@ export const Page = () => {
         </div>
         <div>
           <PublishPanel postid={postid} pageDate={pageDate} />
+          <ParentPageDropdown
+            parentpageField={parentpageField}
+            setParentPageField={setParentPageField}
+          />
           <FooterCtaComp ctaField={ctaField} setCtaField={setCtaField} />
+          <TemplateDropdown
+            templateField={templateField}
+            setTemplateField={setTemplateField}
+          />
+          <CustomMeta
+            customMetaFields={customMetaFields}
+            setCustomMetaFields={setCustomMetaFields}
+          />
+          <PostMetaFields
+            setMetaData={setMetaData}
+            initialMetaData={metaData}
+          />
         </div>
       </div>
     </form>

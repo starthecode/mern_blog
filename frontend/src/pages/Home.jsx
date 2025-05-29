@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useLocation } from 'react-router-dom';
 
 import AnimatedSlider from '../components/Hero/AnimatedSlider';
-import HeaderServer from '../components/Header/HeaderServer';
 import PartnersLogo from '../components/Partners_Logo';
 import AboutUs from '../components/AboutUs';
-import { Services } from '../components/Services';
 
 import '../styles/HomePage.css';
 import Industry from '../components/Industry';
@@ -19,12 +17,13 @@ import MultiSection from '../components/MultiSection';
 import FrontLoader from '../components/Loader/FrontLoader';
 import { Poll } from '../components/Poll/Poll';
 import SeoComp from '../components/SeoComp';
+import { ServiceCards } from '../components/ServiceCards';
 
 const COMPONENTS = {
   slider: AnimatedSlider,
   partner: PartnersLogo,
   aboutus: AboutUs,
-  services: Services,
+  services: ServiceCards,
   industry: Industry, // Include additional types as needed
   whychoose: Choose,
   blog: BlogsCard,
@@ -38,6 +37,8 @@ export default function Home() {
     location.pathname === '/' ? 'home' : location.pathname.replace('/', '');
 
   const [sections, setSections] = useState({});
+
+  const [footerSec, setFooterSec] = useState({});
 
   const [seoData, setSeoData] = useState({});
 
@@ -69,6 +70,7 @@ export default function Home() {
         }
         setSeoData(json?.seo);
         setSections(newSections);
+        setFooterSec(json?.footercta);
       } catch (error) {
         toast.error(error.message || 'Something went wrong');
       } finally {
@@ -91,14 +93,10 @@ export default function Home() {
         url={`https://yourdomain.com/blog/${seoData?.slug}`}
       />
       <Poll />
-      <HeaderServer />
       <div className="h-full" style={{ display: 'inherit' }}>
         {sections.slider && <AnimatedSlider data={sections.slider} />}
-
         <MultiSection sections={sections} />
-
         {sections.whychoose && <Choose data={sections.whychoose} />}
-
         {sections.blog && sections.testimonials && (
           <BlogsCard
             blogData={sections.blog}
@@ -106,7 +104,7 @@ export default function Home() {
           />
         )}
 
-        {sections.footercta && <FooterCta data={sections.footercta} />}
+        {setFooterSec && <FooterCta data={setFooterSec} />}
       </div>
       <Footer />
     </div>

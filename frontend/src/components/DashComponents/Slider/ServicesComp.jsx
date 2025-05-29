@@ -5,6 +5,8 @@ import DropdownButton from '../../Tabs/DropdownButton';
 import RemoveButton from '../../Tabs/RemoveButton';
 import AddButton from '../../Tabs/AddButton';
 import ImageInput from '../../Inputs/ImageInput';
+import FormInput from '../../Inputs/FormInput';
+import { overviewboxesInputFields } from '../../../utils/fields';
 
 const ServicesComp = forwardRef(
   ({ servicesData, servicesTitle, setServicesTitle }, ref) => {
@@ -39,34 +41,6 @@ const ServicesComp = forwardRef(
       setValue('services', servicesData);
     }, [servicesData, setValue]);
 
-    const handleImageUpload = async (e, index) => {
-      const file = e.target.files[0];
-      if (!file) return;
-
-      const formData = new FormData();
-      formData.append('file', file);
-
-      try {
-        const res = await fetch('/api/file/upload', {
-          method: 'POST',
-          body: formData,
-        });
-
-        if (!res.ok) {
-          const err = await res.text();
-          alert(`Upload failed: ${err}`);
-          return;
-        }
-
-        const data = await res.json();
-        const uploadedUrl = data.filePath;
-
-        setValue(`services.${index}.servicesImage`, uploadedUrl);
-      } catch (err) {
-        alert('Upload error: ' + err.message);
-      }
-    };
-
     const handleServicesTitleChange = (e) => {
       setServicesTitle(e.target.value);
     };
@@ -74,7 +48,6 @@ const ServicesComp = forwardRef(
     return (
       <>
         <h2 className="text-xl font-bold mb-4">Services</h2>
-
         <InputLabel
           label="Services Title"
           name="servicesTitle"
@@ -104,17 +77,14 @@ const ServicesComp = forwardRef(
               {!isCollapsed && (
                 <div className="w-full">
                   <div className="grid grid-cols-4 gap-2 p-4">
-                    <ImageInput
-                      type="services"
-                      title="servicesImage"
-                      index={index}
-                      watchAll={watchAll}
-                      setValue={setValue}
-                    />
-                    <input
-                      placeholder="Small Text"
-                      {...register(`services.${index}.servicesName`)}
-                    />
+                    {overviewboxesInputFields.map(({ name, placeholder }) => (
+                      <FormInput
+                        key={name}
+                        placeholder={placeholder}
+                        name={`services.${index}.${name}`}
+                        register={register}
+                      />
+                    ))}
                   </div>
                   <RemoveButton removeAction={remove} index={index} />
                 </div>
@@ -128,6 +98,8 @@ const ServicesComp = forwardRef(
           defaultValues={{
             servicesImage: '',
             servicesName: '',
+            servicesDesc: '',
+            servicesLink: '',
           }}
         />
       </>

@@ -60,14 +60,17 @@ export const createPage = async (req, res, next) => {
 export const getPages = async (req, res, next) => {
   try {
     const startIndex = parseInt(req.query.startIndex) || 0;
-
     const limit = parseInt(req.query.limit) || 10;
-
     const sortDirection = req.query.order === 'asc' ? 1 : -1;
+
+    // Parse the _fields param like "title,slug" → "title slug"
+    const fieldParam = req.query._fields;
+    const selectedFields = fieldParam ? fieldParam.split(',').join(' ') : ''; // e.g., "title slug"
 
     const pages = await Page.find({
       ...(req.query.pageId && { _id: req.query.pageId }),
     })
+      .select(selectedFields) // dynamically select fields
       .sort({ updatedAt: sortDirection })
       .skip(startIndex)
       .limit(limit);
@@ -134,7 +137,7 @@ export const deletePageById = async (req, res, next) => {
 };
 
 export const updatePageById = async (req, res, next) => {
-  const { title, content, seoFields } = req.body;
+  const { title, seoFields } = req.body;
 
   try {
     const slug = title

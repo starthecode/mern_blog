@@ -19,16 +19,21 @@ import { Posts } from './pages/Dashboard/Posts';
 import Blogs from './pages/Blogs';
 import ForntLayout from './components/Layouts/ForntLayout';
 import BlogSingle from './components/BlogSingle';
+import Services from './pages/Services';
+import IndustryVerticles from './pages/Dashboard/Appearance/IndustryVerticles';
+import Industries from './pages/Industries';
 
 export default function App() {
   return (
     <BrowserRouter>
       <main className="transition-colors duration-500 dark:dark-gradiant relative w-full h-auto overflow-hidden">
         <Routes>
-          <Route path="/" element={<Home />} />
           <Route element={<ForntLayout />}>
+            <Route path="/" element={<Home />} />
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/blogs/:slug" element={<BlogSingle />} />
+            <Route path="/services/:slug" element={<Services />} />
+            <Route path="/industries/:slug" element={<Industries />} />
           </Route>
           <Route path="/signin" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
@@ -44,6 +49,10 @@ export default function App() {
                 <Route
                   path="/dashboard/settings/general"
                   element={<General />}
+                />
+                <Route
+                  path="/dashboard/customize/industryverticles"
+                  element={<IndustryVerticles />}
                 />
                 {/* Add more dashboard routes here */}
               </Route>

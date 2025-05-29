@@ -7,6 +7,7 @@ import { DashHome } from '../../components/DashComponents/DashHome';
 import { Profile } from '../../components/DashComponents/Profile';
 import { Pages } from './Pages';
 import Settings from './Settings/Settings';
+import Customize from './Appearance/Customize';
 // import MenuBuilder from '../../components/DashComponents/Menu/MenuBuilder';
 
 export default function Dashboard() {
@@ -40,6 +41,7 @@ export default function Dashboard() {
         {tab === 'Analytics' && <div>Analytics content</div>}
         {tab === 'profile' && <Profile />}
         {tab === 'settings' && <Settings />}
+        {tab === 'appearance' && <Customize />}
       </div>
     </main>
   );
