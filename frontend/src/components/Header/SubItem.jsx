@@ -115,7 +115,7 @@ const SubItem = ({ menuAcfFields, childrenItem }) => {
           <div className="grid grid-cols-2 px-5 py-5 h-[350px]">
             {childrenItem?.map((item, index) => (
               <Link key={index} className="flex m-3" to={item.path}>
-                <span className="group relative flex gap-3 rounded-md items-start w-[280px] hover:bg-flamingo-200/40 dark:hover:bg-junglegreen-200/20 px-3 py-3 font-bold text-ebonyclay-900 text-md hover:text-flamingo-400">
+                <span className="group relative flex gap-3 rounded-md items-start w-[280px] h-fit hover:bg-flamingo-200/40 dark:hover:bg-junglegreen-200/20 px-3 py-3 font-bold text-ebonyclay-900 text-md hover:text-flamingo-400">
                   {item.menuAcfFields?.menuIcon?.mediaItemUrl && (
                     <img
                       width={20}
