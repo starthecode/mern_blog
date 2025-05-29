@@ -12,7 +12,6 @@ import Choose from '../components/Choose';
 import BlogsCard from '../components/ThreeBlogs';
 import Testimonials from '../components/Testimonials';
 import FooterCta from '../components/FooterCta';
-import Footer from '../components/Footer';
 import MultiSection from '../components/MultiSection';
 import FrontLoader from '../components/Loader/FrontLoader';
 import { Poll } from '../components/Poll/Poll';
@@ -37,8 +36,6 @@ export default function Home() {
     location.pathname === '/' ? 'home' : location.pathname.replace('/', '');
 
   const [sections, setSections] = useState({});
-
-  const [footerSec, setFooterSec] = useState({});
 
   const [seoData, setSeoData] = useState({});
 
@@ -70,7 +67,6 @@ export default function Home() {
         }
         setSeoData(json?.seo);
         setSections(newSections);
-        setFooterSec(json?.footercta);
       } catch (error) {
         toast.error(error.message || 'Something went wrong');
       } finally {
@@ -103,10 +99,7 @@ export default function Home() {
             testimonialsData={sections.testimonials}
           />
         )}
-
-        {setFooterSec && <FooterCta data={setFooterSec} />}
       </div>
-      <Footer />
     </div>
   );
 }
