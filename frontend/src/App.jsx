@@ -22,6 +22,7 @@ import BlogSingle from './components/BlogSingle';
 import Services from './pages/Services';
 import IndustryVerticles from './pages/Dashboard/Appearance/IndustryVerticles';
 import Industries from './pages/Industries';
+import NotFound from './NotFound';
 
 export default function App() {
   return (
@@ -34,6 +35,7 @@ export default function App() {
             <Route path="/blogs/:slug" element={<BlogSingle />} />
             <Route path="/services/:slug" element={<Services />} />
             <Route path="/industries/:slug" element={<Industries />} />
+            <Route path="*" element={<NotFound />} />
           </Route>
           <Route path="/signin" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
