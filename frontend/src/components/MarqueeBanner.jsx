@@ -1,4 +1,5 @@
 import { TbStarFilled } from 'react-icons/tb';
+import { Link } from 'react-router-dom';
 
 const links = [
   'Modernizing ERP Data with Databricks: Unlock Scalable Analytics & AI-Driven Insights',
@@ -29,7 +30,7 @@ const MarqueeBanner = () => {
   return (
     <div className="relative w-full overflow-hidden border-y border-junglegreen-500/60 bg-gradient-to-r from-[#0F172A] to-[#1E293B] py-3 mt-8 mb-8 text-center sm:text-center md:text-center lg:text-left xl:text-left grid sm:block md:flex xl:flex sm:justify-center md:justify-start xl:justify-start items-center">
       {/* Fixed "What’s New" */}
-      <div className="sm:w-full md:w-[200px] lg:w-[200px] xl:w-[200px] pl-4">
+      <div className="sm:w-full md:w-[160px] lg:w-[160px] xl:w-[160px] pl-4">
         <span className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-junglegreen-500 to-blue-500">
           What’s New:
         </span>
@@ -39,13 +40,15 @@ const MarqueeBanner = () => {
       <div className="relative w-full overflow-hidden">
         <div className="whitespace-nowrap animate-marquee flex items-center">
           {links.map((text, index) => (
-            <div key={index} className="flex items-center">
-              <span className="text-white text-lg font-medium">{text}</span>
+            <Link to={'/'} key={index} className="flex items-center group">
+              <span className="text-white text-lg font-medium group-hover:text-flamingo-500">
+                {text}
+              </span>
               {/* Add icon only if not the last item */}
               {index !== links.length - 1 && (
                 <TbStarFilled size={20} className="fill-flamingo-500 mx-3" />
               )}
-            </div>
+            </Link>
           ))}
         </div>
       </div>

@@ -40,7 +40,7 @@ export default function Services() {
         setData(json);
         setTitle(json.title);
       } catch (error) {
-        toast.error(error.message || 'Something went wrong');
+        console.error(error.message || 'Something went wrong');
         setNotFound(true);
       } finally {
         setLoading(false);

@@ -25,7 +25,7 @@ export default function IndustrySection3({ aboutIndustryData4 }) {
                       alt="Data analytics visualization"
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-br from-junglegreen-500/80 via-transparent to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-flamingo-500/30 via-transparent to-transparent"></div>
                   </div>
                   <div
                     className="relative z-10 flex flex-col h-full justify-between industry__box"

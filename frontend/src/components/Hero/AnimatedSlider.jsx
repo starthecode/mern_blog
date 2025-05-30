@@ -19,7 +19,7 @@ export default function AnimatedSlider({ data }) {
         backgroundPosition: 'center',
       }}
     >
-      <div className="h-full max-w-full px-0 sm:px-5 md:px-24 2xl:px-56">
+      <div className="h-full max-w-full px-0 sm:px-5 md:px-24 2xl:px-56 mt-3">
         <div className="relative">
           <Swiper
             navigation={{

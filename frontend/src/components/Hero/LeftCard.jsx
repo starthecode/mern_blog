@@ -36,7 +36,7 @@ export const LeftCard = ({ item }) => {
         className="mb-0 text-center  lg:text-left text-foreground sm:text-xl md:text-3xl xl:text-5xl !leading-tight"
       >
         <span
-          className="block text-[#F4FFFA00] bg-clip-text bg-gradient-to-b from-junglegreen-400 via-junglegreen-100 to-white"
+          className="block font-medium text-[#F4FFFA00] bg-clip-text bg-gradient-to-b from-junglegreen-400 via-junglegreen-100 to-white"
           dangerouslySetInnerHTML={{ __html: item.titleText }}
         />
 
@@ -52,7 +52,7 @@ export const LeftCard = ({ item }) => {
       )}
 
       {item.buttonText && (
-        <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 items-center sm:items-start mt-5">
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 items-center sm:items-start xl:items-center mt-5">
           <PrimaryButton title={item.buttonText} link={item.buttonUrl} />
           <SecondaryButton
             title={item.buttonTextTwo}
@@ -82,10 +82,10 @@ export const LeftCard = ({ item }) => {
                       />
                     </span>
                     <div
-                      className="hover:text-flamingo-400 font-medium"
+                      className="hover:text-flamingo-400 font-semibold"
                       dangerouslySetInnerHTML={{ __html: text }}
                     />
-                    <span className="text-[10px] leading-4 block text-slate-300">
+                    <span className="text-xs leading-4 block text-slate-300">
                       {idx === 0
                         ? 'Transform your legacy technology with AI-enabled processes.'
                         : 'Adopt the best analytics and Data Analytics Services methodologies'}

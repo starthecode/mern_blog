@@ -1,21 +1,29 @@
 import { useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
 import TempIndustries from '../components/Templates/TempIndustries';
+import FrontLoader from '../components/Loader/FrontLoader';
+import NotFound from '../NotFound';
 
 export default function Industries() {
   const { slug } = useParams();
 
   const [loading, setLoading] = useState(true);
 
-  const [data, setData] = useState({});
+  const [data, setData] = useState(null);
 
   const [title, setTitle] = useState('');
+
+  const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
     if (!slug) return;
 
     const fetchPage = async () => {
+      setLoading(true);
+      setData(null);
+      setTitle('');
+      setNotFound(false);
+
       try {
         setLoading(true);
         const res = await fetch(`/api/page/getpage/${slug}`, {
@@ -28,7 +36,7 @@ export default function Industries() {
         const json = await res.json();
 
         if (!res.ok) {
-          toast.error(json.message || 'Failed to fetch page data');
+          setNotFound(true);
           return;
         }
 
@@ -40,7 +48,8 @@ export default function Industries() {
           newSections[section.type] = section.data || [];
         }
       } catch (error) {
-        toast.error(error.message || 'Something went wrong');
+        console.error(error.message || 'Something went wrong');
+        setNotFound(true);
       } finally {
         setLoading(false);
       }
@@ -48,6 +57,15 @@ export default function Industries() {
 
     fetchPage();
   }, [slug]);
+
+  if (loading)
+    return (
+      <div className="text-center py-10">
+        <FrontLoader />
+      </div>
+    );
+
+  if (notFound) return <NotFound />;
 
   return <TempIndustries data={data} title={title} />;
 }
