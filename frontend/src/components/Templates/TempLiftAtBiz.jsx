@@ -9,7 +9,7 @@ import { GalleryWithTab } from '../extras/GalleryWithTab';
 import AwardsRecognition from '../extras/AwardsRecognition';
 import YoutubeEmbedVideo from '../extras/embed/YoutubeEmbedVideo';
 
-export default function TempLiftAtBiz({ data, controls, ref }) {
+export default function TempLiftAtBiz({ data }) {
   return (
     <>
       <div className="max-w-7xl mx-auto mt-20">
@@ -34,7 +34,7 @@ export default function TempLiftAtBiz({ data, controls, ref }) {
           </div>
           <div className="flex justify-center items-center w-full mt-20">
             {/* Video */}
-            <div className="iframe__div relative w-fit" ref={ref}>
+            <div className="iframe__div relative w-fit">
               <div className="relative border border-junglegreen-400 rounded-xl p-2 w-fit">
                 <YoutubeEmbedVideo
                   videoId={

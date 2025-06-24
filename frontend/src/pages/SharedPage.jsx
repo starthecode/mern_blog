@@ -4,18 +4,13 @@ import TempServices from '../components/Templates/TempServices';
 import NotFound from '../NotFound';
 import FrontLoader from '../components/Loader/FrontLoader';
 import PagePostHero from '../components/HeroSection/PagePostHero';
-import { Heading } from '../components/Heading/Heading';
-import Line5 from '../components/lines';
 import { motion, useAnimation } from 'framer-motion';
-import LiteYouTubeEmbed from '../components/extras/LiteYouTubeEmbed';
 import { useInView } from 'react-intersection-observer';
-import FiveCards from '../components/Cards/FiveCards';
-import FeedbackSlider from '../components/FeedbackSlider';
-import { GalleryWithTab } from '../components/extras/GalleryWithTab';
-import AwardsRecognition from '../components/extras/AwardsRecognition';
+
 import TempLiftAtBiz from '../components/Templates/TempLiftAtBiz';
 import TempAboutus from '../components/Templates/TempAboutus';
 import TempContactus from '../components/Templates/TempContactus';
+import NumericLoader from '../components/Loader/NumericLoader';
 
 export default function SharedPage() {
   const { slug } = useParams();
@@ -25,6 +20,8 @@ export default function SharedPage() {
   // }, []);
 
   console.log('slug', slug);
+
+  const startTime = Date.now();
 
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
@@ -61,6 +58,8 @@ export default function SharedPage() {
       setData(null);
       setNotFound(false);
 
+      const startTime = Date.now();
+
       try {
         const res = await fetch(`/api/page/getpage/${slug}`, {
           method: 'GET',
@@ -95,7 +94,9 @@ export default function SharedPage() {
         console.error(error.message || 'Something went wrong');
         setNotFound(true);
       } finally {
-        setLoading(false);
+        const elapsed = Date.now() - startTime;
+        const remaining = 3000 - elapsed;
+        setTimeout(() => setLoading(false), remaining > 0 ? remaining : 0);
       }
     };
 
@@ -104,8 +105,11 @@ export default function SharedPage() {
 
   if (loading)
     return (
-      <div className="text-center py-10">
-        <FrontLoader />
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-white">
+        <div className="absolute inset-0 bg-black animate-expand" />
+        <div className="z-10 text-white text-5xl font-semibold animate-fadein">
+          <NumericLoader />
+        </div>
       </div>
     );
 
@@ -115,7 +119,7 @@ export default function SharedPage() {
     <>
       <PagePostHero type={slug} {...pageHeaderData} />
       {slug === 'life-at-bizmetric' ? (
-        <TempLiftAtBiz data={data} controls={controls} ref={ref} />
+        <TempLiftAtBiz data={data} />
       ) : slug === 'about-us' ? (
         <TempAboutus data={data} type={slug} />
       ) : slug === 'contact-us' ? (

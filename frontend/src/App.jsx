@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Signup from './pages/auth/signup';
@@ -29,59 +27,60 @@ import SolutionsPage from './pages/SolutionsPage';
 import SuccessStories from './pages/SuccessStories';
 import Careers from './pages/Careers';
 import { SingleJobPost } from './components/page/Careers/Details/SingleJobPost';
-import AboutUsPage from './pages/AboutUsPage';
 import SharedPage from './pages/SharedPage';
+import ScrollToTop from './components/ScrollToTop';
 
 export default function App() {
   return (
     <BrowserRouter>
-      <main className="transition-colors duration-500 dark:dark-gradiant relative w-full h-auto overflow-hidden">
-        <Routes>
-          <Route element={<ForntLayout />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/blogs" element={<Blogs />} />
-            <Route path="/blogs/:slug" element={<BlogSingle />} />
-            <Route path="/services/:slug" element={<Services />} />
-            <Route path="/industries/:slug" element={<Industries />} />
-            <Route path="/solutions/:slug" element={<SolutionsPage />} />
-            <Route path="/success-stories" element={<SuccessStories />} />
-            <Route path="/careers" element={<Careers />} />
-            <Route path="/careers/:slug" element={<SingleJobPost />} />
-            {/* <Route path="/about-us/" element={<AboutUsPage />} /> */}
-            <Route path="/:slug" element={<SharedPage />} />
+      <ScrollToTop>
+        <main className="transition-colors duration-500 dark:dark-gradiant relative w-full h-auto overflow-hidden">
+          <Routes>
+            <Route element={<ForntLayout />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/blogs" element={<Blogs />} />
+              <Route path="/blogs/:slug" element={<BlogSingle />} />
+              <Route path="/services/:slug" element={<Services />} />
+              <Route path="/industries/:slug" element={<Industries />} />
+              <Route path="/solutions/:slug" element={<SolutionsPage />} />
+              <Route path="/success-stories" element={<SuccessStories />} />
+              <Route path="/careers" element={<Careers />} />
+              <Route path="/careers/:slug" element={<SingleJobPost />} />
+              <Route path="/:slug" element={<SharedPage />} />
 
-            <Route path="*" element={<NotFound />} />
-          </Route>
-          <Route path="/signin" element={<Signin />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route element={<PrivateRoute />}>
-            <Route element={<DashboardLayout />}>
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route element={<PermissionPrivateRoute />}>
-                <Route path="/dashboard/post-new" element={<Post />} />
-                <Route path="/dashboard/page-new" element={<Page />} />
-                <Route path="/dashboard/pages" element={<Pages />} />
-                <Route path="/dashboard/posts" element={<Posts />} />
-                <Route
-                  path="/dashboard/new-solution"
-                  element={<PostSolutions />}
-                />
-                <Route path="/dashboard/solutions" element={<Solutions />} />
-                <Route
-                  path="/dashboard/settings/general"
-                  element={<General />}
-                />
-                <Route
-                  path="/dashboard/customize/industryverticles"
-                  element={<IndustryVerticles />}
-                />
-                {/* Add more dashboard routes here */}
+              <Route path="*" element={<NotFound />} />
+            </Route>
+            <Route path="/signin" element={<Signin />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route element={<PrivateRoute />}>
+              <Route element={<DashboardLayout />}>
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route element={<PermissionPrivateRoute />}>
+                  <Route path="/dashboard/post-new" element={<Post />} />
+                  <Route path="/dashboard/page-new" element={<Page />} />
+                  <Route path="/dashboard/pages" element={<Pages />} />
+                  <Route path="/dashboard/posts" element={<Posts />} />
+                  <Route
+                    path="/dashboard/new-solution"
+                    element={<PostSolutions />}
+                  />
+                  <Route path="/dashboard/solutions" element={<Solutions />} />
+                  <Route
+                    path="/dashboard/settings/general"
+                    element={<General />}
+                  />
+                  <Route
+                    path="/dashboard/customize/industryverticles"
+                    element={<IndustryVerticles />}
+                  />
+                  {/* Add more dashboard routes here */}
+                </Route>
               </Route>
             </Route>
-          </Route>
-        </Routes>
-        <Toaster position="top-center" />
-      </main>
+          </Routes>
+          <Toaster position="top-center" />
+        </main>
+      </ScrollToTop>
     </BrowserRouter>
   );
 }

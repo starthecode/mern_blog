@@ -4,7 +4,6 @@ import { useInView } from 'react-intersection-observer';
 import { motion, useAnimation } from 'framer-motion';
 import { useParams } from 'react-router-dom';
 import NotFound from '../NotFound';
-import FrontLoader from '../components/Loader/FrontLoader';
 import GlowLight from '../components/extras/GlowLight';
 import { Heading } from '../components/Heading/Heading';
 import Line5 from '../components/lines';
@@ -17,6 +16,7 @@ import SolutionForm from '../components/page/SolutionsPage/SolutionForm';
 import SpringSlider from '../components/extras/SpringSlider';
 import PagePostHero from '../components/HeroSection/PagePostHero';
 import FiveCards from '../components/Cards/FiveCards';
+import NumericLoader from '../components/Loader/NumericLoader';
 
 export default function SolutionsPage() {
   const { slug } = useParams();
@@ -47,6 +47,8 @@ export default function SolutionsPage() {
       controls.start({ x: -100, opacity: 0 });
     }
   }, [inView, controls]);
+
+  const startTime = Date.now();
 
   useEffect(() => {
     if (!slug) return;
@@ -106,17 +108,22 @@ export default function SolutionsPage() {
         console.error(error.message || 'Something went wrong');
         setNotFound(true);
       } finally {
-        setLoading(false);
+        const elapsed = Date.now() - startTime;
+        const remaining = 3000 - elapsed;
+        setTimeout(() => setLoading(false), remaining > 0 ? remaining : 0);
       }
     };
 
     fetchPage();
   }, [slug]);
 
-  if (loading)
+   if (loading)
     return (
-      <div className="text-center py-10">
-        <FrontLoader />
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-white">
+        <div className="absolute inset-0 bg-black animate-expand" />
+        <div className="z-10 text-white text-5xl font-semibold animate-fadein">
+          <NumericLoader />
+        </div>
       </div>
     );
 

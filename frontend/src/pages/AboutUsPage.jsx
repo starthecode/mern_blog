@@ -11,6 +11,8 @@ export default function AboutUsPage() {
   const [data, setData] = useState(null);
   const [notFound, setNotFound] = useState(false);
 
+  const startTime = Date.now();
+
   useEffect(() => {
     if (!slug) return;
 
@@ -42,7 +44,9 @@ export default function AboutUsPage() {
         console.error(error.message || 'Something went wrong');
         setNotFound(true);
       } finally {
-        setLoading(false);
+        const elapsed = Date.now() - startTime;
+        const remaining = 3000 - elapsed;
+        setTimeout(() => setLoading(false), remaining > 0 ? remaining : 0);
       }
     };
 
@@ -51,8 +55,11 @@ export default function AboutUsPage() {
 
   if (loading)
     return (
-      <div className="text-center py-10">
-        <FrontLoader />
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-white">
+        <div className="absolute inset-0 bg-black animate-expand" />
+        <div className="z-10 text-white text-5xl font-semibold animate-fadein">
+          <NumericLoader />
+        </div>
       </div>
     );
 

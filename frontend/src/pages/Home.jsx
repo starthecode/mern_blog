@@ -13,10 +13,10 @@ import BlogsCard from '../components/ThreeBlogs';
 import Testimonials from '../components/Testimonials';
 import FooterCta from '../components/FooterCta';
 import MultiSection from '../components/MultiSection';
-import FrontLoader from '../components/Loader/FrontLoader';
 import { Poll } from '../components/Poll/Poll';
 import SeoComp from '../components/SeoComp';
 import { ServiceCards } from '../components/ServiceCards';
+import NumericLoader from '../components/Loader/NumericLoader';
 
 const COMPONENTS = {
   slider: AnimatedSlider,
@@ -40,6 +40,8 @@ export default function Home() {
   const [seoData, setSeoData] = useState({});
 
   const [loading, setLoading] = useState(true);
+
+  const startTime = Date.now();
 
   useEffect(() => {
     const fetchPage = async () => {
@@ -70,16 +72,26 @@ export default function Home() {
       } catch (error) {
         toast.error(error.message || 'Something went wrong');
       } finally {
-        setLoading(false);
+        const elapsed = Date.now() - startTime;
+        const remaining = 3000 - elapsed;
+        setTimeout(() => setLoading(false), remaining > 0 ? remaining : 0);
       }
     };
 
     fetchPage();
   }, [slug]);
 
-  return loading ? (
-    <FrontLoader />
-  ) : (
+  if (loading)
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-white">
+        <div className="absolute inset-0 bg-black animate-expand" />
+        <div className="z-10 text-white text-5xl font-semibold animate-fadein">
+          <NumericLoader />
+        </div>
+      </div>
+    );
+
+  return (
     <div>
       <SeoComp
         seoTitle={seoData?.seoTitle}

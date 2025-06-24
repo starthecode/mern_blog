@@ -73,8 +73,8 @@ export default function PagePostHero({
 
             {type !== 'contact-us' && (
               <div
-                className={`gap-2 w-fit p-1 rounded-2xl ${
-                  type === 'about-us' ? 'flex-col bg-woodsmoke-200' : ''
+                className={`gap-2 w-full p-1 rounded-2xl ${
+                  type === 'about-us' ? 'flex-col' : ''
                 } flex justify-center items-center relative z-10`}
               >
                 {/* Video */}
@@ -107,7 +107,7 @@ export default function PagePostHero({
                     <img
                       className={`w-fit ${
                         type === 'about-us'
-                          ? 'h-[200px]'
+                          ? 'h-[200px] rounded-xl'
                           : type === 'life-at-bizmetric'
                           ? 'h-[530px]'
                           : ''

@@ -7,7 +7,7 @@ export default function LiteYouTubeEmbed({ videoId }) {
 
   return (
     <div
-      className="relative cursor-pointer group overflow-hidden rounded-3xl"
+      className="relative cursor-pointer group overflow-hidden rounded-2xl"
       onClick={() => setIsIframeVisible(true)}
     >
       {isIframeVisible ? (

@@ -15,6 +15,8 @@ export function GalleryWithTab({ data }) {
     }
   }, [activeTab]);
 
+  if (!data?.items) return null;
+
   const activeTabData = data?.items.find(
     (tab) => tab.galleryboxesinput2 === activeTab
   );
@@ -33,20 +35,21 @@ export function GalleryWithTab({ data }) {
 
       {/* Tab Headers */}
       <div className="relative flex gap-5 bg-flamingo-500/20 rounded-xl py-1 px-2 mb-6 overflow-hidden w-fit mt-10">
-        {data?.items.map(({ galleryboxesinput1, galleryboxesinput2 }) => (
-          <button
-            key={galleryboxesinput2}
-            ref={(el) => (tabRefs.current[galleryboxesinput2] = el)}
-            onClick={() => setActiveTab(galleryboxesinput2)}
-            className={`${
-              activeTab === galleryboxesinput2
-                ? 'bg-flamingo-500 text-white'
-                : 'bg-white text-woodsmoke-700'
-            } relative z-10 px-6 py-2 text-sm font-medium  rounded-lg transition-all`}
-          >
-            {galleryboxesinput1}
-          </button>
-        ))}
+        {data &&
+          data?.items.map(({ galleryboxesinput1, galleryboxesinput2 }) => (
+            <button
+              key={galleryboxesinput2}
+              ref={(el) => (tabRefs.current[galleryboxesinput2] = el)}
+              onClick={() => setActiveTab(galleryboxesinput2)}
+              className={`${
+                activeTab === galleryboxesinput2
+                  ? 'bg-flamingo-500 text-white'
+                  : 'bg-white text-woodsmoke-700'
+              } relative z-10 px-6 py-2 text-sm font-medium  rounded-lg transition-all`}
+            >
+              {galleryboxesinput1}
+            </button>
+          ))}
         {/* Animated Active Tab Indicator */}
         <motion.div
           layout
