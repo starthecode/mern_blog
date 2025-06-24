@@ -20,9 +20,7 @@ export const Heading = ({ type, smallTitle, title, subText, classes }) => {
   }, [inView, controls]);
 
   return (
-    <div
-      className={`flex flex-col ${classes} w-full sm:text-center md:text-center xl:text-left`}
-    >
+    <div className={`flex flex-col ${classes} w-full`}>
       {smallTitle && (
         <div
           ref={ref}
@@ -64,7 +62,7 @@ export const Heading = ({ type, smallTitle, title, subText, classes }) => {
             type == 'dark' ? 'text-gray-600' : ' text-white'
           } leading-[40px]`}
         >
-          {subText}
+          <span dangerouslySetInnerHTML={{ __html: subText }} />
         </p>
       )}
     </div>

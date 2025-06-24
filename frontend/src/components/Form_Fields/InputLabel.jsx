@@ -1,6 +1,4 @@
 // components/InputLabel.js
-import React from 'react';
-
 const InputLabel = ({
   label,
   name,
@@ -10,6 +8,7 @@ const InputLabel = ({
   onChange,
   required = false,
   className = '',
+  register,
   ...rest
 }) => {
   return (
@@ -22,10 +21,11 @@ const InputLabel = ({
         name={name}
         type={type}
         placeholder={placeholder}
-        value={value}
-        onChange={onChange}
+        value={register ? undefined : value}
+        onChange={register ? undefined : onChange}
         required={required}
         className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        {...(register ? register(name, { required }) : {})}
         {...rest}
       />
     </div>

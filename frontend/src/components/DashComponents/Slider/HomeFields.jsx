@@ -16,38 +16,28 @@ export default function HomeFields({
 }) {
   return (
     <div className="p-4">
-      <div
-        style={{ display: activeTab === 'tab-sliderForm' ? 'block' : 'none' }}
-      >
+      <div style={{ display: activeTab === 'tab-homeBox1' ? 'block' : 'none' }}>
         <SliderForm
           ref={(el) => (sectionsRef.current.slider = el)}
           slidersData={homepageFields?.slidersData}
         />
       </div>
 
-      <div
-        style={{ display: activeTab === 'tab-partnerComp' ? 'block' : 'none' }}
-      >
+      <div style={{ display: activeTab === 'tab-homeBox2' ? 'block' : 'none' }}>
         <PartnerComp
-          ref={(el) => (sectionsRef.current.partner = el)}
-          partnersData={homepageFields?.partnersData}
-          partnerTitle={homepageFields?.partnerTitle}
-          setPartnerTitle={setHomepageFields?.setPartnerTitle}
+          ref={(el) => (sectionsRef.current.partnersLogo = el)}
+          partnersLogoData={homepageFields?.partnersLogoData}
         />
       </div>
 
-      <div
-        style={{ display: activeTab === 'tab-aboutComp' ? 'block' : 'none' }}
-      >
+      <div style={{ display: activeTab === 'tab-homeBox3' ? 'block' : 'none' }}>
         <AboutComp
           aboutFields={homepageFields?.aboutFields}
           setAboutFields={setHomepageFields?.setAboutFields}
         />
       </div>
 
-      <div
-        style={{ display: activeTab === 'tab-servicesComp' ? 'block' : 'none' }}
-      >
+      <div style={{ display: activeTab === 'tab-homeBox4' ? 'block' : 'none' }}>
         <ServicesComp
           ref={(el) => (sectionsRef.current.services = el)}
           servicesData={homepageFields?.servicesData}
@@ -56,9 +46,7 @@ export default function HomeFields({
         />
       </div>
 
-      <div
-        style={{ display: activeTab === 'tab-industryComp' ? 'block' : 'none' }}
-      >
+      <div style={{ display: activeTab === 'tab-homeBox5' ? 'block' : 'none' }}>
         <IndustryComp
           ref={(el) => (sectionsRef.current.industry = el)}
           industryData={homepageFields?.industryData}
@@ -69,7 +57,7 @@ export default function HomeFields({
 
       <div
         style={{
-          display: activeTab === 'tab-whychooseComp' ? 'block' : 'none',
+          display: activeTab === 'tab-homeBox6' ? 'block' : 'none',
         }}
       >
         <WhychooseComp
@@ -80,7 +68,7 @@ export default function HomeFields({
         />
       </div>
 
-      <div style={{ display: activeTab === 'tab-blogComp' ? 'block' : 'none' }}>
+      <div style={{ display: activeTab === 'tab-homeBox7' ? 'block' : 'none' }}>
         <BlogComp
           blogTitle={homepageFields?.blogTitle}
           setBlogTitle={setHomepageFields?.setBlogTitle}
@@ -89,7 +77,7 @@ export default function HomeFields({
 
       <div
         style={{
-          display: activeTab === 'tab-testimonialsComp' ? 'block' : 'none',
+          display: activeTab === 'tab-homeBox8' ? 'block' : 'none',
         }}
       >
         <TestimonialsComp

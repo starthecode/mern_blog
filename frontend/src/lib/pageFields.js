@@ -15,9 +15,28 @@ export const ThreeInputs = {
 //services page fields
 
 export const defaultThreeBoxesData = {
-  ThreeBoxesInput1: '',
-  ThreeBoxesInput2: '',
-  ThreeBoxesInput3: '',
+  threeboxesinput1: '',
+  threeboxesinput2: '',
+  threeboxesinput3: '',
+};
+
+export const defaultFiveBoxesData = {
+  fiveboxesinput1: '',
+  fiveboxesinput2: '',
+  fiveboxesinput3: '',
+  fiveboxesinput4: '',
+  fiveboxesinput5: '',
+};
+
+export const defaultGalleryBoxesData = {
+  galleryboxesinput1: '',
+  galleryboxesinput2: '',
+  galleryboxesfile: [
+    {
+      imageLink: '',
+      imageName: '',
+    },
+  ],
 };
 
 export const defaultApproachBoxesData = {
@@ -154,30 +173,52 @@ export const getContentByTemplate = (
   }
 };
 
-export const tabsHomes = [
-  { id: 'tab-sliderForm', label: 'Slider Section' },
-  { id: 'tab-partnerComp', label: 'Partner Section' },
-  { id: 'tab-aboutComp', label: 'About Section' },
-  { id: 'tab-servicesComp', label: 'Services Section' },
-  { id: 'tab-industryComp', label: 'Industry Section' },
-  { id: 'tab-whychooseComp', label: 'WhyChoose Section' },
-  { id: 'tab-blogComp', label: 'Blog Section' },
-  { id: 'tab-testimonialsComp', label: 'Testimonials Section' },
+// export const tabsHomes = [
+//   { id: 'tab-sliderForm', label: 'Slider Section' },
+//   { id: 'tab-partnerComp', label: 'Partner Section' },
+//   { id: 'tab-aboutComp', label: 'About Section' },
+//   { id: 'tab-servicesComp', label: 'Services Section' },
+//   { id: 'tab-industryComp', label: 'Industry Section' },
+//   { id: 'tab-whychooseComp', label: 'WhyChoose Section' },
+//   { id: 'tab-blogComp', label: 'Blog Section' },
+//   { id: 'tab-testimonialsComp', label: 'Testimonials Section' },
+// ];
+
+// export const tabsServices = [
+//   { id: 'tab-serviceBox1', label: 'Service Box 1' },
+//   { id: 'tab-serviceBox2', label: 'Service Box 2' },
+//   { id: 'tab-serviceBox3', label: 'Service Box 3' },
+//   { id: 'tab-serviceBox4', label: 'Service Box 4' },
+//   { id: 'tab-serviceBox5', label: 'Service Box 5' },
+// ];
+
+// export const tabsIndustry = [
+//   { id: 'tab-industryBox1', label: 'Industry Box 1' },
+//   { id: 'tab-industryBox2', label: 'Industry Box 2' },
+//   { id: 'tab-industryBox3', label: 'Industry Box 3' },
+//   { id: 'tab-industryBox4', label: 'Industry Box 4' },
+//   { id: 'tab-industryBox5', label: 'Industry Box 5' },
+//   { id: 'tab-industryBox6', label: 'Industry Box 6' },
+// ];
+
+export const tabsSolutions = [
+  { id: 'tab-solutionBox1', label: 'Solution Section One' },
+  { id: 'tab-solutionBox2', label: 'Solution Section TWo' },
+  { id: 'tab-solutionBox3', label: 'Solution Section Three' },
+  { id: 'tab-solutionBox4', label: 'Solution Section Four' },
 ];
 
-export const tabsServices = [
-  { id: 'tab-serviceBox1', label: 'Service Box 1' },
-  { id: 'tab-serviceBox2', label: 'Service Box 2' },
-  { id: 'tab-serviceBox3', label: 'Service Box 3' },
-  { id: 'tab-serviceBox4', label: 'Service Box 4' },
-  { id: 'tab-serviceBox5', label: 'Service Box 5' },
-];
+// Dynamic tab generator for dashboard pages
+const generateTabs = (prefix, labelBase, count) =>
+  Array.from({ length: count }, (_, i) => ({
+    id: `tab-${prefix}${i + 1}`,
+    label: `${labelBase} ${i + 1}`,
+  }));
 
-export const tabsIndustry = [
-  { id: 'tab-industryBox1', label: 'Industry Box 1' },
-  { id: 'tab-industryBox2', label: 'Industry Box 2' },
-  { id: 'tab-industryBox3', label: 'Industry Box 3' },
-  { id: 'tab-industryBox4', label: 'Industry Box 4' },
-  { id: 'tab-industryBox5', label: 'Industry Box 5' },
-  { id: 'tab-industryBox6', label: 'Industry Box 6' },
-];
+export const tabsByTemplate = {
+  homepage: generateTabs('homeBox', 'Home Box', 8),
+  services: generateTabs('servicesBox', 'Services Box', 5),
+  industries: generateTabs('industryBox', 'Industry Box', 6),
+  aboutus: generateTabs('aboutusBox', 'Aboutus Box', 8),
+  lifeatbiz: generateTabs('lifeatbizBox', 'Life At Box', 4),
+};

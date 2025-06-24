@@ -17,10 +17,10 @@ import {
   defaultThreeBoxesData,
   defaultWhyChooseData,
   ThreeInputs,
-  tabsHomes,
-  tabsIndustry,
-  tabsServices,
   TwoInputs,
+  tabsByTemplate,
+  defaultGalleryBoxesData,
+  defaultFiveBoxesData,
 } from '../../lib/pageFields';
 import HomeFields from '../../components/DashComponents/Slider/HomeFields';
 import ServicesFields from '../../components/DashComponents/Slider/ServicesFields';
@@ -29,9 +29,14 @@ import IndustryFields from '../../components/DashComponents/Slider/IndustryField
 import ParentPageDropdown from '../../components/DashComponents/ParentPageDropdown';
 import CustomMeta from '../../components/DashComponents/CustomMeta';
 import PostMetaFields from '../../components/DashComponents/PostMetaFields';
+import AboutUsFields from '../../components/DashComponents/Slider/AboutUsFields';
+import { generateRandomPageId } from '../../utils/utils';
+import LifeAtFields from '../../components/DashComponents/Slider/LifeAtFields';
 
 export const Page = () => {
   const navigate = useNavigate();
+
+  const randomPageId = generateRandomPageId();
 
   const location = useLocation();
 
@@ -45,10 +50,12 @@ export const Page = () => {
 
   const [templateField, setTemplateField] = React.useState('default');
 
-  const [parentpageField, setParentPageField] = React.useState([]);
+  const [parentpageField, setParentPageField] = React.useState('');
 
   const [title, setTitle] = React.useState('');
   const [editorContent, setEditorContent] = React.useState('{}');
+
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const [metaData, setMetaData] = React.useState({
     featuredImage: '',
@@ -57,13 +64,12 @@ export const Page = () => {
   const [homepageFields, setHomepageFields] = React.useState({
     slidersData: [defaultSliderData],
     aboutFields: [defaultAboutData],
-    partnerTitle: '',
-    partnersData: [
-      {
-        partnerImage: null,
-        caseStudyUrl: '',
-      },
-    ],
+    partnersLogoData: {
+      title: '',
+      subtitle: '',
+      extratext: '',
+      items: [{ logoUrl: '', caseStudyUrl: '' }],
+    },
     servicesTitle: '',
     servicesData: [
       {
@@ -83,7 +89,12 @@ export const Page = () => {
 
   //Services Page Fields State
   const [servicesFields, setServicesFields] = React.useState({
-    ThreeBoxesData: [defaultThreeBoxesData],
+    threeBoxesData: {
+      title: '',
+      subtitle: '',
+      extratext: '',
+      items: [defaultThreeBoxesData],
+    },
     OverviewBoxesData: [
       {
         servicesImage: '',
@@ -112,6 +123,68 @@ export const Page = () => {
     industryBox6Fields: [ThreeInputs],
   });
 
+  //Aboutus Page Fields State
+  const [aboutusState, setAboutusState] = React.useState({
+    partnersLogoData: {
+      title: '',
+      subtitle: '',
+      extratext: '',
+      items: [{ logoUrl: '', caseStudyUrl: '' }],
+    },
+    threeBoxesData: {
+      title: '',
+      subtitle: '',
+      extratext: '',
+      items: [defaultThreeBoxesData],
+    },
+    fiveBoxesData: {
+      title: '',
+      subtitle: '',
+      extratext: '',
+      items: [defaultFiveBoxesData],
+    },
+    fiveBoxesData2: {
+      title: '',
+      subtitle: '',
+      extratext: '',
+      items: [defaultFiveBoxesData],
+    },
+    fiveBoxesData3: {
+      title: '',
+      subtitle: '',
+      extratext: '',
+      items: [defaultFiveBoxesData],
+    },
+  });
+
+  //Lifeatbiz Page Fields State
+  const [lifeatState, setLifeatState] = React.useState({
+    threeBoxesData: {
+      title: '',
+      subtitle: '',
+      extratext: '',
+      items: [defaultThreeBoxesData],
+    },
+    threeBoxesData2: {
+      title: '',
+      subtitle: '',
+      extratext: '',
+      items: [defaultThreeBoxesData],
+    },
+    galleryBoxesData: {
+      title: '',
+      subtitle: '',
+      extratext: '',
+      items: [defaultGalleryBoxesData],
+    },
+    threeBoxesData3: {
+      title: '',
+      subtitle: '',
+      extratext: '',
+      items: [defaultThreeBoxesData],
+    },
+  });
+
   const [seoFields, setSeoFields] = React.useState({
     focusKeyphrase: '',
     seoTitle: '',
@@ -122,28 +195,41 @@ export const Page = () => {
     customMetaTitle: '',
     customMetaDesc: '',
     customMetaLink: '',
+    customMetaLinkText: '',
+    customMetaLinkTwo: '',
+    customMetaLinkTwoText: '',
+    customMetaExtra: '',
+    customMetaExtra2: '',
   });
 
   const [activeTab, setActiveTab] = React.useState(
     templateField === 'services'
-      ? 'tab-serviceBox1'
+      ? 'tab-servicesBox1'
       : templateField == 'homepage'
-      ? 'tab-sliderForm'
+      ? 'tab-homeBox1'
       : templateField == 'industries'
       ? 'tab-industryBox1'
-      : null
+      : templateField == 'aboutus'
+      ? 'tab-aboutusBox1'
+      : templateField == 'lifeatbiz'
+      ? 'tab-lifeatbizBox1'
+      : ''
   );
 
   React.useEffect(() => {
     if (templateField) {
       setActiveTab(
         templateField === 'services'
-          ? 'tab-serviceBox1'
+          ? 'tab-servicesBox1'
           : templateField == 'homepage'
-          ? 'tab-sliderForm'
+          ? 'tab-homeBox1'
           : templateField == 'industries'
           ? 'tab-industryBox1'
-          : null
+          : templateField == 'aboutus'
+          ? 'tab-aboutusBox1'
+          : templateField == 'lifeatbiz'
+          ? 'tab-lifeatbizBox1'
+          : ''
       );
     }
   }, [templateField]);
@@ -173,7 +259,7 @@ export const Page = () => {
   React.useEffect(() => {
     const fetchPage = async () => {
       if (!postid) return;
-
+      setIsLoading(true);
       try {
         const res = await fetch(`/api/page/get/${postid}`, {
           method: 'GET',
@@ -188,6 +274,7 @@ export const Page = () => {
           toast.error(data.message || 'Failed to fetch page data');
           return;
         }
+        setIsLoading(false);
 
         setTitle(data.title);
 
@@ -296,6 +383,18 @@ export const Page = () => {
           (item) => item.type === 'threeboxes'
         );
 
+        const threeBoxes2Content = contentArray.find(
+          (item) => item.type === 'threeboxes2'
+        );
+
+        const galleryBoxesContent = contentArray.find(
+          (item) => item.type === 'galleryboxes'
+        );
+
+        const threeBoxes3Content = contentArray.find(
+          (item) => item.type === 'threeboxes3'
+        );
+
         const overviewBoxesContent = contentArray.find(
           (item) => item.type === 'overviewboxes'
         );
@@ -315,7 +414,95 @@ export const Page = () => {
         if (threeBoxesContent?.data) {
           setServicesFields((prev) => ({
             ...prev,
-            threeBoxesData: threeBoxesContent.data,
+            threeBoxesData: {
+              title: threeBoxesContent?.data?.title || '',
+              subtitle: threeBoxesContent?.data?.subtitle || '',
+              extratext: threeBoxesContent?.data?.extratext || '',
+              items: threeBoxesContent?.data?.items || [],
+            },
+          }));
+
+          setLifeatState((prev) => ({
+            ...prev,
+            threeBoxesData: {
+              title: threeBoxesContent?.data?.title || '',
+              subtitle: threeBoxesContent?.data?.subtitle || '',
+              extratext: threeBoxesContent?.data?.extratext || '',
+              items: threeBoxesContent?.data?.items || [],
+            },
+            threeBoxesData2: {
+              title: threeBoxes2Content?.data?.title || '',
+              subtitle: threeBoxes2Content?.data?.subtitle || '',
+              extratext: threeBoxes2Content?.data?.extratext || '',
+              items: threeBoxes2Content?.data?.items || [],
+            },
+            galleryBoxesData: {
+              title: galleryBoxesContent?.data?.title || '',
+              subtitle: galleryBoxesContent?.data?.subtitle || '',
+              extratext: galleryBoxesContent?.data?.extratext || '',
+              items: galleryBoxesContent?.data?.items || [],
+            },
+            threeBoxesData3: {
+              title: threeBoxes3Content?.data?.title || '',
+              subtitle: threeBoxes3Content?.data?.subtitle || '',
+              extratext: threeBoxes3Content?.data?.extratext || '',
+              items: threeBoxes3Content?.data?.items || [],
+            },
+          }));
+        }
+
+        //Aboutus
+        const partnerslogoContent = contentArray.find(
+          (item) => item.type === 'partnerslogo'
+        );
+
+        const fiveBoxesContent = contentArray.find(
+          (item) => item.type === 'fiveboxes'
+        );
+
+        const fiveBoxesContent2 = contentArray.find(
+          (item) => item.type === 'fiveboxes2'
+        );
+
+        const fiveBoxesContent3 = contentArray.find(
+          (item) => item.type === 'fiveboxes3'
+        );
+
+        if (partnerslogoContent?.data) {
+          setAboutusState((prev) => ({
+            ...prev,
+            partnersLogoData: {
+              title: partnerslogoContent?.data?.title || '',
+              subtitle: partnerslogoContent?.data?.subtitle || '',
+              extratext: partnerslogoContent?.data?.extratext || '',
+              items: partnerslogoContent?.data?.items || [],
+            },
+            threeBoxesData: {
+              title: threeBoxesContent?.data?.title || '',
+              subtitle: threeBoxesContent?.data?.subtitle || '',
+              extratext: threeBoxesContent?.data?.extratext || '',
+              items: threeBoxesContent?.data?.items || [],
+            },
+            fiveBoxesData: {
+              title: fiveBoxesContent?.data?.title || '',
+              subtitle: fiveBoxesContent?.data?.subtitle || '',
+              extratext: fiveBoxesContent?.data?.extratext || '',
+              items: fiveBoxesContent?.data?.items || [],
+            },
+
+            fiveBoxesData2: {
+              title: fiveBoxesContent2?.data?.title || '',
+              subtitle: fiveBoxesContent2?.data?.subtitle || '',
+              extratext: fiveBoxesContent2?.data?.extratext || '',
+              items: fiveBoxesContent2?.data?.items || [],
+            },
+
+            fiveBoxesData3: {
+              title: fiveBoxesContent3?.data?.title || '',
+              subtitle: fiveBoxesContent3?.data?.subtitle || '',
+              extratext: fiveBoxesContent3?.data?.extratext || '',
+              items: fiveBoxesContent3?.data?.items || [],
+            },
           }));
         }
 
@@ -352,10 +539,6 @@ export const Page = () => {
           (item) => item.type === 'slider'
         );
 
-        const partnerContent = contentArray.find(
-          (item) => item.type === 'partner'
-        );
-
         const servicesContent = contentArray.find(
           (item) => item.type === 'services'
         );
@@ -376,14 +559,13 @@ export const Page = () => {
           setHomepageFields((prev) => ({
             ...prev,
             slidersData: sliderContent.data,
-          }));
-        }
 
-        if (partnerContent?.data) {
-          setHomepageFields((prev) => ({
-            ...prev,
-            partnerTitle: partnerContent.data.title || '',
-            partnersData: partnerContent.data.items || [],
+            partnersLogoData: {
+              title: partnerslogoContent?.data?.title || '',
+              subtitle: partnerslogoContent?.data?.subtitle || '',
+              extratext: partnerslogoContent?.data?.extratext || '',
+              items: partnerslogoContent?.data?.items || [],
+            },
           }));
         }
 
@@ -449,12 +631,17 @@ export const Page = () => {
 
   const sectionsRef = React.useRef({
     slider: null,
-    partner: null,
     services: null,
     industry: null,
     whychoose: null,
     testimonials: null,
     ThreeBoxes: null,
+    ThreeBoxes2: null,
+    FiveBoxes: null,
+    FiveBoxes2: null,
+    FiveBoxes3: null,
+    GalleryBoxes: null,
+    ThreeBoxes3: null,
     OverviewBoxes: null,
     approach: null,
     otherservices: null,
@@ -462,6 +649,7 @@ export const Page = () => {
     industrybox3: null,
     industrybox4: null,
     industrybox6: null,
+    partnersLogo: null,
   });
 
   const handleSubmit = async (e) => {
@@ -495,7 +683,6 @@ export const Page = () => {
 
     //homepage
     const currentSliderData = sectionsRef.current.slider?.getSlidersData?.();
-    const currentPartnerData = sectionsRef.current.partner?.getPartnersData?.();
     const currentServicesData =
       sectionsRef.current.services?.getServicesData?.();
     const currentIndustryData =
@@ -509,6 +696,15 @@ export const Page = () => {
     const currentThreeBoxesData =
       sectionsRef.current.ThreeBoxes?.getThreeBoxesData?.();
 
+    const currentThreeBoxesData2 =
+      sectionsRef.current.ThreeBoxes2?.getThreeBoxesData?.();
+
+    const currentGalleryBoxesData =
+      sectionsRef.current.GalleryBoxes?.getGalleryBoxesData?.();
+
+    const currentThreeBoxesData3 =
+      sectionsRef.current.ThreeBoxes3?.getThreeBoxesData?.();
+
     const currentOverviewBoxesData =
       sectionsRef.current.OverviewBoxes?.getOverviewBoxesData?.();
 
@@ -518,115 +714,219 @@ export const Page = () => {
     const currentOtherServicesData =
       sectionsRef.current.otherservices?.getOtherServicesData?.();
 
-    const randomPageId = Math.floor(1000 + Math.random() * 9000); // 4-digit number
+    //aboutus page
+    const currentPartnersLogoData =
+      sectionsRef.current.partnersLogo?.getData?.();
 
-    const isHomepage = templateField === 'homepage';
-    const isServices = templateField === 'services';
-    // const isIndustry = templateField === 'industries';
+    const currentFiveBoxesData = sectionsRef.current.FiveBoxes?.getData?.();
+    const currentFiveBoxesData2 = sectionsRef.current.FiveBoxes2?.getData?.();
 
-    const homepageContent = [
-      {
-        type: 'slider',
-        data: currentSliderData,
-      },
-      {
-        type: 'partner',
-        data: {
-          title: homepageFields?.partnerTitle,
-          items: currentPartnerData,
-        },
-      },
-      {
-        type: 'services',
-        data: {
-          title: homepageFields?.servicesTitle,
-          items: currentServicesData,
-        },
-      },
-      {
-        type: 'aboutus',
-        data: homepageFields.aboutFields,
-      },
-      {
-        type: 'industry',
-        data: {
-          title: homepageFields.industryTitle,
-          items: currentIndustryData,
-        },
-      },
-      {
-        type: 'whychoose',
-        data: {
-          title: homepageFields.whychooseTitle,
-          items: currentWhychooseData,
-        },
-      },
-      {
-        type: 'testimonials',
-        data: {
-          title: homepageFields.testimonialsTitle,
-          items: currentTestimonialsData,
-        },
-      },
-      {
-        type: 'blog',
-        data: homepageFields.blogTitle,
-      },
-    ];
+    const currentFiveBoxesData3 = sectionsRef.current.FiveBoxes3?.getData?.();
 
-    // You can customize this part with a different structure for non-homepage templates
-    const servicesTemplateContent = [
-      {
-        type: 'threeboxes',
-        data: currentThreeBoxesData,
-      },
-      {
-        type: 'overviewboxes',
-        data: currentOverviewBoxesData,
-      },
+    //select content as per template
+    const getTemplateContent = () => {
+      switch (templateField) {
+        case 'homepage':
+          return [
+            {
+              type: 'slider',
+              data: currentSliderData,
+            },
+            {
+              type: 'partnerslogo',
+              data: {
+                title: currentPartnersLogoData?.title || '',
+                subtitle: currentPartnersLogoData?.subtitle || '',
+                extratext: currentPartnersLogoData.extratext || '',
+                items: currentPartnersLogoData?.items || [],
+              },
+            },
+            {
+              type: 'services',
+              data: {
+                title: homepageFields?.servicesTitle,
+                items: currentServicesData,
+              },
+            },
+            {
+              type: 'aboutus',
+              data: homepageFields.aboutFields,
+            },
+            {
+              type: 'industry',
+              data: {
+                title: homepageFields.industryTitle,
+                items: currentIndustryData,
+              },
+            },
+            {
+              type: 'whychoose',
+              data: {
+                title: homepageFields.whychooseTitle,
+                items: currentWhychooseData,
+              },
+            },
+            {
+              type: 'testimonials',
+              data: {
+                title: homepageFields.testimonialsTitle,
+                items: currentTestimonialsData,
+              },
+            },
+            {
+              type: 'blog',
+              data: homepageFields.blogTitle,
+            },
+          ];
 
-      {
-        type: 'whybizmetricbox',
-        data: servicesFields.whyboxFields,
-      },
+        case 'services':
+          return [
+            {
+              type: 'threeboxes',
+              data: currentThreeBoxesData,
+            },
+            {
+              type: 'overviewboxes',
+              data: currentOverviewBoxesData,
+            },
 
-      {
-        type: 'approach',
-        data: currentApproachBoxesData,
-      },
+            {
+              type: 'whybizmetricbox',
+              data: servicesFields.whyboxFields,
+            },
 
-      {
-        type: 'otherservices',
-        data: currentOtherServicesData,
-      },
-    ];
+            {
+              type: 'approach',
+              data: currentApproachBoxesData,
+            },
 
-    const industryTemplateContent = [
-      {
-        type: 'industrybox1',
-        data: industryState.industryBox1Fields,
-      },
-      {
-        type: 'industrybox2',
-        data: currentIndustryBox2Data,
-      },
-      {
-        type: 'industrybox3',
-        data: currentIndustryBox3Data,
-      },
-      {
-        type: 'industrybox4',
-        data: currentIndustryBox4Data,
-      },
-      {
-        type: 'industrybox5',
-        data: industryState.industryBox5Fields,
-      },
-      {
-        type: 'industrybox6',
-        data: currentIndustryBox6Data,
-      },
-    ];
+            {
+              type: 'otherservices',
+              data: currentOtherServicesData,
+            },
+          ];
+
+        case 'industries':
+          return [
+            {
+              type: 'industrybox1',
+              data: industryState.industryBox1Fields,
+            },
+            {
+              type: 'industrybox2',
+              data: currentIndustryBox2Data,
+            },
+            {
+              type: 'industrybox3',
+              data: currentIndustryBox3Data,
+            },
+            {
+              type: 'industrybox4',
+              data: currentIndustryBox4Data,
+            },
+            {
+              type: 'industrybox5',
+              data: industryState.industryBox5Fields,
+            },
+            {
+              type: 'industrybox6',
+              data: currentIndustryBox6Data,
+            },
+          ];
+
+        case 'aboutus':
+          return [
+            {
+              type: 'partnerslogo',
+              data: {
+                title: currentPartnersLogoData?.title || '',
+                subtitle: currentPartnersLogoData?.subtitle || '',
+                extratext: currentPartnersLogoData.extratext || '',
+                items: currentPartnersLogoData?.items || [],
+              },
+            },
+            {
+              type: 'threeboxes',
+              data: {
+                title: currentThreeBoxesData?.title || '',
+                subtitle: currentThreeBoxesData?.subtitle || '',
+                extratext: currentThreeBoxesData.extratext || '',
+                items: currentThreeBoxesData?.items || [],
+              },
+            },
+            {
+              type: 'fiveboxes',
+              data: {
+                title: currentFiveBoxesData?.title || '',
+                subtitle: currentFiveBoxesData?.subtitle || '',
+                extratext: currentFiveBoxesData.extratext || '',
+                items: currentFiveBoxesData?.items || [],
+              },
+            },
+            {
+              type: 'fiveboxes2',
+              data: {
+                title: currentFiveBoxesData2?.title || '',
+                subtitle: currentFiveBoxesData2?.subtitle || '',
+                extratext: currentFiveBoxesData2.extratext || '',
+                items: currentFiveBoxesData2?.items || [],
+              },
+            },
+            {
+              type: 'fiveboxes3',
+              data: {
+                title: currentFiveBoxesData3?.title || '',
+                subtitle: currentFiveBoxesData3?.subtitle || '',
+                extratext: currentFiveBoxesData3.extratext || '',
+                items: currentFiveBoxesData3?.items || [],
+              },
+            },
+          ];
+
+        case 'lifeatbiz':
+          return [
+            {
+              type: 'threeboxes',
+              data: {
+                title: currentThreeBoxesData?.title || '',
+                subtitle: currentThreeBoxesData?.subtitle || '',
+                extratext: currentThreeBoxesData.extratext || '',
+                items: currentThreeBoxesData?.items || [],
+              },
+            },
+            {
+              type: 'threeboxes2',
+              data: {
+                title: currentThreeBoxesData2?.title || '',
+                subtitle: currentThreeBoxesData2?.subtitle || '',
+                extratext: currentThreeBoxesData2.extratext || '',
+                items: currentThreeBoxesData2?.items || [],
+              },
+            },
+            {
+              type: 'galleryboxes',
+              data: {
+                title: currentGalleryBoxesData?.title || '',
+                subtitle: currentGalleryBoxesData?.subtitle || '',
+                extratext: currentGalleryBoxesData?.extratext || '',
+                items: currentGalleryBoxesData?.items || [],
+              },
+            },
+            {
+              type: 'threeboxes3',
+              data: {
+                title: currentThreeBoxesData3?.title || '',
+                subtitle: currentThreeBoxesData3?.subtitle || '',
+                extratext: currentThreeBoxesData3.extratext || '',
+                items: currentThreeBoxesData3?.items || [],
+              },
+            },
+          ];
+
+        default:
+          return [];
+      }
+    };
 
     const payload = {
       title,
@@ -635,11 +935,7 @@ export const Page = () => {
       parentPage: parentpageField,
       editorJs: JSON.parse(editorContent),
       footercta: ctaField,
-      content: isHomepage
-        ? homepageContent
-        : isServices
-        ? servicesTemplateContent
-        : industryTemplateContent,
+      content: getTemplateContent(),
       seoFields: seoFields,
       metaFields: metaData,
       customMetaFields: customMetaFields,
@@ -651,6 +947,7 @@ export const Page = () => {
       try {
         const res = await fetch(`/api/page/update/${postid}`, {
           method: 'PUT',
+          cache: 'force-cache',
           headers: {
             'Content-Type': 'application/json',
           },
@@ -704,20 +1001,15 @@ export const Page = () => {
 
   const pageName = usePageTitle(postid);
 
-  const selectedTabs =
-    templateField === 'homepage'
-      ? tabsHomes
-      : templateField === 'services'
-      ? tabsServices
-      : templateField === 'industries'
-      ? tabsIndustry
-      : null;
+  const selectedTabs = tabsByTemplate[templateField] || [];
 
+  if (isLoading) return <div className="text-center py-10">Loading...</div>;
   return (
     <form onSubmit={handleSubmit}>
       <div className="grid grid-cols-3 gap-5">
         <div className="col-span-2">
           <PageHead
+            parentpageField={parentpageField}
             templateField={templateField}
             title={title}
             setTitle={setTitle}
@@ -728,7 +1020,7 @@ export const Page = () => {
             setEditorContent={setEditorContent}
           />
 
-          {selectedTabs && (
+          {selectedTabs.length > 0 && (
             <div className="border border-gray-300 rounded-md">
               <div className="border-b border-gray-200 flex text-xs">
                 {selectedTabs.map((tab) => (
@@ -767,6 +1059,20 @@ export const Page = () => {
                   sectionsRef={sectionsRef}
                   industryState={industryState}
                   setIndustryState={setIndustryState}
+                />
+              ) : templateField === 'aboutus' ? (
+                <AboutUsFields
+                  activeTab={activeTab}
+                  sectionsRef={sectionsRef}
+                  aboutusState={aboutusState}
+                  setAboutusState={setAboutusState}
+                />
+              ) : templateField === 'lifeatbiz' ? (
+                <LifeAtFields
+                  activeTab={activeTab}
+                  sectionsRef={sectionsRef}
+                  lifeatState={lifeatState}
+                  setLifeatState={setLifeatState}
                 />
               ) : null}
             </div>

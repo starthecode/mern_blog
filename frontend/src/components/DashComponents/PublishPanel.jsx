@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { BiTrash } from 'react-icons/bi';
 import { handlePageDelete } from '../../utils/handlePageDelete';
 
-export default function PublishPanel({ postid, postDate }) {
+export default function PublishPanel({ type, postid, postDate }) {
   const [status, setStatus] = useState('Draft');
   const [editing, setEditing] = useState(false);
   const [tempStatus, setTempStatus] = useState(status);
@@ -22,8 +22,8 @@ export default function PublishPanel({ postid, postDate }) {
     setEditing(false);
   };
 
-  const handleDelete = (postid) => {
-    handlePageDelete({ postid, navigate, toast });
+  const handleDelete = (postid, type) => {
+    handlePageDelete({ type, postid, navigate, toast });
   };
 
   React.useEffect(() => {
@@ -99,7 +99,7 @@ export default function PublishPanel({ postid, postDate }) {
       {postid && (
         <button
           type="button"
-          onClick={() => handleDelete(postid)}
+          onClick={() => handleDelete(postid, type)}
           className="w-full flex justify-end px-1 pt-3"
         >
           <BiTrash size={25} color="red" />

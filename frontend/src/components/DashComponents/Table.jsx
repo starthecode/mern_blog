@@ -20,6 +20,8 @@ export default function TableComp({ data = [], type }) {
     currentPage * ITEMS_PER_PAGE
   );
 
+  console.log('paginatedPages', paginatedPages);
+
   const toggleSelect = (id) => {
     setSelectedItems((prev) =>
       prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
@@ -88,6 +90,8 @@ export default function TableComp({ data = [], type }) {
                     to={`/dashboard/${
                       item.postType === 'post'
                         ? 'post-new?post'
+                        : item.postType === 'solutions'
+                        ? 'new-solution?page'
                         : 'page-new?page'
                     }=${item.pageId}&action=edit`}
                     className={`hover:underline ${item}`}

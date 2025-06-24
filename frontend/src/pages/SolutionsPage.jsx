@@ -1,0 +1,189 @@
+import { useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
+
+import { motion, useAnimation } from 'framer-motion';
+import { useParams } from 'react-router-dom';
+import NotFound from '../NotFound';
+import FrontLoader from '../components/Loader/FrontLoader';
+import GlowLight from '../components/extras/GlowLight';
+import { Heading } from '../components/Heading/Heading';
+import Line5 from '../components/lines';
+import LiteYouTubeEmbed from '../components/extras/LiteYouTubeEmbed';
+import SolutionsSection3 from '../components/page/SolutionsPage/SolutionsSection3';
+import SolutionsSection4 from '../components/page/SolutionsPage/SolutionsSection4';
+import SolutionsSection5 from '../components/page/SolutionsPage/SolutionsSection5';
+import SolutionsSection6 from '../components/page/SolutionsPage/SolutionsSection6';
+import SolutionForm from '../components/page/SolutionsPage/SolutionForm';
+import SpringSlider from '../components/extras/SpringSlider';
+import PagePostHero from '../components/HeroSection/PagePostHero';
+import FiveCards from '../components/Cards/FiveCards';
+
+export default function SolutionsPage() {
+  const { slug } = useParams();
+
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(null);
+  const [pageHeaderData, setPageHeaderData] = useState({
+    title: '',
+    excerpts: '',
+    bannerImg: '',
+  });
+
+  const [dynamicHeading, setDynamicHeading] = useState({
+    title: '',
+    subText: '',
+    vidId: '',
+  });
+
+  const [notFound, setNotFound] = useState(false);
+
+  const controls = useAnimation();
+  const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.2 });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start({ x: 0, opacity: 1 });
+    } else {
+      controls.start({ x: -100, opacity: 0 });
+    }
+  }, [inView, controls]);
+
+  useEffect(() => {
+    if (!slug) return;
+
+    const fetchPage = async () => {
+      setLoading(true);
+      setData(null);
+      setNotFound(false);
+
+      try {
+        const res = await fetch(`/api/solutions/singleSolution/${slug}`, {
+          method: 'GET',
+          cache: 'force-cache',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        const json = await res.json();
+
+        if (!res.ok || !json?.title) {
+          setNotFound(true);
+          return;
+        }
+
+        setData(json);
+
+        // const threeboxesContent = json.content?.find(
+        //   (block) => block.type === 'threeboxes'
+        // );
+
+        setPageHeaderData({
+          title: json.title || '',
+          excerpts: json.excerpts || '',
+          bannerImg: json.metaFields?.featuredImage || '',
+        });
+        if (json?.editorJs?.blocks?.length) {
+          const blocks = json.editorJs.blocks;
+
+          const h2Block = blocks.find(
+            (block) => block.type === 'header' && block.data.level === 2
+          );
+          const paragraphBlock = blocks.find(
+            (block) => block.type === 'paragraph'
+          );
+
+          const videoBlock =
+            blocks[2]?.type === 'paragraph' ? blocks[2].data.text : '';
+
+          setDynamicHeading({
+            title: h2Block?.data?.text || '',
+            subText: paragraphBlock?.data?.text || '',
+            vidId: videoBlock || '',
+          });
+        }
+      } catch (error) {
+        console.error(error.message || 'Something went wrong');
+        setNotFound(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPage();
+  }, [slug]);
+
+  if (loading)
+    return (
+      <div className="text-center py-10">
+        <FrontLoader />
+      </div>
+    );
+
+  if (notFound) return <NotFound />;
+
+  return (
+    <section>
+      <PagePostHero {...pageHeaderData} />
+      <GlowLight classes={'top-[25%] left-0 bg-flamingo-600/40'} />
+      <div className="max-w-7xl mx-auto mt-20">
+        <div className="text-center">
+          <Heading
+            classes={'items-center'}
+            type="dark"
+            smallTitle={''}
+            title={
+              data?.content?.find((c) => c.type === 'threeboxes')?.data
+                ?.title || ''
+            }
+            subText={
+              data?.content?.find((c) => c.type === 'threeboxes')?.data
+                ?.subtitle || ''
+            }
+          />
+        </div>
+        <div className="relative overflow-hidden h-full pb-20">
+          <div className="absolute inset-0 w-full text-center grid justify-center">
+            <Line5 />
+          </div>
+          <div className="flex justify-center items-center w-full mt-20">
+            {/* Video */}
+            <div className="iframe__div relative w-[300]" ref={ref}>
+              <motion.div
+                initial={{ x: -100, opacity: 0 }}
+                animate={controls}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
+                className="relative border border-junglegreen-400 rounded-xl p-2 w-fit h-fit"
+              >
+                <LiteYouTubeEmbed
+                  videoId={
+                    data?.content?.find((c) => c.type === 'threeboxes')?.data
+                      ?.extratext || ''
+                  }
+                />
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <FiveCards
+        data={
+          data?.content?.find((c) => c.type === 'threeboxes')?.data?.items || []
+        }
+      />
+      <SolutionsSection3
+        data={data?.content?.find((c) => c.type === 'threeboxes2')?.data || []}
+      />
+      <SolutionsSection4
+        data={data?.content?.find((c) => c.type === 'threeboxes3')?.data || []}
+      />
+
+      <SolutionsSection5
+        data={data?.content?.find((c) => c.type === 'threeboxes4')?.data || []}
+      />
+      <SolutionsSection6 />
+      <SolutionForm />
+      <SpringSlider />
+    </section>
+  );
+}

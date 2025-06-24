@@ -1310,6 +1310,16 @@ select option {
   padding: 1rem 1rem;
   margin-bottom: 1rem;
   margin-top: 1rem;
+  color: #ff8243;
+  font-weight: 600;
+}
+
+.solution__section3 h3 {
+  margin-bottom: 20px;
+}
+
+.solution__section3 ul li {
+  margin-bottom: 10px;
 }
 
 .checkmark_li li:before {

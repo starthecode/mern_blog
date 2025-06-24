@@ -50,13 +50,13 @@ export const ServiceCards = ({ item, index }) => {
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-br from-black/90 via-black/60 to-transparent z-10"></div>
-          <div className="relative z-20 flex flex-col justify-around h-full items-start text-left mt-8">
+          <div className="relative z-20 flex flex-col gap-5 h-full items-start text-left mt-8">
             <div className="w-fit px-5 shadow-xl shadow-white/10 border border-junglegreen-200 border-l-0 relative font-medium text-sm inline-flex items-center gap-2 py-2 rounded-tr-xl rounded-br-xl">
               <span className="font-semibold text-md text-[#F4FFFA00] bg-clip-text bg-gradient-to-b from-white to-white/80">
                 {item?.servicesName}
               </span>
             </div>
-            <p className="text-sm font-thin text-white px-2 w-[200px]">
+            <p className="text-sm font-thin text-white px-2 w-[250px]">
               {item?.servicesDesc}
             </p>
 

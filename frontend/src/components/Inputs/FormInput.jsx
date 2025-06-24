@@ -7,10 +7,12 @@ export default function FormInput({
   className = '',
 }) {
   return (
-    <input
-      placeholder={placeholder}
-      {...register(name)}
-      className={`border px-2 py-1 rounded ${className}`}
-    />
+    <>
+      <input
+        placeholder={placeholder}
+        {...register(name)}
+        className={`border px-2 py-1 rounded ${className}`}
+      />
+    </>
   );
 }

@@ -80,7 +80,7 @@ const menuData = {
           key: 'cG9zdDoyMTU=',
           parentId: 'cG9zdDo4',
           title: 'Artificial Intelligence',
-          url: 'https://experimentalapp.xyz/services/artificial-intelligence/',
+          url: '/services/artificial-intelligence/',
           path: '/services/artificial-intelligence/',
           description:
             'Lorem Ipsum is simply dummy text of the printing and typesetting',
@@ -98,7 +98,7 @@ const menuData = {
           key: 'cG9zdDo3Mzg4',
           parentId: 'cG9zdDoyMTU=',
           title: 'AI/ML Ops',
-          url: 'https://experimentalapp.xyz/services/artificial-intelligence/ai-ml-ops/',
+          url: '/services/artificial-intelligence/ai-ml-ops/',
           path: '/services/artificial-intelligence/ai-ml-ops/',
           description: null,
           menuAcfFields: {
@@ -118,7 +118,7 @@ const menuData = {
           key: 'cG9zdDo3Mzg5',
           parentId: 'cG9zdDoyMTU=',
           title: 'AI Deep Learning',
-          url: 'https://experimentalapp.xyz/services/artificial-intelligence/ai-deep-learning/',
+          url: '/services/artificial-intelligence/ai-deep-learning/',
           path: '/services/artificial-intelligence/ai-deep-learning/',
           description: null,
           menuAcfFields: {
@@ -138,7 +138,7 @@ const menuData = {
           key: 'cG9zdDo3Mzkw',
           parentId: 'cG9zdDoyMTU=',
           title: 'Machine Learning and Predictive Analytics',
-          url: 'https://experimentalapp.xyz/services/artificial-intelligence/ml-predictive-analytics/',
+          url: '/services/artificial-intelligence/ml-predictive-analytics/',
           path: '/services/artificial-intelligence/ml-predictive-analytics/',
           description: null,
           menuAcfFields: {
@@ -158,7 +158,7 @@ const menuData = {
           key: 'cG9zdDo3Mzk1',
           parentId: 'cG9zdDoyMTU=',
           title: 'Recommendation Engine',
-          url: 'https://experimentalapp.xyz/services/artificial-intelligence/recommendation-engines/',
+          url: '/services/artificial-intelligence/recommendation-engines/',
           path: '/services/artificial-intelligence/recommendation-engines/',
           description: null,
           menuAcfFields: {
@@ -198,7 +198,7 @@ const menuData = {
           key: 'cG9zdDoyMTQ=',
           parentId: 'cG9zdDo4',
           title: 'Data Analytics',
-          url: 'https://experimentalapp.xyz/services/data-analytics/',
+          url: '/services/data-analytics/',
           path: '/services/data-analytics/',
           description:
             'Lorem Ipsum is simply dummy text of the printing and typesetting',
@@ -318,7 +318,7 @@ const menuData = {
           key: 'cG9zdDoyMTM=',
           parentId: 'cG9zdDo4',
           title: 'Enterprise Applications',
-          url: 'https://experimentalapp.xyz/services/enterprise-applications/',
+          url: '/services/enterprise-applications/',
           path: '/services/enterprise-applications/',
           description:
             'Lorem Ipsum is simply dummy text of the printing and typesetting',
@@ -404,7 +404,7 @@ const menuData = {
           key: 'cG9zdDo3MzQy',
           parentId: 'cG9zdDo5',
           title: 'Kafka',
-          url: 'https://experimentalapp.xyz/solutions/real-time-sensor-data-analytics-solutions/',
+          url: '/solutions/real-time-sensor-data-analytics-solutions/',
           path: '/solutions/real-time-sensor-data-analytics-solutions/',
           description: 'Real time (Sensor) Data Analytics Solutions',
           menuAcfFields: {
@@ -424,7 +424,7 @@ const menuData = {
           key: 'cG9zdDo3MzQz',
           parentId: 'cG9zdDo5',
           title: 'Microsoft',
-          url: 'https://experimentalapp.xyz/solutions/microsoft-fabric-solutions/',
+          url: '/solutions/microsoft-fabric-solutions/',
           path: '/solutions/microsoft-fabric-solutions/',
           description: 'Microsoft Fabric Solutions',
           menuAcfFields: {
@@ -444,7 +444,7 @@ const menuData = {
           key: 'cG9zdDo3MzQ1',
           parentId: 'cG9zdDo5',
           title: 'ChatGPT',
-          url: 'https://experimentalapp.xyz/solutions/enterprise-chatgpt-solutions/',
+          url: '/solutions/enterprise-chatgpt-solutions/',
           path: '/solutions/enterprise-chatgpt-solutions/',
           description: 'Enterprise ChatGPT Solutions',
           menuAcfFields: {
@@ -464,7 +464,7 @@ const menuData = {
           key: 'cG9zdDo3MzQ2',
           parentId: 'cG9zdDo5',
           title: 'Spotfire',
-          url: 'https://experimentalapp.xyz/solutions/spotfire-to-power-bi-migration-solution/',
+          url: '/solutions/spotfire-to-power-bi-migration-solution/',
           path: '/solutions/spotfire-to-power-bi-migration-solution/',
           description: 'Spotfire to Power BI Migration Solution',
           menuAcfFields: {
@@ -484,7 +484,7 @@ const menuData = {
           key: 'cG9zdDo3MzQ3',
           parentId: 'cG9zdDo5',
           title: 'Power BI',
-          url: 'https://experimentalapp.xyz/solutions/rls-power-app-offer/',
+          url: '/solutions/rls-power-app-offer/',
           path: '/solutions/rls-power-app-offer/',
           description: 'Power BI Security Utility Application',
           menuAcfFields: {
@@ -504,7 +504,7 @@ const menuData = {
           key: 'cG9zdDo3MzQ4',
           parentId: 'cG9zdDo5',
           title: 'Salesforce',
-          url: 'https://experimentalapp.xyz/solutions/salesforce-utility-for-data-ingestion/',
+          url: '/solutions/salesforce-utility-for-data-ingestion/',
           path: '/solutions/salesforce-utility-for-data-ingestion/',
           description: 'Salesforce Utility for Data Ingestion',
           menuAcfFields: {
@@ -524,7 +524,7 @@ const menuData = {
           key: 'cG9zdDo3MzQ5',
           parentId: 'cG9zdDo5',
           title: 'Analytics',
-          url: 'https://experimentalapp.xyz/solutions/power-bi-usage-metrics/',
+          url: '/solutions/power-bi-usage-metrics/',
           path: '/solutions/power-bi-usage-metrics/',
           description: 'Power BI Consumption Analytics/Usage Metrics',
           menuAcfFields: {
@@ -544,7 +544,7 @@ const menuData = {
           key: 'cG9zdDo3MzUx',
           parentId: 'cG9zdDo5',
           title: 'Hadoop',
-          url: 'https://experimentalapp.xyz/solutions/hadoop-to-azure-migration/',
+          url: '/solutions/hadoop-to-azure-migration/',
           path: '/solutions/hadoop-to-azure-migration/',
           description: 'Hadoop migration to Azure: 6-Wk Proof of Concept',
           menuAcfFields: {
@@ -564,7 +564,7 @@ const menuData = {
           key: 'cG9zdDo3MzQ0',
           parentId: 'cG9zdDo5',
           title: 'SharePoint',
-          url: 'https://experimentalapp.xyz/solutions/mvp-sharepoint-to-adls-data-migration-and-access-permissions-matching/',
+          url: '/solutions/mvp-sharepoint-to-adls-data-migration-and-access-permissions-matching/',
           path: '/solutions/mvp-sharepoint-to-adls-data-migration-and-access-permissions-matching/',
           description:
             'MVP: SharePoint to ADLS Data Migration and Access Permissions Matching',
@@ -585,7 +585,7 @@ const menuData = {
           key: 'cG9zdDo3MzUy',
           parentId: 'cG9zdDo5',
           title: 'Oracle',
-          url: 'https://experimentalapp.xyz/solutions/oracle-fusion-free-workshop/',
+          url: '/solutions/oracle-fusion-free-workshop/',
           path: '/solutions/oracle-fusion-free-workshop/',
           description:
             'Free Workshop: Connecting Oracle Fusion/ Cloud ERP Application with Power BI',
@@ -619,12 +619,33 @@ const menuData = {
             menuLabel098: null,
           },
         },
+
+        {
+          key: 'cG8zdCoyIzK=',
+          parentId: 'cG9zdDo3MjQ5',
+          title: 'Life At Bizmetric',
+          url: '/life-at-bizmetric',
+          path: '/life-at-bizmetric',
+          description: null,
+          menuAcfFields: {
+            showMenuLabel: null,
+            menuLabelText: null,
+            showMegaMenu: null,
+            showServicesMegaMenu: null,
+            menuClasses: null,
+            menuIcon: {
+              mediaItemUrl:
+                'https://experimentalapp.xyz/wp-content/uploads/2024/04/about_us_info_icon_icon.png',
+            },
+            menuLabel098: null,
+          },
+        },
         {
           key: 'cG9zdDoyMzM=',
           parentId: 'cG9zdDo3MjQ5',
           title: 'About Us',
-          url: 'https://experimentalapp.xyz/about-us/',
-          path: '/about-us/',
+          url: '/about-us',
+          path: '/about-us',
           description: null,
           menuAcfFields: {
             showMenuLabel: null,
@@ -663,8 +684,8 @@ const menuData = {
           key: 'cG9zdDo3Njk2',
           parentId: 'cG9zdDo3MjQ5',
           title: 'Careers',
-          url: 'https://experimentalapp.xyz/careers/',
-          path: '/careers/',
+          url: '/careers',
+          path: '/careers',
           description: null,
           menuAcfFields: {
             showMenuLabel: null,
@@ -723,8 +744,8 @@ const menuData = {
           key: 'cG9zdDoyNDc=',
           parentId: 'cG9zdDo3MjQ5',
           title: 'Contact Us',
-          url: 'https://experimentalapp.xyz/contact-us/',
-          path: '/contact-us/',
+          url: '/contact-us',
+          path: '/contact-us',
           description: null,
           menuAcfFields: {
             showMenuLabel: null,
@@ -743,8 +764,8 @@ const menuData = {
           key: 'cG9zdDoxMA==',
           parentId: null,
           title: 'Success Stories',
-          url: '/case_studies',
-          path: '/case_studies',
+          url: '/success-stories',
+          path: '/success-stories',
           description: null,
           menuAcfFields: {
             showMenuLabel: null,

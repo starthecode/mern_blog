@@ -8,6 +8,8 @@ import { Profile } from '../../components/DashComponents/Profile';
 import { Pages } from './Pages';
 import Settings from './Settings/Settings';
 import Customize from './Appearance/Customize';
+import Media from './Appearance/Media';
+import MediaLibraryManager from './Appearance/Media/MediaLibraryManager ';
 // import MenuBuilder from '../../components/DashComponents/Menu/MenuBuilder';
 
 export default function Dashboard() {
@@ -42,6 +44,7 @@ export default function Dashboard() {
         {tab === 'profile' && <Profile />}
         {tab === 'settings' && <Settings />}
         {tab === 'appearance' && <Customize />}
+        {tab === 'media' && <MediaLibraryManager />}
       </div>
     </main>
   );

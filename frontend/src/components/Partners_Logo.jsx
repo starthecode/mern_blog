@@ -17,6 +17,8 @@ const fadeInUp = {
 };
 
 export default function PartnersLogo({ data }) {
+  console.log('data', data);
+
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
@@ -41,7 +43,7 @@ export default function PartnersLogo({ data }) {
               variants={fadeInUp}
             >
               <img
-                src={`${partner.partnersImage}`}
+                src={`${partner.logoUrl}`}
                 alt={'partner logo'}
                 className="max-w-[80%] max-h-[80%] object-contain"
               />

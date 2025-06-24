@@ -6,7 +6,7 @@ import { motion, useAnimation } from 'framer-motion';
 import { Heading } from '../../Heading/Heading';
 import GlowLight from '../../extras/GlowLight';
 import Line5 from '../../lines';
-import LiteYouTubeEmbed from '../../extras/LiteYouTubeEmbed';
+import YoutubeEmbedVideo from '../../extras/embed/YoutubeEmbedVideo';
 
 const IndustrySection1 = ({ aboutIndustryData1, aboutIndustryData2 }) => {
   const controls = useAnimation();
@@ -49,7 +49,7 @@ const IndustrySection1 = ({ aboutIndustryData1, aboutIndustryData2 }) => {
                 transition={{ duration: 0.6, ease: 'easeOut' }}
                 className="relative border border-junglegreen-400 rounded-xl p-2 w-fit h-fit"
               >
-                <LiteYouTubeEmbed videoId={aboutIndustryData1?.textInput2} />
+                <YoutubeEmbedVideo videoId={aboutIndustryData1?.textInput2} />
               </motion.div>
             </div>
           </div>

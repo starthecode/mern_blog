@@ -2,12 +2,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { usePageTitle } from '../../utils/pathName';
 
-export default function PageHead({ templateField, title, setTitle, postId }) {
+export default function PageHead({
+  parentpageField,
+  templateField,
+  title,
+  setTitle,
+  postId,
+}) {
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
   };
 
-  const parentPage = templateField == 'homepage' ? '' : templateField;
+  const parentPage = templateField === 'homepage' ? '' : parentpageField;
 
   const safeTitle = String(title || '');
   const permalink = `${window.location.origin}/${

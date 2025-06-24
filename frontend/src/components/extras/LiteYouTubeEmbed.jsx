@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaPlayCircle } from 'react-icons/fa';
 
 export default function LiteYouTubeEmbed({ videoId }) {
   const [isIframeVisible, setIsIframeVisible] = React.useState(false);
@@ -6,7 +7,7 @@ export default function LiteYouTubeEmbed({ videoId }) {
 
   return (
     <div
-      className="relative cursor-pointer group overflow-hidden rounded-xl border border-junglegreen-400 h-[280px]"
+      className="relative cursor-pointer group overflow-hidden rounded-3xl"
       onClick={() => setIsIframeVisible(true)}
     >
       {isIframeVisible ? (
@@ -16,17 +17,19 @@ export default function LiteYouTubeEmbed({ videoId }) {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
           title="YouTube video"
-          className="w-full h-[200px] sm:h-[250px] md:h-[300px]"
+          className="w-[350px] h-[200px] object-cover"
         />
       ) : (
         <>
           <img
             src={thumbnailUrl}
             alt="YouTube video thumbnail"
-            className="w-full h-auto"
+            className="w-[350px] h-[200px] object-cover"
           />
           <div className="absolute inset-0 bg-transparent bg-opacity-50 flex items-center justify-center">
-            <span className="text-white text-xl">▶</span>
+            <span className="text-white text-xl bg-white p-2 rounded-full flex justify-center">
+              <FaPlayCircle size={30} className="fill-flamingo-600" />
+            </span>
           </div>
         </>
       )}

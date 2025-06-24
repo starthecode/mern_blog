@@ -53,6 +53,8 @@ export const createPage = async (req, res, next) => {
       seo: seoEntry,
     });
   } catch (error) {
+    console.log(error);
+
     next(error);
   }
 };
@@ -138,7 +140,6 @@ export const deletePageById = async (req, res, next) => {
 
 export const updatePageById = async (req, res, next) => {
   const { title, seoFields } = req.body;
-
   try {
     const slug = title
       .split(' ')

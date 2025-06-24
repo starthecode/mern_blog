@@ -19,8 +19,8 @@ export default function AnimatedSlider({ data }) {
         backgroundPosition: 'center',
       }}
     >
-      <div className="h-full max-w-full px-0 sm:px-5 md:px-24 2xl:px-56 mt-3">
-        <div className="relative">
+      <div className="h-full container mt-6 px-0">
+        <div className="relative overflow-hidden">
           <Swiper
             navigation={{
               nextEl: '.custom-next',
@@ -30,16 +30,18 @@ export default function AnimatedSlider({ data }) {
             modules={[Navigation, Pagination]}
             className="mySwiper"
           >
+            {/* <div className="absolute z-10 inset-0 w-full h-full bg-gradient-to-tr from-black to-transparent" /> */}
             {data.map((item, index) => (
               <SwiperSlide
                 className={`keen-slider__slide item ${
                   item?.addVideo ? 'mt-28' : ''
-                } p-10 border-t border-t-white`}
+                } p-10 border-t border-t-junglegreen-500`}
                 key={index}
                 style={{
-                  backgroundImage: `url(${item?.sliderImage})`,
+                  backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.5), rgba(0,0,0,0.5), rgba(0,0,0,0.0)), url(${item?.sliderImage})`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat',
                 }}
               >
                 <div className="grid h-full items-start w-full max-w-3xl relative z-20">

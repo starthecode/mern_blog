@@ -13,7 +13,7 @@ export default function ServicesFields({
   return (
     <div className="p-4">
       <div
-        style={{ display: activeTab === 'tab-serviceBox1' ? 'block' : 'none' }}
+        style={{ display: activeTab === 'tab-servicesBox1' ? 'block' : 'none' }}
       >
         <ThreeBoxes
           ref={(el) => (sectionsRef.current.ThreeBoxes = el)}
@@ -22,7 +22,7 @@ export default function ServicesFields({
       </div>
 
       <div
-        style={{ display: activeTab === 'tab-serviceBox2' ? 'block' : 'none' }}
+        style={{ display: activeTab === 'tab-servicesBox2' ? 'block' : 'none' }}
       >
         <OverviewBoxes
           ref={(el) => (sectionsRef.current.OverviewBoxes = el)}
@@ -31,7 +31,7 @@ export default function ServicesFields({
       </div>
 
       <div
-        style={{ display: activeTab === 'tab-serviceBox3' ? 'block' : 'none' }}
+        style={{ display: activeTab === 'tab-servicesBox3' ? 'block' : 'none' }}
       >
         <WhyBizmetricComp
           whyboxFields={servicesFields.whyboxFields}
@@ -44,7 +44,7 @@ export default function ServicesFields({
         />
       </div>
       <div
-        style={{ display: activeTab === 'tab-serviceBox4' ? 'block' : 'none' }}
+        style={{ display: activeTab === 'tab-servicesBox4' ? 'block' : 'none' }}
       >
         <ApproachComp
           ref={(el) => (sectionsRef.current.approach = el)}
@@ -53,7 +53,7 @@ export default function ServicesFields({
       </div>
 
       <div
-        style={{ display: activeTab === 'tab-serviceBox5' ? 'block' : 'none' }}
+        style={{ display: activeTab === 'tab-servicesBox5' ? 'block' : 'none' }}
       >
         <OtherServicesComp
           ref={(el) => (sectionsRef.current.otherservices = el)}

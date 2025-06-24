@@ -20,7 +20,7 @@ import { ServiceCards } from '../components/ServiceCards';
 
 const COMPONENTS = {
   slider: AnimatedSlider,
-  partner: PartnersLogo,
+  partnerslogo: PartnersLogo,
   aboutus: AboutUs,
   services: ServiceCards,
   industry: Industry, // Include additional types as needed

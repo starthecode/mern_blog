@@ -32,8 +32,6 @@
 .swiper-slide {
   text-align: center;
   font-size: 18px;
-  background: #fff;
-  height: 540px;
 }
 
 /* .swiper-slide img {
@@ -120,14 +118,14 @@
   margin-top: 0.5rem;
 }
 
-@media (min-width: 1281px) {
+/* @media (min-width: 1281px) {
   .iframe__div iframe {
     width: 500px;
-    height: 300px;
+    height: 350px;
   }
-}
+} */
 
-@media (min-width: 1024px) and (max-width: 1280px) {
+/* @media (min-width: 1024px) and (max-width: 1280px) {
   .iframe__div iframe {
     width: 380px;
     height: 250px;
@@ -139,4 +137,4 @@
     width: 500px;
     height: 300px;
   }
-}
+} */

@@ -10,7 +10,7 @@ import IndustryAccordions from './DashComponents/IndustryAccordions';
 const MultiSection = ({ sections }) => {
   return (
     <div className="h-full flex flex-col w-full">
-      {sections.partner && <PartnersLogo data={sections.partner} />}
+      {sections.partnerslogo && <PartnersLogo data={sections.partnerslogo} />}
       <SvgLine1 />
       {sections.aboutus && <AboutUs data={sections.aboutus} />}
       <section

@@ -23,10 +23,24 @@ export const whychooseInputFields = [
 
 //services
 export const threeboxesInputFields = [
-  { name: 'threeboxesIcon', placeholder: 'Icon' },
-  { name: 'threeboxesName', placeholder: 'Name' },
-  { name: 'threeboxesSubtext', placeholder: 'Sub Text' },
+  { name: 'threeboxesinput1', placeholder: 'Input TextBox1' },
+  { name: 'threeboxesinput2', placeholder: 'Input TextBox2' },
+  { name: 'threeboxesinput3', placeholder: 'Input TextBox3' },
 ];
+
+export const fiveboxesInputFields = [
+  { name: 'fiveboxesinput1', placeholder: 'Input TextBox1' },
+  { name: 'fiveboxesinput2', placeholder: 'Input TextBox2' },
+  { name: 'fiveboxesinput3', placeholder: 'Input TextBox3' },
+  { name: 'fiveboxesinput4', placeholder: 'Input TextBox4' },
+  { name: 'fiveboxesinput5', placeholder: 'Input TextBox5' },
+];
+
+// export const galleryboxesInputFields = [
+//   { name: 'galleryboxesinput1', placeholder: 'Input TextBox1' },
+//   { name: 'galleryboxesinput2', placeholder: 'Input TextBox2' },
+//   { name: 'galleryboxesfile', placeholder: 'File Gallery Box' },
+// ];
 
 export const overviewboxesInputFields = [
   { name: 'servicesImage', placeholder: 'Image' },

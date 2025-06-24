@@ -34,10 +34,10 @@ export default function PageHeading({
           ref={ref}
           initial={{ y: -50, opacity: 0 }}
           animate={controls}
-          className={`w-fit mb-4 px-3 py-3 border border-ebony-400/60 bg-gradient-to-b ${
+          className={`w-fit mb-4 px-3 py-3 border border-junglegreen-400/30 bg-gradient-to-b ${
             type == 'dark'
               ? 'from-white to-transparent'
-              : 'from-woodsmoke-950 to-transparent'
+              : 'from-junglegreen-100/10 to-transparent'
           } transition-shadow relative inline-flex items-center rounded-tl-2xl rounded-tr-2xl rounded-br-2xl`}
         >
           <h5
@@ -56,10 +56,10 @@ export default function PageHeading({
         ref={ref}
         initial={{ opacity: 0 }}
         animate={controls}
-        className={`block leading-tight text-5xl text-[#F4FFFA00] bg-clip-text bg-gradient-to-b from-junglegreen-500 via-junglegreen-200 to-white ${
+        className={`block leading-tight text-5xl text-[#F4FFFA00] bg-clip-text bg-gradient-to-b ${
           type === 'dark'
             ? 'from-black to-junglegreen-500'
-            : 'from-white to-white/35'
+            : 'from-junglegreen-500 to-white'
         } leading-[40px]`}
       >
         <span dangerouslySetInnerHTML={{ __html: title }} />

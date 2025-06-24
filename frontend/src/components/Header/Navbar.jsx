@@ -14,7 +14,7 @@ const Navbar = ({ scroll, menuList }) => {
         className="w-full flex justify-center hidden invisible z-10
   items-center opacity-0 lg:visible lg:relative lg:flex lg:bg-transparent lg:opacity-100"
       >
-        <motion.div className="flex justify-center gap-4">
+        <motion.div className="flex justify-center gap-8">
           {menuList?.map((item, index) => (
             <MenuItem key={index} item={item} scroll={scroll}>
               <SubItem

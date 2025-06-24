@@ -20,7 +20,7 @@ import { Link } from 'react-router-dom';
 
 export const Logo = () => {
   return (
-    <div className="flex flex-col mt-2 w-[200px]">
+    <div className="flex flex-col mt-2 w-[200px] h-[70px]">
       {/* Top "bm" part */}
       <Link to={window.location.origin} className="flex flex-col">
         <div className="flex items-center">

@@ -1,10 +1,14 @@
-import React from 'react';
 import InputLabel from '../Form_Fields/InputLabel';
 
 const fieldList = [
   { key: 'customMetaTitle', label: 'Custom Title' },
   { key: 'customMetaDesc', label: 'Custom Desc' },
   { key: 'customMetaLink', label: 'Custom Link' },
+  { key: 'customMetaLinkText', label: 'Custom Link Text' },
+  { key: 'customMetaLinkTwo', label: 'Custom Link Two' },
+  { key: 'customMetaLinkTwoText', label: 'Custom Link Two Text' },
+  { key: 'customMetaExtra', label: 'Custom Extra Field' },
+  { key: 'customMetaExtra2', label: 'Custom Extra Field Two' },
 ];
 
 export default function CustomMeta({ customMetaFields, setCustomMetaFields }) {

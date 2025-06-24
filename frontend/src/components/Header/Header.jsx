@@ -8,7 +8,7 @@ import Navbar from './Navbar';
 import { Search } from '../Search/Search';
 import { MobileNav } from './MobileNav';
 import { Logo } from '../Logo';
-import { UserProfile } from './UserProfile';
+import { PrimaryButton } from '../Buttons/PrimaryButton';
 // import PopupContext from '../Extras/Popups/PopupContext';
 
 const Header = ({ menus }) => {
@@ -56,24 +56,24 @@ const Header = ({ menus }) => {
     };
   }, [scroll]);
 
-  const headerClasses = `rounded-xl relative z-20 transition-all ease-in-out duration-500 ${
-    scroll ? 'w-[80%] bg-[#f7f9fc] shadow-lg' : 'w-full'
+  const headerClasses = `rounded-xl relative z-20 transition-all ease-in-out duration-500 bg-royalBlue-950/80 shadow-lg ${
+    scroll ? 'w-[1150px]' : 'w-[1285px]'
   }`;
 
   return (
     <>
       <header>
         <div
-          className={`flex mt-3 relative justify-center items-center w-full ${
+          className={`flex mt-3 relative justify-center items-center w-[600px] ${
             width < 1024 && active
               ? 'mobile-nav--active inset-0 z-30 fixed'
               : 'large-menu relative sm:fixed md:fixed lg:fixed xl:fixed'
           } `}
         >
           <div
-            className={`mobile-nav-btns lg:items-center flex lg:justify-start md:justify-between sm:justify-between ${headerClasses} px-4 lg:px-6 lg:xl:px-24`}
+            className={`mobile-nav-btns lg:items-center flex lg:justify-start md:justify-between sm:justify-between ${headerClasses} px-4 lg:px-6 lg:xl:px-0`}
           >
-            <div className="flex justify-between lg:w-full items-center">
+            <div className="flex justify-between lg:w-full items-center mx-10">
               <Logo />
 
               <Navbar
@@ -92,7 +92,7 @@ const Header = ({ menus }) => {
             >
               <Search active={active} width={width} />
             </div>
-            <div className="ml-4 flex items-center gap-5">
+            <div className="ml-4 flex items-center gap-5 mx-10">
               <div className="flex relative items-center">
                 {/* Menu Open-Close Button */}
                 <div className="ml-auto flex">
@@ -132,8 +132,8 @@ const Header = ({ menus }) => {
                   </button>
                 </div>
               </div>
-
-              <UserProfile />
+              {/* <UserProfile /> */}
+              <PrimaryButton title="Contact Us" link="/contact-us" />;
             </div>
           </div>
         </div>

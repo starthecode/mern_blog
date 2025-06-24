@@ -21,6 +21,9 @@ const TemplateDropdown = ({ templateField, setTemplateField }) => {
         <option value="homepage">Homepage</option>
         <option value="services">Services</option>
         <option value="industries">Industries</option>
+        <option value="aboutus">About Us</option>
+        <option value="lifeatbiz">Life At Bizmetric</option>
+        <option value="contactus">Contact Us</option>
       </select>
     </div>
   );

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import { Link } from 'react-router';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const MenuItemVariants = {
   hidden: {
@@ -21,17 +21,15 @@ const MenuItem = ({ item, scroll, children, ...props }) => {
 
   return (
     <motion.div
-      className="px-3 relative cursor-pointer py-8"
+      className="px-1 relative cursor-pointer py-5"
       onHoverStart={() => setIsBeingHovered(true)}
       onHoverEnd={() => setIsBeingHovered(false)}
     >
       <Link
-        href={item?.url}
-        className={`${
-          scroll ? '!text-[12px] text-onyx-900 transition-all' : 'text-white'
-        } ${
-          item?.url == '#' && 'pointer-events-none'
-        } relative sm:text-sm md:text-md 2xl:text-lg font-bold hover:text-flamingo-400`}
+        to={item?.url}
+        className={`${scroll ? ' text-white' : 'text-white'} ${
+          item?.url === '#' && 'pointer-events-none'
+        } relative sm:text-sm md:text-sm 2xl:text-sm font-medium hover:text-flamingo-400`}
       >
         {item?.menuAcfFields?.menuLabel098 && (
           <label className="absolute -top-5 -right-6 bg-junglegreen-100/80 text-junglegreen-800 flex items-center text-[0.6rem] font-medium mr-2 px-2 py-0 rounded-full ml-4">

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
 import TempServices from '../components/Templates/TempServices';
 import NotFound from '../NotFound';

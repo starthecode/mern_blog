@@ -31,7 +31,6 @@ export default function SubServicesComp({ otherservicesData }) {
               {item.otherservicesInput2}
             </h2>
             <div className="mt-3">
-              {' '}
               <PrimaryButton
                 title={'Know MOre'}
                 link={item.otherservicesInput4}

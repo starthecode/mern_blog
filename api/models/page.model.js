@@ -19,6 +19,7 @@ const pageSchema = new mongoose.Schema(
 
     template: {
       type: String,
+      unique: false,
     },
 
     parentPage: {
@@ -38,11 +39,9 @@ const pageSchema = new mongoose.Schema(
         {
           type: {
             type: String, // "text" | "slider" etc
-            required: true,
           },
           data: {
             type: mongoose.Schema.Types.Mixed, // allows different data types
-            required: true,
           },
         },
       ],
@@ -77,6 +76,11 @@ const pageSchema = new mongoose.Schema(
       customMetaTitle: { type: String, default: '' },
       customMetaDesc: { type: String, default: '' },
       customMetaLink: { type: String, default: '' },
+      customMetaLinkText: { type: String, default: '' },
+      customMetaLinkTwo: { type: String, default: '' },
+      customMetaLinkTwoText: { type: String, default: '' },
+      customMetaExtra: { type: String, default: '' },
+      customMetaExtra2: { type: String, default: '' },
     },
   },
   { timestamps: true }

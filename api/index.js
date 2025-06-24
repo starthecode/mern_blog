@@ -16,9 +16,13 @@ import uploadRoutes from './routes/upload.route.js';
 import pageRoutes from './routes/pages/page.route.js';
 
 import postRoutes from './routes/post.route.js';
+import solutionsRoutes from './routes/solutions.route.js';
+
 import settingsRoutes from './routes/settings.route.js';
 
 import customizerRoutes from './routes/customizer.route.js';
+
+import actionRoutes from './routes/action.route.js';
 
 import compression from 'compression';
 
@@ -67,9 +71,13 @@ app.use('/api/page', pageRoutes);
 
 app.use('/api/post', postRoutes);
 
+app.use('/api/solutions', solutionsRoutes);
+
 app.use('/api/settings', settingsRoutes);
 
 app.use('/api/customizer', customizerRoutes);
+
+app.use('/api/action', actionRoutes);
 
 app.use(express.static(path.join(__dirname, '/frontend/dist')));
 

@@ -13,10 +13,10 @@ export const Breadcrumbs = ({ capitalizeLinks }: TBreadCrumbProps) => {
 
   return (
     <section>
-      <div className="container relative z-10">
+      <div className="relative z-10">
         <ul className="flex items-center text-xs lg:text-xs gap-3 capitalize">
           <li className="inline-flex items-center">
-            <Link to="/" className="flex gap-1 text-woodsmoke-500">
+            <Link to="/" className="flex gap-1 text-woodsmoke-200">
               <HiOutlineHome />
               Home
             </Link>

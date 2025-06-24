@@ -57,12 +57,23 @@ export const DashSidebar = () => {
     },
 
     {
-      name: 'Media',
-      icon: <MdOutlinePermMedia color="#f2692a" />,
+      name: 'Solutions',
+      icon: <MdPostAdd color="#f2692a" />,
       subpages: [
-        { name: 'Library', link: '/dashboard/pages' },
-        { name: 'Add New Media file', link: '/dashboard/page-new' },
+        { name: 'All Solutions', link: '/dashboard/solutions' },
+        { name: 'Add New Solution', link: '/dashboard/new-solution' },
+        { name: 'Categories', link: '/dashboard/solutions/categories' },
+        { name: 'Tags', link: '/dashboard/solutions/tags' },
       ],
+    },
+
+    {
+      name: 'media',
+      icon: <MdOutlinePermMedia color="#f2692a" />,
+      // subpages: [
+      //   { name: 'Library', link: '/dashboard/media' },
+      //   { name: 'Add New Media file', link: '/dashboard/add-media' },
+      // ],
     },
 
     {
@@ -128,7 +139,7 @@ export const DashSidebar = () => {
         {menuItems1.map((item, index) => (
           <div key={index}>
             <button
-              className={`flex items-start text-left w-full px-3 py-4 text-sm rounded-lg transition ${
+              className={`flex items-start text-left capitalize w-full px-3 py-4 text-sm rounded-lg transition ${
                 item.subpages
                   ? openDropdown === item.name
                     ? 'bg-flamingo-500/10 font-medium text-flamingo-500'

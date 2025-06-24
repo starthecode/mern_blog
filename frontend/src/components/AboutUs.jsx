@@ -7,6 +7,7 @@ import { useInView } from 'react-intersection-observer';
 
 import { motion, useAnimation } from 'framer-motion';
 import LiteYouTubeEmbed from './extras/LiteYouTubeEmbed';
+import YoutubeEmbedVideo from './extras/embed/YoutubeEmbedVideo';
 
 const AboutUs = ({ data }) => {
   const controls = useAnimation();
@@ -29,20 +30,20 @@ const AboutUs = ({ data }) => {
           smallTitle={data?.smallTitle}
           title={data?.aboutTitle}
         />
-        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-12 items-start pt-10">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-0 items-start pt-10">
           {/* Video */}
           <div
-            className="iframe__div relative w-full sm:max-w-[300px] md:max-w-[450px] lg:max-w-[570px] xl:max-w-[700px]"
+            className="iframe__div relative w-fit"
             ref={ref}
           >
             <motion.div
               initial={{ x: -100, opacity: 0 }}
               animate={controls}
               transition={{ duration: 0.6, ease: 'easeOut' }}
-              className="relative border border-junglegreen-400 rounded-xl p-3 w-fit"
+              className="relative border border-junglegreen-400 rounded-xl p-2 w-fit"
             >
               {' '}
-              <LiteYouTubeEmbed videoId="0DysrE4uCsk" />
+              <YoutubeEmbedVideo videoId="0DysrE4uCsk" />
             </motion.div>
           </div>
 

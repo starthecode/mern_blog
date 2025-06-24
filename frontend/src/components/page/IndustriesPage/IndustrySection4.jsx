@@ -2,8 +2,8 @@ import React from 'react';
 
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import LiteYouTubeEmbed from '../../extras/LiteYouTubeEmbed';
 import { PrimaryButton } from '../../Buttons/PrimaryButton';
+import YoutubeEmbedVideo from '../../extras/embed/YoutubeEmbedVideo';
 
 export default function IndustrySection4({ aboutIndustryData5 }) {
   const controls = useAnimation();
@@ -37,7 +37,7 @@ export default function IndustrySection4({ aboutIndustryData5 }) {
                 transition={{ duration: 0.6, ease: 'easeOut' }}
                 className="relative border border-junglegreen-400 rounded-xl p-2 w-fit h-fit"
               >
-                <LiteYouTubeEmbed videoId={aboutIndustryData5?.textInput1} />
+                <YoutubeEmbedVideo videoId={aboutIndustryData5?.textInput1} />
               </motion.div>
             </div>
           </div>

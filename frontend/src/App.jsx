@@ -23,6 +23,14 @@ import Services from './pages/Services';
 import IndustryVerticles from './pages/Dashboard/Appearance/IndustryVerticles';
 import Industries from './pages/Industries';
 import NotFound from './NotFound';
+import { PostSolutions } from './pages/Dashboard/Custom/PostSolutions';
+import { Solutions } from './pages/Dashboard/Solutions';
+import SolutionsPage from './pages/SolutionsPage';
+import SuccessStories from './pages/SuccessStories';
+import Careers from './pages/Careers';
+import { SingleJobPost } from './components/page/Careers/Details/SingleJobPost';
+import AboutUsPage from './pages/AboutUsPage';
+import SharedPage from './pages/SharedPage';
 
 export default function App() {
   return (
@@ -35,6 +43,13 @@ export default function App() {
             <Route path="/blogs/:slug" element={<BlogSingle />} />
             <Route path="/services/:slug" element={<Services />} />
             <Route path="/industries/:slug" element={<Industries />} />
+            <Route path="/solutions/:slug" element={<SolutionsPage />} />
+            <Route path="/success-stories" element={<SuccessStories />} />
+            <Route path="/careers" element={<Careers />} />
+            <Route path="/careers/:slug" element={<SingleJobPost />} />
+            {/* <Route path="/about-us/" element={<AboutUsPage />} /> */}
+            <Route path="/:slug" element={<SharedPage />} />
+
             <Route path="*" element={<NotFound />} />
           </Route>
           <Route path="/signin" element={<Signin />} />
@@ -47,7 +62,11 @@ export default function App() {
                 <Route path="/dashboard/page-new" element={<Page />} />
                 <Route path="/dashboard/pages" element={<Pages />} />
                 <Route path="/dashboard/posts" element={<Posts />} />
-
+                <Route
+                  path="/dashboard/new-solution"
+                  element={<PostSolutions />}
+                />
+                <Route path="/dashboard/solutions" element={<Solutions />} />
                 <Route
                   path="/dashboard/settings/general"
                   element={<General />}

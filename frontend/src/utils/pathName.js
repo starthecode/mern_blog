@@ -7,5 +7,6 @@ export const usePageTitle = (postId) => {
   if (postId) return 'Edit';
   if (slug === 'post-new') return 'Post';
   if (slug === 'page-new') return 'Page';
-  return 'Create';
+  if (slug === 'new-solution') return 'Solution';
+  return slug;
 };

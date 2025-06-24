@@ -1,13 +1,11 @@
-export const handlePageDelete = async ({ postid, navigate, toast }) => {
-  console.log('test2', postid);
-
+export const handlePageDelete = async ({ type, postid, navigate, toast }) => {
   const confirmDelete = window.confirm(
     'Are you sure you want to delete this page? This action cannot be undone.'
   );
   if (!confirmDelete) return;
 
   try {
-    const res = await fetch(`/api/page/delete/${postid}`, {
+    const res = await fetch(`/api/action/delete/${type}/${postid}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -23,8 +21,8 @@ export const handlePageDelete = async ({ postid, navigate, toast }) => {
     }
 
     if (data.success) {
-      toast.success('Page Deleted');
-      navigate(`/dashboard/pages`);
+      toast.success(`${type} Deleted`);
+      navigate(`/dashboard/${type}`);
       window.location.reload();
     }
   } catch (error) {
