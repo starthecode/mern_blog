@@ -1,6 +1,6 @@
-import React from 'react';
-
 export default function FiveCards({ data, type, count }) {
+  console.log('data123', data);
+
   return (
     <div className={`grid grid-cols-${count} gap-5 px-28`}>
       {data &&
@@ -13,19 +13,19 @@ export default function FiveCards({ data, type, count }) {
              text-white h-[240px]`}
           >
             <div
-              className={`p-2 h-full flex flex-col text-center w-full ${
-                type === 'center' && 'items-center'
+              className={`p-4 h-full flex flex-col w-full ${
+                type === 'center'
+                  ? 'items-center text-center'
+                  : 'items-start text-left'
               }`}
             >
               <div
-                className={`w-fit h-fit p-2 ${
+                className={`w-fit h-fit p-1 ${
                   type === 'left' &&
                   'shadow-lg rounded-[9.24px]  bg-junglegreen-500'
                 }  mb-3 flex items-center justify-center`}
               >
-                <span
-                  dangerouslySetInnerHTML={{ __html: item?.threeboxesinput1 }}
-                />
+                <img className="w-10 h-10" src={item?.threeboxesinput1} />
               </div>
               <h3 className="font-semibold text-black text-md mb-3">
                 {item?.threeboxesinput2}

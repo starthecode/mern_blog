@@ -40,12 +40,8 @@ export default function TempServices({ data, title }) {
           </div>
         </div>
         <BoxesItems
-          BoxItem={
-            data?.content?.[0]?.data?.map((box) => ({
-              icon: box.threeboxesIcon,
-              boxesItemsTitle: box.threeboxesName,
-              boxesItemsDesc: box.threeboxesSubtext,
-            })) || []
+          data={
+            data?.content?.find((c) => c.type === 'threeboxes')?.data || ''
           }
         />
         <section

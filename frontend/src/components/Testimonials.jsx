@@ -21,7 +21,7 @@ export default function Testimonials({ data }) {
               key={index}
               className="w-[370px] relative border-l border-t border-white/30  pt-1 p-0 max-w-6xl rounded-2xl overflow-hidden shadow-lg text-white  "
             >
-              <div className="p-4 lg:p-6 rounded-3xl relative group h-full pt-16 pb-20 bg-opacity-30 backdrop-filter backdrop-blur-lg">
+              <div className="p-4 lg:p-6 rounded-xl relative group h-full pt-16 pb-20 bg-opacity-30 backdrop-filter backdrop-blur-lg">
                 <div className="block items-center">
                   <div className="flex-grow">
                     <div className="text-sm text-gray-500">

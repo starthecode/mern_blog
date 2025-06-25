@@ -162,7 +162,7 @@ export const HeroSection = ({ title, excerpt }: any) => {
             </div>
           </div>
         </div>
-        <div className="w-fit relative ring-ebony-200 dark:ring-white/10 ring-1 p-2 rounded-3xl bg-gradient-to-t from-onyx-900">
+        <div className="w-fit relative ring-ebony-200 dark:ring-white/10 ring-1 p-2 rounded-xl bg-gradient-to-t from-onyx-900">
           <div className="grid items-center p-2 gap-12 ring-ebony-400 dark:ring-white/10 ring-1 rounded-2xl bg-ebony-200/5 shadow-massive">
             <form className="mx-auto w-full relative z-10 flex flex-col justify-between rounded-lg p-2 sm:flex-row sm:items-center sm:p-0">
               <div className="flex">

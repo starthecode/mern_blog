@@ -17,20 +17,18 @@ const fadeInUp = {
 };
 
 export default function PartnersLogo({ data }) {
-  console.log('data', data);
-
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <section className="relative px-10 md:px-24 xl:px-24 pt-20 py-10 overflow-hidden">
-      <GlowLight classes={'top-1/1 right-0 bg-flamingo-600/40'} />
+    <section className="relative pt-20 py-10 overflow-hidden">
+      {/* <GlowLight classes={'top-1/1 right-0 bg-flamingo-600/40'} /> */}
       <div>
         <Heading type={'dark'} title={data?.title} />
       </div>
 
       <div
         ref={ref}
-        className="grid grid-cols-3 place-items-center md:flex md:flex-wrap lg:flex lg:flex-wrap xl:flex xl:flex-wrap justify-center sm:justify-center md:justify-center lg:justify-center xl:justify-start gap-5 md:gap-10 mt-10"
+        className="grid grid-cols-3 place-items-center md:flex md:flex-wrap lg:flex lg:flex-wrap xl:flex xl:flex-wrap justify-center sm:justify-center md:justify-center lg:justify-center xl:justify-start gap-5 mt-5"
       >
         {data?.items &&
           data?.items?.map((partner, i) => (

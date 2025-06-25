@@ -62,7 +62,7 @@ export const LeftCard = ({ item }) => {
       )}
 
       {item.subText && item.subTextTwo && item.subTextThree && (
-        <div className="flex flex-col items-center justify-center md:items-start w-full mt-5 mb-5 md:mt-10 sm:mt-10 border border-white bg-[linear-gradient(182deg,_#000000e0,_transparent)] rounded-3xl px-5 py-3">
+        <div className="flex flex-col items-center justify-center md:items-start w-full mt-5 mb-5 md:mt-10 sm:mt-10 border border-white bg-[linear-gradient(182deg,_#000000e0,_transparent)] rounded-xl px-5 py-3">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full text-center md:text-left">
             {[item.subText, item.subTextTwo, item.subTextThree].map(
               (text, idx) => (

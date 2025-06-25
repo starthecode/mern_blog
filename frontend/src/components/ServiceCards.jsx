@@ -40,11 +40,11 @@ export const ServiceCards = ({ item, index }) => {
       ref={ref}
       initial={{ opacity: 0, scale: 0.95, y: 50 }}
       animate={controls}
-      className="group overflow-hidden w-[300px] md:w-full lg:w-full xl:w-full relative z-20 ring-junglegreen-200 ring-1 p-1 rounded-3xl bg-gradient-to-t from-onyx-900"
+      className="group overflow-hidden w-[300px] md:w-full lg:w-full xl:w-full relative z-20 ring-junglegreen-200 ring-1 p-1 rounded-xl bg-gradient-to-t from-onyx-900"
     >
-      <div className="relative rounded-3xl border-1 border-woodsmoke-300/70 z-10">
+      <div className="relative rounded-xl border-1 border-woodsmoke-300/70 z-10">
         <div
-          className="group bg-cover bg-center bg-no-repeat h-[320px] relative overflow-hidden rounded-3xl py-7"
+          className="group bg-cover bg-center bg-no-repeat h-[320px] relative overflow-hidden rounded-xl py-7"
           style={{
             backgroundImage: `url('${item?.servicesImage}')`,
           }}

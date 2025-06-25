@@ -56,12 +56,12 @@ const JobLocations = () => {
         </div>
 
         <div className="mb-12">
-          <div className="flex justify-start gap-16 md:gap-32">
+          <div className="flex justify-start gap-20">
             <button
               onClick={() => setActiveTab('global')}
-              className={`relative text-2xl md:text-3xl font-light pb-4 transition-all duration-300 ${
+              className={`relative text-2xl md:text-3xl font-light pb-1 transition-all duration-300 ${
                 activeTab === 'global'
-                  ? 'text-slate-800'
+                   ? 'text-junglegreen-600 border-b border-junglegreen-600'
                   : 'text-slate-400 hover:text-slate-600'
               }`}
             >
@@ -73,16 +73,13 @@ const JobLocations = () => {
 
             <button
               onClick={() => setActiveTab('india')}
-              className={`relative text-2xl md:text-3xl font-light pb-4 transition-all duration-300 ${
+              className={`relative text-2xl md:text-3xl font-light pb-1 transition-all duration-300 ${
                 activeTab === 'india'
-                  ? 'text-slate-800'
+                  ? 'text-junglegreen-600 border-b border-junglegreen-600'
                   : 'text-slate-400 hover:text-slate-600'
               }`}
             >
               India
-              {activeTab === 'india' && (
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-slate-800 transition-all duration-300" />
-              )}
             </button>
           </div>
         </div>

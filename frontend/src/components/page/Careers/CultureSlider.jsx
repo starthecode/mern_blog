@@ -37,7 +37,7 @@ export const CultureSlider = () => {
   const [swiperRef, setSwiperRef] = React.useState(null);
 
   return (
-    <div className="relative overflow-hidden px-10">
+    <div className="relative overflow-hidden px-10 h-[400px]">
       <span className="relative top-12 -left-6 z-10">
         <MdOutlineFormatQuote
           color="00a88b"
@@ -59,7 +59,7 @@ export const CultureSlider = () => {
           clickable: true,
         }}
         modules={[Autoplay, FreeMode, Pagination]}
-        className="mySwiper"
+        className="mySwiper h-[350px]"
       >
         {slides &&
           slides.map((slide, index) => (

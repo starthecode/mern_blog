@@ -12,7 +12,6 @@ const iconMap = {
 };
 
 export default function IndustrySection2({ aboutIndustryData3 }) {
-
   return (
     <section
       className="relative py-24 sm:py-24 md:py-24 lg:py-24 z-10 h-fit"
@@ -38,7 +37,7 @@ export default function IndustrySection2({ aboutIndustryData3 }) {
               return (
                 <div
                   key={index}
-                  className="text-center flex flex-col items-center w-fit py-8 px-0 md:w-full lg:w-full xl:w-full relative z-20 ring-junglegreen-200 ring-1 p-1 rounded-3xl bg-gradient-to-t from-onyx-900"
+                  className="text-center flex flex-col items-center w-fit py-8 px-0 md:w-full lg:w-full xl:w-full relative z-20 ring-junglegreen-200 ring-1 p-1 rounded-xl bg-gradient-to-t from-onyx-900"
                 >
                   {IconComponent && (
                     <IconComponent size={40} className="fill-flamingo-500" />

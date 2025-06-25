@@ -76,7 +76,7 @@ function AnimatedBlogCards({ blog, index }) {
       animate={controls}
       className="group relative rounded-xl overflow-hidden"
     >
-      <div className="max-w-xs rounded-3xl overflow-hidden">
+      <div className="max-w-xs rounded-xl overflow-hidden">
         {/* Image Section */}
         <div className="relative">
           <img

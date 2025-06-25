@@ -33,15 +33,15 @@ export const ChildPageCards = ({ childData }: any) => {
                       {child.excerpt}
                     </p>
                   </div>
-                  <div className="w-fit p-1 rounded-3xl bg-gray-950/5 border dark:border-white/10 dark:bg-white/5">
+                  <div className="w-fit p-1 rounded-xl bg-gray-950/5 border dark:border-white/10 dark:bg-white/5">
                     <Link
                       href={child?.uri}
                       className="t*:select-none dark:shadow-flamingo-500/10
                    *:disabled:opacity-20 disabled:*:text-gray-300 disabled:dark:*:text-gray-700 dark:*:disabled:!text-white
                    group relative z-[1] flex w-full h-11 items-center justify-center gap-1.5
-                   rounded-3xl border border-flamingo-600 bg-flamingo-500 px-2 text-xs
+                   rounded-xl border border-flamingo-600 bg-flamingo-500 px-2 text-xs
                     text-white shadow-md shadow-flamingo-200 before:absolute
-                    before:inset-0 before:rounded-3xl before:border
+                    before:inset-0 before:rounded-xl before:border
                      before:border-flamingo-500 before:bg-gradient-to-b
                       before:from-flamingo-600 hover:bg-flamingo-600
                        active:bg-flamingo-700 disabled:border-gray-200

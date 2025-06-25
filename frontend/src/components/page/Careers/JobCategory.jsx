@@ -30,7 +30,7 @@ export default function JobCategory() {
       }`}
           >
             <div>
-              <h4 className="text-sm font-semibold text-junglegreen-500 uppercase">
+              <h4 className="text-sm font-semibold text-woodsmoke-500 uppercase">
                 {job.title}
               </h4>
               <h2 className="text-lg font-semibold mt-2">

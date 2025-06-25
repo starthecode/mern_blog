@@ -783,7 +783,12 @@ export const Page = () => {
           return [
             {
               type: 'threeboxes',
-              data: currentThreeBoxesData,
+              data: {
+                title: currentThreeBoxesData?.title || '',
+                subtitle: currentThreeBoxesData?.subtitle || '',
+                extratext: currentThreeBoxesData.extratext || '',
+                items: currentThreeBoxesData?.items || [],
+              },
             },
             {
               type: 'overviewboxes',

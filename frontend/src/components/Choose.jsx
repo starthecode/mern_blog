@@ -58,7 +58,7 @@ export default function Choose({ data }) {
                 index === 3
                   ? 'relative right-0 sm:right-0 md:right-0 lg:right-0 xl:right-32 bg-gradient-to-br from-[#7C4DFF] to-[#7C4DFF]'
                   : ''
-              } rounded-3xl flex justify-between items-center shadow-lg transition-transform duration-300 overflow-hidden`}
+              } rounded-xl flex justify-between items-center shadow-lg transition-transform duration-300 overflow-hidden`}
                   >
                     <div className="group w-full md:w-full lg:w-full xl:w-[350px] relative overflow-hidden px-5 py-5">
                       <div className="text-3xl mb-2 bg-white/30 w-fit p-2 rounded-full">

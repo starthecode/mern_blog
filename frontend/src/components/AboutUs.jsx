@@ -22,8 +22,8 @@ const AboutUs = ({ data }) => {
   }, [inView, controls]);
 
   return (
-    <section className="px-10 md:px-24 xl:px-24 pt-10 xl:pt-0 py-10 xl:-mt-[300px]">
-      <GlowLight classes={'top-[25%] left-0 bg-flamingo-600/40'} />
+    <section className="pt-10 xl:pt-24 py-10 px-24">
+      {/* <GlowLight classes={'top-[25%] left-0 bg-flamingo-600/40'} /> */}
       <div className="max-w-7xl mx-auto">
         <Heading
           type="dark"
@@ -32,10 +32,7 @@ const AboutUs = ({ data }) => {
         />
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-0 items-start pt-10">
           {/* Video */}
-          <div
-            className="iframe__div relative w-fit"
-            ref={ref}
-          >
+          <div className="iframe__div relative w-fit" ref={ref}>
             <motion.div
               initial={{ x: -100, opacity: 0 }}
               animate={controls}
@@ -63,7 +60,7 @@ const AboutUs = ({ data }) => {
           </div>
         </div>
       </div>
-      <GlowLight classes={'right-0 bg-flamingo-600/40'} />
+      {/* <GlowLight classes={'right-0 bg-flamingo-600/40'} /> */}
     </section>
   );
 };

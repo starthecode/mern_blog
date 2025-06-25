@@ -1,11 +1,13 @@
 import React from 'react';
 import { PrimaryButton } from '../../Buttons/PrimaryButton';
+import BackgroundSection from '../../BackgroundSection';
+import { Heading } from '../../Heading/Heading';
 
 export default function SolutionForm() {
   const [formData, setFormData] = React.useState({
     fullName: 'Walter Hartwell',
     email: 'xyz@bizmetric.com',
-    company: '',
+    company: 'xyz company',
     country: 'United States',
   });
 
@@ -21,25 +23,22 @@ export default function SolutionForm() {
   };
 
   return (
-    <section className="w-full bg-black py-10 px-4 mt-20">
-      <div className="mx-auto max-w-[1250px] rounded-3xl bg-[url('https://c.animaapp.com/mbogi8vtaM1MUm/img/content.png')] bg-cover bg-center bg-no-repeat relative overflow-hidden">
-        <div className="absolute inset-0 bg-black bg-opacity-60 rounded-3xl z-0" />
+    <BackgroundSection>
+      <div className="container">
         <form
           onSubmit={handleSubmit}
-          className="relative z-10 p-10 flex flex-col items-center text-white gap-10"
+          className="relative z-10 flex flex-col items-center gap-10"
         >
           {/* Heading */}
-          <div className="text-center">
-            <h2 className="text-4xl font-medium tracking-tight">
-              Explore Our Azure Offers
-            </h2>
-            <p className="mt-4 text-lg font-semibold">
-              Unlock Insights. Submit to Discover.
-            </p>
-          </div>
+          <Heading
+          classes={'items-center'}
+            smallTitle={'Contact Us'}
+            title={'Explore Our Azure Offers'}
+            subText={'Unlock Insights. Submit to Discover.'}
+          />
 
           {/* Fields */}
-          <div className="flex flex-col gap-8 w-full max-w-[1100px]">
+          <div className="flex flex-col gap-8 w-full max-w-3xl">
             <div className="flex flex-wrap gap-8">
               <div className="flex-1 min-w-[260px]">
                 <label className="block text-white mb-2 font-semibold">
@@ -50,7 +49,7 @@ export default function SolutionForm() {
                   value={formData.fullName}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 bg-purple-500/30 text-white border border-white rounded-md focus:outline-none"
+                  className="w-full px-4 py-2 bg-white text-woodsmoke-500 border border-white rounded-md focus:outline-none"
                 />
               </div>
               <div className="flex-1 min-w-[260px]">
@@ -63,7 +62,7 @@ export default function SolutionForm() {
                   onChange={handleChange}
                   type="email"
                   required
-                  className="w-full px-4 py-2 bg-purple-500/30 text-white border border-white rounded-md focus:outline-none"
+                  className="w-full px-4 py-2 bg-white text-woodsmoke-500 border border-white rounded-md focus:outline-none"
                 />
               </div>
             </div>
@@ -77,7 +76,7 @@ export default function SolutionForm() {
                   name="company"
                   value={formData.company}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 bg-purple-500/30 text-white border border-white rounded-md focus:outline-none"
+                  className="w-full px-4 py-2 bg-white text-woodsmoke-500 border border-white rounded-md focus:outline-none"
                 />
               </div>
               <div className="flex-1 min-w-[260px]">
@@ -88,7 +87,7 @@ export default function SolutionForm() {
                   name="country"
                   value={formData.country}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 bg-purple-500/30 text-white border border-white rounded-md focus:outline-none"
+                  className="w-full px-4 py-2 bg-white text-woodsmoke-500 border border-white rounded-md focus:outline-none"
                 >
                   <option className="text-black" value="United States">
                     United States
@@ -116,7 +115,7 @@ export default function SolutionForm() {
           <div className="max-w-[1058px] text-center text-sm text-[#eaeaea] mt-4">
             By submitting your information in this form you are agreeing to the
             terms listed in our
-            <span className="text-[#1987fd] font-semibold ml-1">
+            <span className="text-flamingo-500 font-semibold ml-1">
               Privacy Policy
             </span>
             . Bizmetric will only use this information to contact you about the
@@ -124,6 +123,6 @@ export default function SolutionForm() {
           </div>
         </form>
       </div>
-    </section>
+    </BackgroundSection>
   );
 }

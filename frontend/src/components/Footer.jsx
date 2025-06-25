@@ -89,7 +89,7 @@ const Footer = () => {
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div className="relative border-l border-t border-junglegreen-500/60  pt-1 p-0 rounded-2xl overflow-hidden shadow-lg text-white ">
-                <div className="grid grid-cols-3 py-2 rounded-3xl relative group bg-opacity-30 backdrop-filter backdrop-blur-lg">
+                <div className="grid grid-cols-3 py-2 rounded-xl relative group bg-opacity-30 backdrop-filter backdrop-blur-lg">
                   <div className="flex items-center w-full h-full justify-center">
                     <img
                       src="https://bizsiteuploads.blob.core.windows.net/uploads/1745392430467-blogimg1.webp"
@@ -112,7 +112,7 @@ const Footer = () => {
                 </div>
               </div>
               <div className="relative border-l border-t border-junglegreen-500/60  pt-1 p-0 rounded-2xl overflow-hidden shadow-lg text-white ">
-                <div className="grid grid-cols-3 py-2 rounded-3xl relative group bg-opacity-30 backdrop-filter backdrop-blur-lg">
+                <div className="grid grid-cols-3 py-2 rounded-xl relative group bg-opacity-30 backdrop-filter backdrop-blur-lg">
                   <div className="flex items-center w-full h-full justify-center">
                     <img
                       src="https://bizsiteuploads.blob.core.windows.net/uploads/1745392441915-blogimg2.webp"

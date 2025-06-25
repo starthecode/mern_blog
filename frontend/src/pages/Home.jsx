@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
 import { useLocation } from 'react-router-dom';
 
 import AnimatedSlider from '../components/Hero/AnimatedSlider';
@@ -59,7 +58,7 @@ export default function Home() {
         const json = await res.json();
 
         if (!res.ok) {
-          toast.error(json.message || 'Failed to fetch page data');
+          console.error(json.message || 'Failed to fetch page data');
           return;
         }
 
@@ -70,7 +69,7 @@ export default function Home() {
         setSeoData(json?.seo);
         setSections(newSections);
       } catch (error) {
-        toast.error(error.message || 'Something went wrong');
+        console.error(error.message || 'Something went wrong');
       } finally {
         const elapsed = Date.now() - startTime;
         const remaining = 3000 - elapsed;
@@ -92,7 +91,7 @@ export default function Home() {
     );
 
   return (
-    <div>
+    <div id="home">
       <SeoComp
         seoTitle={seoData?.seoTitle}
         description={seoData?.seoDescription}

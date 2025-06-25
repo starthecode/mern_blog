@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Heading } from '../Heading/Heading';
+import { PrimaryButton } from '../Buttons/PrimaryButton';
 
 export const SearchBar = ({ item, type }) => {
   const searchRef = useRef(null);
@@ -17,24 +17,16 @@ export const SearchBar = ({ item, type }) => {
   const isDark = type === 'dark';
 
   const baseStyles = {
-    container: `mx-auto w-screen h-12 max-w-screen-md relative z-10 flex justify-between rounded-lg px-2 py-1 sm:flex-row sm:items-center sm:p-0
+    container: `mx-auto bg-woodsmoke-500/30 w-screen h-12 max-w-screen-md relative z-10 flex justify-between rounded-xl px-2 py-1 sm:flex-row sm:items-center sm:p-0
       ${
         isDark
           ? 'bg-zinc-900 ring-1 ring-white/20'
           : 'bg-white ring-1 ring-gray-300'
       }`,
     select: `bg-transparent px-3 py-2 outline-none appearance-none text-sm
-      ${isDark ? 'text-white' : 'text-gray-900'}`,
+      ${isDark ? 'text-white' : 'text-woodsmoke-700 font-semibold'}`,
     input: `ml-2 w-full bg-transparent text-sm placeholder:text-gray-400 rounded-md py-3 pl-4 outline-none border-0
-      ${isDark ? 'text-white' : 'text-gray-900'}`,
-    button: `mt-2 flex w-fit items-center justify-center rounded-md px-4 py-2 text-sm font-medium
-      ${
-        isDark
-          ? 'bg-flamingo-500 text-white hover:bg-flamingo-600'
-          : 'bg-orange-600 text-white hover:bg-orange-700'
-      }
-      sm:absolute sm:right-0 sm:mt-0 sm:mr-1 sm:w-32 focus:ring-2 ring-offset-2
-      ${isDark ? 'focus:ring-white' : 'focus:ring-orange-300'}`,
+      ${isDark ? 'text-white' : 'text-woodsmoke-700 font-semibold'}`,
   };
 
   // useEffect(() => {
@@ -89,9 +81,7 @@ export const SearchBar = ({ item, type }) => {
           />
         </div>
 
-        <button type="submit" className={baseStyles.button}>
-          Search
-        </button>
+        <PrimaryButton type="submit" title={'Search'} />
       </form>
 
       {loading ? (

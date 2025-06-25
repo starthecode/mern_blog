@@ -3,9 +3,12 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-fade';
+
 import { LeftCard } from './LeftCard';
 
-import { Navigation, Pagination } from 'swiper/modules';
+import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
 import MarqueeBanner from '../MarqueeBanner';
 import { IoMdArrowRoundBack, IoMdArrowRoundForward } from 'react-icons/io';
 
@@ -22,12 +25,18 @@ export default function AnimatedSlider({ data }) {
       <div className="h-full container mt-6 px-0">
         <div className="relative overflow-hidden">
           <Swiper
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: true,
+            }}
+            speed={2000}
+            effect="fade"
             navigation={{
               nextEl: '.custom-next',
               prevEl: '.custom-prev',
             }}
             pagination={true}
-            modules={[Navigation, Pagination]}
+            modules={[Navigation, Pagination, Autoplay, EffectFade]} // ✅ include Autoplay
             className="mySwiper"
           >
             {/* <div className="absolute z-10 inset-0 w-full h-full bg-gradient-to-tr from-black to-transparent" /> */}
@@ -42,6 +51,7 @@ export default function AnimatedSlider({ data }) {
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                   backgroundRepeat: 'no-repeat',
+                  height: 'auto',
                 }}
               >
                 <div className="grid h-full items-start w-full max-w-3xl relative z-20">

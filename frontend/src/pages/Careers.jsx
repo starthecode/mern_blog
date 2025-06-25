@@ -1,13 +1,13 @@
 import { HiGift, HiLightBulb, HiUser } from 'react-icons/hi';
 import CareerSlider from '../components/extras/CareerSlider';
 import { RiFileZipFill } from 'react-icons/ri';
-import { Link } from 'react-router-dom';
 import { SecondaryButton } from '../components/Buttons/SecondaryButton';
 import WorkCulture from '../components/page/Careers/WorkCulture';
 import JobLocations from '../components/page/Careers/JobLocations';
 import JobCategory from '../components/page/Careers/JobCategory';
 import CurrentOpenings from '../components/page/Careers/CurrentOpenings';
 import BenefitsGrid from '../components/page/Careers/BenefitsGrid';
+import PagePostHero from '../components/HeroSection/PagePostHero';
 
 const benefits = [
   {
@@ -54,10 +54,21 @@ export default function Careers() {
 
   return (
     <section className="">
-      {/* <HeroSection3 /> */}
+      <PagePostHero
+        bannerImg={
+          'https://bizsiteuploads.blob.core.windows.net/uploads/1750739948852-success-stories-banner-635435.webp'
+        }
+        smallTitle="Careers"
+        title={'Join Bizmetric!'}
+        excerpts={'Let your career unlock an outstanding corporate journey'}
+        customMetaLinkText={'Seaarch Job'}
+        customMetaLink={'/#searchjob'}
+        customMetaLinkTwoText={'Contact Us'}
+        customMetaLinkTwo={'/'}
+      />
       <CareerSlider />
       <div className="grid grid-cols-2 container gap-10">
-        <div className="bg-slate-50 rounded-3xl p-12 text-left flex flex-col items-start justify-start w-full">
+        <div className="bg-slate-50 rounded-xl p-12 text-left flex flex-col items-start justify-start w-full">
           <h2 className="text-2xl font-bold text-foreground mb-6">
             How we stand out in world
           </h2>

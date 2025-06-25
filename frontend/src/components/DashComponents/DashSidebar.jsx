@@ -29,11 +29,7 @@ export const DashSidebar = () => {
 
   const menuItems1 = [
     { name: 'Dashboard', icon: <FiHome color="#f2692a" /> },
-    {
-      name: 'Posts',
-      link: '/customlink',
-      icon: <FiBookOpen color="#f2692a" />,
-    },
+
     {
       name: 'Pages',
       icon: <FiFileText color="#f2692a" />,
@@ -47,7 +43,7 @@ export const DashSidebar = () => {
 
     {
       name: 'Posts',
-      icon: <MdPostAdd color="#f2692a" />,
+      icon: <FiBookOpen color="#f2692a" />,
       subpages: [
         { name: 'All Posts', link: '/dashboard/posts' },
         { name: 'Add New Post', link: '/dashboard/post-new' },
@@ -139,7 +135,7 @@ export const DashSidebar = () => {
         {menuItems1.map((item, index) => (
           <div key={index}>
             <button
-              className={`flex items-start text-left capitalize w-full px-3 py-4 text-sm rounded-lg transition ${
+              className={`flex items-start text-left capitalize w-full my-1 px-3 py-3 text-sm rounded-lg transition ${
                 item.subpages
                   ? openDropdown === item.name
                     ? 'bg-flamingo-500/10 font-medium text-flamingo-500'

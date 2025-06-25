@@ -12,6 +12,7 @@ import SideTwoImages from '../page/ContactUs/SideTwoImages';
 
 export default function PagePostHero({
   type,
+  smalltitle,
   title,
   excerpts,
   bannerImg,
@@ -46,14 +47,14 @@ export default function PagePostHero({
     >
       <div className="absolute inset-0 bg-black/80 z-0" />
 
-      <div className="container">
+      <div className="container py-16">
         <div className="w-full flex flex-col justify-center items-center mb-10">
           <div className="grid md:grid-cols-1 xl:grid-cols-2 w-full justify-start items-start mb-5 mt-14">
             <div className="">
               <Breadcrumbs capitalizeLinks />
               <PageHeading
                 type={''}
-                smallTitle={title ? title : ''}
+                smallTitle={smalltitle ? smalltitle : title}
                 title={customMetaTitle ? customMetaTitle : title}
                 subText={excerpts ? excerpts : customMetaDesc}
               />

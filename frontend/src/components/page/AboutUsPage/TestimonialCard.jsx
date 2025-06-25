@@ -11,7 +11,7 @@ const TestimonialCard = ({ data }) => {
         {data?.items?.map((item, index) => (
           <div
             key={index}
-            className="bg-white/10 backdrop-blur-lg border border-white/10 rounded-3xl p-8 max-w-lg w-full text-white shadow-lg"
+            className="bg-white/10 backdrop-blur-lg border border-white/10 rounded-xl p-8 max-w-lg w-full text-white shadow-lg"
           >
             <p className="text-md leading-relaxed mb-6">
               <span

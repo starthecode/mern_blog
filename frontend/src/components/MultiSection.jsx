@@ -9,10 +9,19 @@ import IndustryAccordions from './DashComponents/IndustryAccordions';
 
 const MultiSection = ({ sections }) => {
   return (
-    <div className="h-full flex flex-col w-full">
-      {sections.partnerslogo && <PartnersLogo data={sections.partnerslogo} />}
-      <SvgLine1 />
-      {sections.aboutus && <AboutUs data={sections.aboutus} />}
+    <>
+      <section className="container mt-10">
+        <div className="h-full flex flex-col w-full justify-center items-center relative overflow-hidden">
+          {sections.partnerslogo && (
+            <PartnersLogo data={sections.partnerslogo} />
+          )}
+          <div className="absolute top-0 left-0">
+            <SvgLine1 />
+          </div>
+          {sections.aboutus && <AboutUs data={sections.aboutus} />}
+        </div>
+      </section>
+
       <section
         className="relative pt-24 sm:pt-24 md:pt-24 lg:py-24 z-10"
         style={{
@@ -35,7 +44,7 @@ const MultiSection = ({ sections }) => {
         </div>
       </section>
       <IndustryAccordions />
-    </div>
+    </>
   );
 };
 

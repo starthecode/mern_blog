@@ -43,7 +43,7 @@ export default function QuoteCards({ data, index }) {
       key={index}
       className="w-[370px] relative border-l border-t border-junglegreen-500/60 pt-1 pb-10 max-w-6xl rounded-2xl shadow-lg text-white"
     >
-      <div className="p-4 lg:p-6 rounded-3xl relative group h-full pt-16 pb-20 bg-opacity-30 backdrop-filter backdrop-blur-lg">
+      <div className="p-4 lg:p-6 rounded-xl relative group h-full pt-16 pb-20 bg-opacity-30 backdrop-filter backdrop-blur-lg">
         <div className="block items-center">
           <div className="flex-grow">
             <div className="text-sm text-gray-500">
