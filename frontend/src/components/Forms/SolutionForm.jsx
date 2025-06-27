@@ -66,7 +66,7 @@ export default function SolutionForm({ pageSource, data }) {
   return (
     <BackgroundSection>
       <div className="container">
-        {!isSuccess ? (
+        {isSuccess ? (
           <div className="flex flex-col justify-center items-center text-center p-6">
             <div className="relative w-20 h-20 mb-4">
               <div
