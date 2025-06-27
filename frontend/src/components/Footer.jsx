@@ -10,7 +10,7 @@ const Footer = () => {
 
       <div className="max-w-7xl grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-3 gap-10">
         {/* Logo and Social */}
-        <div className="w-[200px]">
+        <div className="w-[250px]">
           <div>
             <Logo />
           </div>
@@ -25,6 +25,10 @@ const Footer = () => {
             <FaLinkedin className="text-blue-600 text-2xl bg-white rounded p-1" />
             <FaFacebook className="text-blue-800 text-2xl bg-white rounded p-1" />
             <FaYoutube className="text-red-600 text-2xl bg-white rounded p-1" />
+          </div>
+
+          <div className='mt-10'>
+            <img src="https://bizsiteuploads.blob.core.windows.net/uploads/1750942105289-Databricks%20APJ%20Innovation%20Partner%20of%20the%20Year%20Awards_LinkedIn%20Post.webp" />
           </div>
         </div>
 

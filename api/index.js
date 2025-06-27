@@ -24,6 +24,8 @@ import customizerRoutes from './routes/customizer.route.js';
 
 import actionRoutes from './routes/action.route.js';
 
+import contactRoutes from './routes/contact.route.js';
+
 import compression from 'compression';
 
 dotenv.config();
@@ -78,6 +80,8 @@ app.use('/api/settings', settingsRoutes);
 app.use('/api/customizer', customizerRoutes);
 
 app.use('/api/action', actionRoutes);
+
+app.use('/api/contact', contactRoutes);
 
 app.use(express.static(path.join(__dirname, '/frontend/dist')));
 

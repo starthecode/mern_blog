@@ -9,16 +9,16 @@ import TimelineSlider from '../page/AboutUsPage/TimelineSlider';
 import CaseStudyCard from '../page/CaseStudy/CaseStudyCard';
 import CompanyLocations from '../page/ContactUs/CompanyLocations';
 import ConnectSection from '../page/ContactUs/ConnectSection';
-import ContactusForm from '../page/ContactUs/ContactusForm';
+import ContactusForm from '../Forms/ContactusForm';
 
 export default function TempContactus({ data, type }) {
   return (
     <section className="container">
       <div className="grid grid-cols-2">
         <div>
-          <ContactusForm />
+          <ContactusForm pageSource={type} />
         </div>
-        <div className='flex flex-col justify-center items-center'>
+        <div className="flex flex-col justify-center items-center">
           <ConnectSection />
         </div>
       </div>

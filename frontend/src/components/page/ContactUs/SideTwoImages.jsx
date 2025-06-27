@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function SideTwoImages({ customMetaExtra, customMetaExtra2 }) {
   return (
-    <div className="relative w-full flex justify-end items-end py-10 pb-20 my-10">
+    <div className="relative w-full flex justify-end items-end py-10 pb-20">
       {/* Main Image Stack */}
       <div className="relative flex justify-center items-center">
         {/* Dot pattern - Top Left */}

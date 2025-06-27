@@ -12,6 +12,7 @@ import PostMetaFields from '../../../components/DashComponents/PostMetaFields';
 import ParentPageDropdown from '../../../components/DashComponents/ParentPageDropdown';
 import SolutionsFields from '../../../components/DashComponents/Slider/SolutionsFields';
 import ExcerptsField from '../../../components/DashComponents/ExcerptsField';
+import SolutionLinkField from '../../../components/DashComponents/SolutionLinkField';
 
 export const PostSolutions = () => {
   const navigate = useNavigate();
@@ -61,6 +62,10 @@ export const PostSolutions = () => {
       subtitle: '',
       extratext: '',
       items: [defaultThreeBoxesData],
+    },
+    twoLinksData: {
+      link1: '',
+      link2: '',
     },
   });
 
@@ -164,6 +169,10 @@ export const PostSolutions = () => {
           }
         }
 
+        const solutionTwoLinksContent = contentArray.find(
+          (item) => item.type === 'linkboxes'
+        );
+
         const solutionBox1Content = contentArray.find(
           (item) => item.type === 'threeboxes'
         );
@@ -207,6 +216,11 @@ export const PostSolutions = () => {
               extratext: solutionBox4Content?.data?.extratext || '',
               items: solutionBox4Content?.data?.items || [],
             },
+
+            twoLinksData: {
+              link1: solutionTwoLinksContent?.data?.link1 || '',
+              link2: solutionTwoLinksContent?.data?.link2 || '',
+            },
           }));
         }
       } catch (error) {
@@ -222,6 +236,7 @@ export const PostSolutions = () => {
     ThreeBoxes2: null,
     ThreeBoxes3: null,
     ThreeBoxes4: null,
+    LinkBoxes: null,
   });
 
   const handleSubmit = async (e) => {
@@ -237,6 +252,8 @@ export const PostSolutions = () => {
       toast.error('Enter Page Title');
       return;
     }
+
+    const currentTwoLinksBoxesData = sectionsRef.current.LinkBoxes?.getData?.();
 
     const currentThreeBoxesData =
       sectionsRef.current.ThreeBoxes?.getThreeBoxesData?.();
@@ -288,6 +305,14 @@ export const PostSolutions = () => {
           subtitle: currentThreeBoxesData4?.subtitle || '',
           extratext: currentThreeBoxesData4.extratext || '',
           items: currentThreeBoxesData4?.items || [],
+        },
+      },
+
+      {
+        type: 'linkboxes',
+        data: {
+          link1: currentTwoLinksBoxesData?.link1 || '',
+          link2: currentTwoLinksBoxesData?.link2 || '',
         },
       },
     ];
@@ -431,6 +456,10 @@ export const PostSolutions = () => {
           <PostMetaFields
             setMetaData={setMetaData}
             initialMetaData={metaData}
+          />
+          <SolutionLinkField
+            ref={(el) => (sectionsRef.current.LinkBoxes = el)}
+            twoLinksData={solutionsFields?.twoLinksData}
           />
         </div>
       </div>

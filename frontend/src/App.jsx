@@ -29,6 +29,7 @@ import Careers from './pages/Careers';
 import { SingleJobPost } from './components/page/Careers/Details/SingleJobPost';
 import SharedPage from './pages/SharedPage';
 import ScrollToTop from './components/ScrollToTop';
+import { Inquires } from './pages/Dashboard/inquires';
 
 export default function App() {
   return (
@@ -60,6 +61,8 @@ export default function App() {
                   <Route path="/dashboard/page-new" element={<Page />} />
                   <Route path="/dashboard/pages" element={<Pages />} />
                   <Route path="/dashboard/posts" element={<Posts />} />
+                  <Route path="/dashboard/inquires" element={<Inquires />} />
+
                   <Route
                     path="/dashboard/new-solution"
                     element={<PostSolutions />}

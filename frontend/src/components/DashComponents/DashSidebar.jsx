@@ -12,7 +12,7 @@ import {
   FiChevronRight,
   FiChevronDown,
 } from 'react-icons/fi';
-import { BsFillMenuButtonFill } from 'react-icons/bs';
+import { BsFillMenuButtonFill, BsMailbox2Flag } from 'react-icons/bs';
 
 import { MdOutlineBrush, MdOutlinePermMedia, MdPostAdd } from 'react-icons/md';
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -29,6 +29,12 @@ export const DashSidebar = () => {
 
   const menuItems1 = [
     { name: 'Dashboard', icon: <FiHome color="#f2692a" /> },
+
+    {
+      name: 'Inquires',
+      icon: <BsMailbox2Flag color="#f2692a" />,
+      link: 'dashboard/inquires',
+    },
 
     {
       name: 'Pages',

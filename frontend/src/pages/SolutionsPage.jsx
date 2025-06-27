@@ -11,7 +11,7 @@ import SolutionsSection3 from '../components/page/SolutionsPage/SolutionsSection
 import SolutionsSection4 from '../components/page/SolutionsPage/SolutionsSection4';
 import SolutionsSection5 from '../components/page/SolutionsPage/SolutionsSection5';
 import SolutionsSection6 from '../components/page/SolutionsPage/SolutionsSection6';
-import SolutionForm from '../components/page/SolutionsPage/SolutionForm';
+import SolutionForm from '../components/Forms/SolutionForm';
 import SpringSlider from '../components/extras/SpringSlider';
 import PagePostHero from '../components/HeroSection/PagePostHero';
 import FiveCards from '../components/Cards/FiveCards';
@@ -193,7 +193,10 @@ export default function SolutionsPage() {
         data={data?.content?.find((c) => c.type === 'threeboxes4')?.data || []}
       />
       <SolutionsSection6 />
-      <SolutionForm />
+      <SolutionForm
+        pageSource={slug}
+        data={data?.content?.find((c) => c.type === 'linkboxes')?.data || []}
+      />
       <SpringSlider />
     </section>
   );
