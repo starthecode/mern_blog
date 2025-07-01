@@ -92,6 +92,8 @@ export default function TableComp({ data = [], type }) {
                         ? 'post-new?post'
                         : item.postType === 'solutions'
                         ? 'new-solution?page'
+                        : item.postType === 'newsletters'
+                        ? 'new-newsletter?page'
                         : 'page-new?page'
                     }=${item.pageId}&action=edit`}
                     className={`hover:underline ${item}`}

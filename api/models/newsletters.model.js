@@ -1,29 +1,10 @@
 import mongoose from 'mongoose';
 
-const contentItemSchema = new mongoose.Schema(
-  {
-    id: {
-      type: String,
-    },
-    type: {
-      type: String,
-      required: true,
-    },
-    data: {
-      type: mongoose.Schema.Types.Mixed, // For Editor.js blocks
-    },
-    value: {
-      type: mongoose.Schema.Types.Mixed, // For simple blocks (text/imagebox/conclusion)
-    },
-  },
-  { _id: false }
-);
-
-const postSchema = new mongoose.Schema(
+const newslettersSchema = new mongoose.Schema(
   {
     postType: {
       type: String,
-      default: 'post',
+      default: 'newsletters',
     },
     userId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -36,13 +17,15 @@ const postSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-
-    template: {
+    embedcontent: {
       type: String,
+      required: false,
     },
 
-    parentPage: {
-      type: String,
+    extraInputFields: {
+      type: Map,
+      of: String,
+      default: {},
     },
 
     excerpts: {
@@ -59,13 +42,20 @@ const postSchema = new mongoose.Schema(
       trim: true,
     },
 
+    parentPage: {
+      type: String,
+    },
+
     pageId: {
       type: Number, // 🛠️ changed: you are sending pageId as number like 1598
       required: true,
       unique: true,
     },
 
-    content: [contentItemSchema], // 🛠️ use sub-schema for flexible items
+    publishDate: {
+      type: Date,
+      default: Date.now,
+    },
 
     metaFields: {
       categories: {
@@ -91,6 +81,6 @@ const postSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Post = mongoose.model('Post', postSchema);
+const Newsletters = mongoose.model('Newsletters', newslettersSchema);
 
-export default Post;
+export default Newsletters;

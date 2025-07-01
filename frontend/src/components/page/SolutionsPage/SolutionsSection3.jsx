@@ -42,26 +42,26 @@ export default function SolutionsSection3({ data }) {
                     <div className="relative w-[83.2px] h-[83.2px] overflow-hidden">
                       <img
                         className="absolute w-[83px] h-[83px] top-0 left-0"
-                        alt={`${card.threeboxesName} icon`}
-                        src={card.threeboxesIcon}
+                        alt={`${card.threeboxesinput2} icon`}
+                        src={card.threeboxesinput1}
                       />
                       {card.icon2 && (
                         <img
                           className="absolute w-[37px] h-[37px] top-[22px] left-[22px]"
                           alt="Icon inner"
-                          src={card.threeboxesIcon}
+                          src={card.threeboxesinput1}
                         />
                       )}
                     </div>
                   </div>
                   <div className="text-center">
                     <h3 className="font-bold text-white text-xl leading-[37.1px] whitespace-nowrap">
-                      {card.threeboxesName}
+                      {card.threeboxesinput2}
                     </h3>
                   </div>
                   <div className="text-center px-4">
                     <p className="font-medium text-white text-md leading-[26px]">
-                      {card.threeboxesSubtext}
+                      {card.threeboxesinput3}
                     </p>
                   </div>
                 </div>

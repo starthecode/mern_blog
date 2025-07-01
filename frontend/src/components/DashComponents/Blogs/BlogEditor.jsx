@@ -55,7 +55,7 @@ const FieldItem = ({
           value={field.value}
           onChange={(e) => onTextChange(field.id, e.target.value)}
           placeholder="Write something..."
-          rows={4}
+          rows={15}
           className="w-full p-3 border rounded-md"
         />
       ) : (

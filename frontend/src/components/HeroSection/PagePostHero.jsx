@@ -11,6 +11,7 @@ import LiteYouTubeEmbed from '../extras/LiteYouTubeEmbed';
 import SideTwoImages from '../page/ContactUs/SideTwoImages';
 
 export default function PagePostHero({
+  alignCenter,
   type,
   smalltitle,
   title,
@@ -49,15 +50,28 @@ export default function PagePostHero({
 
       <div className="container py-16">
         <div className="w-full flex flex-col justify-center items-center mb-10">
-          <div className="grid md:grid-cols-1 xl:grid-cols-2 w-full justify-start items-start mb-5 mt-14">
-            <div className="">
+          <div
+            className={`grid md:grid-cols-1 w-full ${
+              alignCenter
+                ? 'justify-center items-center xl:grid-cols-1'
+                : 'justify-start items-start xl:grid-cols-2'
+            } mb-5 mt-14`}
+          >
+            <div
+              className={`${
+                alignCenter ? 'flex flex-col justify-center items-center' : ''
+              }`}
+            >
               <Breadcrumbs capitalizeLinks />
-              <PageHeading
-                type={''}
-                smallTitle={smalltitle ? smalltitle : title}
-                title={customMetaTitle ? customMetaTitle : title}
-                subText={excerpts ? excerpts : customMetaDesc}
-              />
+              <div>
+                <PageHeading
+                  classes={alignCenter && 'items-center'}
+                  type={''}
+                  smallTitle={smalltitle ? smalltitle : title}
+                  title={customMetaTitle ? customMetaTitle : title}
+                  subText={excerpts ? excerpts : customMetaDesc}
+                />
+              </div>
               {customMetaLinkText && customMetaLinkTwoText && (
                 <div className="flex mt-10 gap-10">
                   <PrimaryButton

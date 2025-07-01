@@ -19,11 +19,16 @@ const pageSchema = new mongoose.Schema(
 
     template: {
       type: String,
-      unique: false,
     },
 
     parentPage: {
       type: String,
+    },
+
+    excerpts: {
+      type: String,
+      required: false,
+      trim: true,
     },
 
     editorJs: {

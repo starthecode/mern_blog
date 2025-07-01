@@ -37,7 +37,7 @@ export const Breadcrumbs = ({ capitalizeLinks }: TBreadCrumbProps) => {
               : link;
 
             const itemClasses = isLast
-              ? 'font-semibold text-flamingo-500'
+              ? 'font-semibold text-flamingo-500 text-sm'
               : 'text-flamingo-500/80 hover:underline';
 
             return (

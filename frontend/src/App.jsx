@@ -30,6 +30,9 @@ import { SingleJobPost } from './components/page/Careers/Details/SingleJobPost';
 import SharedPage from './pages/SharedPage';
 import ScrollToTop from './components/ScrollToTop';
 import { Inquires } from './pages/Dashboard/inquires';
+import { PostNewsletters } from './pages/Dashboard/Custom/PostNewsletters';
+import { Newsletters } from './pages/Dashboard/Newsletters';
+import SingleNewsletter from './components/page/Newsletters/SingleNewsletter';
 
 export default function App() {
   return (
@@ -47,6 +50,8 @@ export default function App() {
               <Route path="/success-stories" element={<SuccessStories />} />
               <Route path="/careers" element={<Careers />} />
               <Route path="/careers/:slug" element={<SingleJobPost />} />
+              <Route path="/newsletters/:slug" element={<SingleNewsletter />} />
+
               <Route path="/:slug" element={<SharedPage />} />
 
               <Route path="*" element={<NotFound />} />
@@ -68,6 +73,14 @@ export default function App() {
                     element={<PostSolutions />}
                   />
                   <Route path="/dashboard/solutions" element={<Solutions />} />
+                  <Route
+                    path="/dashboard/new-newsletter"
+                    element={<PostNewsletters />}
+                  />
+                  <Route
+                    path="/dashboard/newsletters"
+                    element={<Newsletters />}
+                  />
                   <Route
                     path="/dashboard/settings/general"
                     element={<General />}

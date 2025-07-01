@@ -70,6 +70,17 @@ export const DashSidebar = () => {
     },
 
     {
+      name: 'Newsletters',
+      icon: <MdPostAdd color="#f2692a" />,
+      subpages: [
+        { name: 'All Newsletters', link: '/dashboard/newsletters' },
+        { name: 'Add New Newsletter', link: '/dashboard/new-newsletter' },
+        { name: 'Categories', link: '/dashboard/newsletters/categories' },
+        { name: 'Tags', link: '/dashboard/newsletters/tags' },
+      ],
+    },
+
+    {
       name: 'media',
       icon: <MdOutlinePermMedia color="#f2692a" />,
       // subpages: [

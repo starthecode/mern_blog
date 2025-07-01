@@ -387,8 +387,45 @@
   @apply top-[50px] z-20 w-full transition-all;
 }
 
+.blog__content .spaces {
+  @apply my-10;
+}
+
+.blog__content h2 {
+  @apply text-2xl font-semibold my-5;
+}
+
+.blog__content h3 {
+  @apply text-xl font-semibold my-5;
+}
+
+.blog__content img {
+  @apply block mx-auto;
+}
+
+.blog__content h4 {
+  @apply text-lg font-semibold my-5;
+}
+
+.blog__content p {
+  @apply text-lg my-5;
+}
+
+.blog__content ul {
+  @apply text-lg list-disc;
+}
+
+.blog__content .quote_block {
+  background: #4c557429;
+  padding: 20px;
+  font-weight: 500;
+}
 .badge {
-  @apply bg-flamingo-500/10 dark:bg-junglegreen-500/20 dark:text-junglegreen-500 text-flamingo-500;
+  @apply bg-junglegreen-500/10 text-junglegreen-600 capitalize font-medium rounded-md text-xs py-1 px-2;
+}
+
+.badge-border {
+  @apply border border-flamingo-500/10 text-flamingo-600 capitalize font-medium rounded-md text-xs py-1 px-2;
 }
 
 .services-icon {

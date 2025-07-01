@@ -1,5 +1,3 @@
-import React from 'react';
-import InputLabel from '../Form_Fields/InputLabel';
 import TextAreaLabel from '../Form_Fields/TextAreaLabel';
 
 export default function ExcerptsField({ excerpts, setExcerpts }) {

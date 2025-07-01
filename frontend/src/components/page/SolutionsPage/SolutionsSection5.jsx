@@ -83,7 +83,7 @@ export default function SolutionsSection5({ data }) {
               >
                 <div class="bg-transparent rounded-[calc(1.5rem-2px)] p-10">
                   <h3 class="text-lg font-medium text-white mb-3">
-                    {item?.threeboxesName}
+                    {item?.threeboxesinput2}
                   </h3>
                   <p class="text-woodsmoke-300">
                     I absolutely love Tailus! The component blocks are
@@ -98,11 +98,11 @@ export default function SolutionsSection5({ data }) {
               //   className="rounded-xl text-card-foreground shadow flex flex-col max-w-[456px] w-full items-center gap-[19.8px] px-[18px] py-[14.4px] bg-transparent border-[3px] border-solid border-transparent [border-image:linear-gradient(180deg,rgba(189,0,255,1)_0%,rgba(209,209,209,1)_100%)_1]"
               // >
               //   <h3 className="mt-[-3.00px] font-semibold text-[#f2682a] text-xl text-center leading-[31.2px] whitespace-nowrap">
-              //     {item?.threeboxesName}
+              //     {item?.threeboxesinput2}
               //   </h3>
               //   <div className="flex flex-col items-center justify-center p-0 w-full">
               //     <p className="mt-[-1.20px] font-medium text-white text-md text-center flex items-center gap-3 capitalize">
-              //       {item?.threeboxesSubtext}
+              //       {item?.threeboxesinput3}
               //     </p>
               //   </div>
               // </div>

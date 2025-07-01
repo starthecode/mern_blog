@@ -1,33 +1,28 @@
-import { useParams } from 'react-router-dom';
-import PagePostHero from './HeroSection/PagePostHero';
-import NotFound from '../NotFound';
-import NumericLoader from './Loader/NumericLoader';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { useAnimation } from 'framer-motion';
-import BlogContent from './page/SingleBlog/BlogContent';
-import MoreContent from './page/SingleBlog/MoreContent';
 
-export default function BlogSingle() {
+import { motion, useAnimation } from 'framer-motion';
+import { useParams } from 'react-router-dom';
+import NotFound from '../../../NotFound';
+import NumericLoader from '../../Loader/NumericLoader';
+import PagePostHero from '../../HeroSection/PagePostHero';
+import EmbedBox from './EmbedBox';
+import PagePostSidebar from '../../extras/PagePostSidebar';
+
+export default function SolutionsPage() {
   const { slug } = useParams();
-  const startTime = Date.now();
 
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
   const [moreContent, setMoreContent] = useState([]);
 
   const [pageHeaderData, setPageHeaderData] = useState({
+    smalltitle: '',
     title: '',
     excerpts: '',
     bannerImg: '',
-    customMetaTitle: '',
-    customMetaDesc: '',
-    customMetaLink: '',
-    customMetaLinkText: '',
-    customMetaLinkTwo: '',
-    customMetaLinkTwoText: '',
-    customMetaExtra: '',
   });
+
   const [notFound, setNotFound] = useState(false);
 
   const controls = useAnimation();
@@ -41,6 +36,8 @@ export default function BlogSingle() {
     }
   }, [inView, controls]);
 
+  const startTime = Date.now();
+
   useEffect(() => {
     if (!slug) return;
 
@@ -49,11 +46,10 @@ export default function BlogSingle() {
       setData(null);
       setNotFound(false);
 
-      const startTime = Date.now();
-
       try {
-        const res = await fetch(`/api/blog/getblog/${slug}`, {
+        const res = await fetch(`/api/newsletters/singleNewsletter/${slug}`, {
           method: 'GET',
+          // cache: 'force-cache',
           headers: {
             'Content-Type': 'application/json',
           },
@@ -61,29 +57,20 @@ export default function BlogSingle() {
 
         const json = await res.json();
 
-        if (!res.ok || !json?.blog?.title) {
+        if (!res.ok || !json?.newsletter?.title) {
           setNotFound(true);
           return;
         }
-        setMoreContent(json.moreBlogs || []);
 
-        setData(json.blog);
+        setData(json?.newsletter);
+
+        setMoreContent(json.moreNewsletters || []);
+
         setPageHeaderData({
-          title: 'Blog',
-          excerpts: json.blog.excerpts || '',
-          bannerImg: json.blog.metaFields?.featuredImage || '',
-          customMetaTitle: json?.blog?.title || '',
-          customMetaDesc: json?.blog?.customMetaFields?.customMetaDesc || '',
-          customMetaLink: json?.blog?.customMetaFields?.customMetaLink || '',
-          customMetaLinkText:
-            json?.blog?.customMetaFields?.customMetaLinkText || '',
-          customMetaLinkTwo:
-            json?.blog?.customMetaFields?.customMetaLinkTwo || '',
-          customMetaLinkTwoText:
-            json?.blog?.customMetaFields?.customMetaLinkTwoText || '',
-          customMetaExtra: json?.blog?.customMetaFields?.customMetaExtra || '',
-          customMetaExtra2:
-            json?.blog?.customMetaFields?.customMetaExtra2 || '',
+          smalltitle: 'Newsletter',
+          title: json?.newsletter?.title || '',
+          excerpts: json?.newsletter?.excerpts || '',
+          bannerImg: json?.newsletter?.metaFields?.featuredImage || '',
         });
       } catch (error) {
         console.error(error.message || 'Something went wrong');
@@ -111,12 +98,13 @@ export default function BlogSingle() {
   if (notFound) return <NotFound />;
 
   return (
-    <section className="pb-20">
-      <PagePostHero {...pageHeaderData} />
-      <div className="container mt-20">
-        <BlogContent content={data?.content} metaFields={data?.metaFields} />
-
-        <MoreContent moreContent={moreContent} />
+    <section className='pb-20'>
+      <PagePostHero alignCenter="true" {...pageHeaderData} />
+      <div className="bg-gray-100 min-h-screen p-4">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8">
+          <EmbedBox data={data?.embedcontent} moreContent={moreContent} />
+          <PagePostSidebar />
+        </div>
       </div>
     </section>
   );

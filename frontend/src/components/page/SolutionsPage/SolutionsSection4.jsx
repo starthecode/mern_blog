@@ -20,12 +20,12 @@ export default function SolutionsSection4({ data }) {
             <div className="bg-white relative z-20 text-card-foreground shadow w-full md:w-[610px] h-fit my-7 rounded-[20px]">
               <div className="flex bg-blue-300 flex-col space-y-1.5 p-6 h-[67px] px-8 py-4 rounded-t-[20px]">
                 <h2 className="tracking-tight font-bold text-[#141414] text-xl leading-8">
-                  {item.threeboxesName}
+                  {item.threeboxesinput2}
                 </h2>
               </div>
               <div className="solution__section3 p-6 px-7 pt-2 text-[#495057] text-base tracking-[0.48px] leading-6 space-y-4">
                 <div
-                  dangerouslySetInnerHTML={{ __html: item.threeboxesSubtext }}
+                  dangerouslySetInnerHTML={{ __html: item.threeboxesinput3 }}
                 />
               </div>
             </div>
@@ -36,7 +36,7 @@ export default function SolutionsSection4({ data }) {
               className={`w-full md:w-[508px] h-[350px] bg-cover bg-center ${
                 isImageLeft ? '' : ''
               }`}
-              style={{ backgroundImage: `url(${item.threeboxesIcon})` }}
+              style={{ backgroundImage: `url(${item.threeboxesinput1})` }}
             />
           );
 

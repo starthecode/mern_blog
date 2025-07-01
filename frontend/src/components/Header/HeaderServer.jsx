@@ -663,9 +663,9 @@ const menuData = {
         {
           key: 'cG9zdDo3Mjgy',
           parentId: 'cG9zdDo3MjQ5',
-          title: 'Newsletter',
-          url: '/newsletter',
-          path: '/newsletter',
+          title: 'Newsletters',
+          url: '/newsletters',
+          path: '/newsletters',
           description: null,
           menuAcfFields: {
             showMenuLabel: null,

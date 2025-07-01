@@ -5,6 +5,7 @@ import { useEffect, useRef } from 'react';
 import { useInView } from 'framer-motion';
 
 export default function PageHeading({
+  alignCenter,
   type,
   smallTitle,
   title,
@@ -27,7 +28,7 @@ export default function PageHeading({
 
   return (
     <div
-      className={`relative z-10 flex mt-10 flex-col ${classes} w-full  sm:text-center md:text-center xl:text-left`}
+      className={`relative z-10 flex mt-10 flex-col ${classes} w-full sm:text-center md:text-center xl:text-left`}
     >
       {smallTitle && (
         <div
@@ -56,7 +57,7 @@ export default function PageHeading({
         ref={ref}
         initial={{ opacity: 0 }}
         animate={controls}
-        className={`block leading-tight text-5xl text-[#F4FFFA00] bg-clip-text bg-gradient-to-b ${
+        className={`block leading-tight text-[2.90rem] text-[#F4FFFA00] bg-clip-text bg-gradient-to-b ${
           type === 'dark'
             ? 'from-black to-junglegreen-500'
             : 'from-junglegreen-500 to-white'

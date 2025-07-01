@@ -11,13 +11,10 @@ import TempLiftAtBiz from '../components/Templates/TempLiftAtBiz';
 import TempAboutus from '../components/Templates/TempAboutus';
 import TempContactus from '../components/Templates/TempContactus';
 import NumericLoader from '../components/Loader/NumericLoader';
+import NewslettersPage from '../components/page/Newsletters/NewslettersPage';
 
 export default function SharedPage() {
   const { slug } = useParams();
-
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // }, []);
 
   console.log('slug', slug);
 
@@ -117,13 +114,15 @@ export default function SharedPage() {
 
   return (
     <>
-      <PagePostHero type={slug} {...pageHeaderData} />
+      <PagePostHero alignCenter={false} type={slug} {...pageHeaderData} />
       {slug === 'life-at-bizmetric' ? (
         <TempLiftAtBiz data={data} />
       ) : slug === 'about-us' ? (
         <TempAboutus data={data} type={slug} />
       ) : slug === 'contact-us' ? (
         <TempContactus data={data} type={slug} />
+      ) : slug === 'newsletters' ? (
+        <NewslettersPage />
       ) : (
         ''
       )}

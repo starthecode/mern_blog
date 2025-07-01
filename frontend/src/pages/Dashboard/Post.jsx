@@ -8,6 +8,7 @@ import toast from 'react-hot-toast';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { usePageTitle } from '../../utils/pathName';
 import PostMetaFields from '../../components/DashComponents/PostMetaFields';
+import ExcerptsField from '../../components/DashComponents/ExcerptsField';
 
 export const Post = () => {
   const navigate = useNavigate();
@@ -19,6 +20,8 @@ export const Post = () => {
   const [postDate, setPostDate] = React.useState('');
 
   const [title, setTitle] = React.useState('');
+  const [excerpts, setExcerpts] = React.useState('');
+
   const [editorContent, setEditorContent] = React.useState('{}'); // <-- empty JSON initially
   const [blogContent, setBlogContent] = React.useState([]);
   const [seoFields, setSeoFields] = React.useState({
@@ -59,7 +62,7 @@ export const Post = () => {
     const fetchPost = async () => {
       if (!postid) return;
 
-      const url = postid ? `http://localhost:3000/api/post/get/${postid}` : '';
+      const url = postid ? `/api/post/get/${postid}` : '';
 
       try {
         const res = await fetch(url, {
@@ -77,6 +80,8 @@ export const Post = () => {
         }
 
         setTitle(data.title);
+        setExcerpts(data.excerpts);
+
         setPostDate(data.updatedAt);
         setSeoFields(data.seoFields || {});
 
@@ -107,6 +112,7 @@ export const Post = () => {
         const blogContentData = contentArray.find(
           (item) => item.type === 'blogEditor'
         );
+
         if (blogContentData?.data) {
           const blogData = blogContentData.data.map((item) => ({
             id: item.id || Math.random().toString(36).substr(2, 9), // Assign random ID if not available
@@ -138,7 +144,10 @@ export const Post = () => {
 
     const payload = {
       title,
+      excerpts,
       pageId: postid ? postid : randomPostId,
+      template: 'default',
+      parentPage: 'blogs',
       content: [
         {
           type: 'editorJs',
@@ -199,7 +208,13 @@ export const Post = () => {
     <form onSubmit={handleSubmit}>
       <div className="grid grid-cols-3 gap-5">
         <div className="col-span-2">
-          <PageHead title={title} setTitle={setTitle} postId={postid} />
+          <PageHead
+            templateField={''}
+            parentpageField={'blogs'}
+            title={title}
+            setTitle={setTitle}
+            postId={postid}
+          />
           <TextEditor
             editorContent={editorContent}
             setEditorContent={setEditorContent}
@@ -208,6 +223,9 @@ export const Post = () => {
             setBlogContent={setBlogContent}
             blogContent={blogContent}
           />
+          <div>
+            <ExcerptsField excerpts={excerpts} setExcerpts={setExcerpts} />
+          </div>
           <SeoPanel
             seoFields={seoFields}
             setSeoFields={setSeoFields}

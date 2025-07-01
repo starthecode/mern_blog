@@ -18,6 +18,8 @@ import pageRoutes from './routes/pages/page.route.js';
 import postRoutes from './routes/post.route.js';
 import solutionsRoutes from './routes/solutions.route.js';
 
+import newslettersRoutes from './routes/newsletters.route.js';
+
 import settingsRoutes from './routes/settings.route.js';
 
 import customizerRoutes from './routes/customizer.route.js';
@@ -25,6 +27,8 @@ import customizerRoutes from './routes/customizer.route.js';
 import actionRoutes from './routes/action.route.js';
 
 import contactRoutes from './routes/contact.route.js';
+
+import blogRoutes from './routes/blog.route.js';
 
 import compression from 'compression';
 
@@ -75,6 +79,8 @@ app.use('/api/post', postRoutes);
 
 app.use('/api/solutions', solutionsRoutes);
 
+app.use('/api/newsletters', newslettersRoutes);
+
 app.use('/api/settings', settingsRoutes);
 
 app.use('/api/customizer', customizerRoutes);
@@ -82,6 +88,7 @@ app.use('/api/customizer', customizerRoutes);
 app.use('/api/action', actionRoutes);
 
 app.use('/api/contact', contactRoutes);
+app.use('/api/blog/', blogRoutes);
 
 app.use(express.static(path.join(__dirname, '/frontend/dist')));
 
