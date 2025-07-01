@@ -14,6 +14,8 @@ import { Page } from './pages/Dashboard/Page';
 import { Pages } from './pages/Dashboard/Pages';
 import General from './pages/Dashboard/Settings/General';
 import { Posts } from './pages/Dashboard/Posts';
+import { Inquires } from './pages/Dashboard/Inquires';
+
 import Blogs from './pages/Blogs';
 import ForntLayout from './components/Layouts/ForntLayout';
 import BlogSingle from './components/BlogSingle';
@@ -29,7 +31,6 @@ import Careers from './pages/Careers';
 import { SingleJobPost } from './components/page/Careers/Details/SingleJobPost';
 import SharedPage from './pages/SharedPage';
 import ScrollToTop from './components/ScrollToTop';
-import { Inquires } from './pages/Dashboard/inquires';
 import { PostNewsletters } from './pages/Dashboard/Custom/PostNewsletters';
 import { Newsletters } from './pages/Dashboard/Newsletters';
 import SingleNewsletter from './components/page/Newsletters/SingleNewsletter';

@@ -58,7 +58,7 @@ const ParentPageDropdown = ({ parentpageField, setParentPageField }) => {
       >
         <option value="">-- Select --</option>
         {pages.map((page) => (
-          <option key={page._id} value={page.title}>
+          <option key={page._id} value={page.title.toLowerCase()}>
             {page.title}
           </option>
         ))}
