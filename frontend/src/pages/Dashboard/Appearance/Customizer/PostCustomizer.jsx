@@ -8,7 +8,7 @@ import {
 } from '../../../../lib/pageFields';
 import PollFields from '../../../../components/Form_Fields/PollFields';
 import ThreeBoxes from '../../../../components/DashComponents/ServicesPage/ThreeBoxes';
-import GoBackButton from '../../GobackButton';
+import BackButton from '../../BackButton';
 
 export default function PostCustomizer() {
   const { currentUser } = useSelector((state) => state.user);
@@ -144,7 +144,7 @@ export default function PostCustomizer() {
 
   return (
     <div>
-      <GoBackButton />
+      <BackButton />
       <form className="mt-10" onSubmit={handleSubmit}>
         <div>
           <h2 className="text-xl capitalize font-bold">{slug} Section</h2>
