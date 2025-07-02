@@ -30,7 +30,9 @@ export default function ThreeBlogs({ testimonialsData }) {
         <div className="flex flex-col justify-between items-center lg:grid lg:grid-cols-3 xl:grid-cols-3 mt-5 gap-10 relative z-10">
           {testimonialsData?.items &&
             testimonialsData.items.map((item, index) => (
-              <QuoteCards data={item} index={index} />
+              <div key={index}>
+                <QuoteCards data={item} index={index} />
+              </div>
             ))}
         </div>
       </div>

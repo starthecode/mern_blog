@@ -1,10 +1,16 @@
 import mongoose from 'mongoose';
+import { type } from 'os';
 
 const customizerSchema = new mongoose.Schema(
   {
     userId: {
       type: String,
       required: true,
+    },
+    slug: {
+      type: String,
+      required: true,
+      unique: true,
     },
     content: {
       type: [

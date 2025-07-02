@@ -37,6 +37,8 @@ import SingleNewsletter from './components/page/Newsletters/SingleNewsletter';
 import { PostCaseStudy } from './pages/Dashboard/Custom/PostCaseStudy';
 import SingleCaseStudy from './components/page/CaseStudy/SingleCaseStudy';
 import { CaseStudies } from './pages/Dashboard/CaseStudies';
+import CompanyPoll from './pages/Dashboard/Appearance/CompanyPoll';
+import PostCustomizer from './pages/Dashboard/Appearance/Customizer/PostCustomizer';
 
 export default function App() {
   return (
@@ -102,8 +104,13 @@ export default function App() {
                     element={<General />}
                   />
                   <Route
-                    path="/dashboard/customize/industryverticles"
-                    element={<IndustryVerticles />}
+                    path="/dashboard/customizer/:slug"
+                    element={<PostCustomizer />}
+                  />
+
+                  <Route
+                    path="/dashboard/customize/companypoll"
+                    element={<CompanyPoll />}
                   />
                   {/* Add more dashboard routes here */}
                 </Route>

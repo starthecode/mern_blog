@@ -4,9 +4,42 @@ import PollQuestion from './PollQuestion';
 export const Poll = () => {
   const [activePoll, setActivePoll] = useState(false);
 
+  const [pollData, setPollData] = useState([]);
+
   const handlePoll = () => {
     setActivePoll((prevActive) => !prevActive);
   };
+
+  React.useEffect(() => {
+    const fetchSettings = async () => {
+      try {
+        const res = await fetch('/api/customizer/get', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+        });
+        const data = await res.json();
+
+        if (!res.ok) {
+          console.error(data.message || 'Failed to fetch settings');
+          return;
+        }
+
+        const contentArray = data?.customizers[0].content || [];
+
+        const pollContent = contentArray.find((item) => item.type === 'poll');
+
+        setPollData(pollContent);
+      } catch (error) {
+        console.error('An error occurred while fetching settings');
+        console.error('fetchSettings error:', error);
+      }
+    };
+
+    fetchSettings();
+  }, []);
 
   return (
     <div
@@ -22,7 +55,7 @@ export const Poll = () => {
       </div>
       <div className={`w-[230px] shadow-lg flex flex-col`}>
         {' '}
-        <PollQuestion />
+        <PollQuestion pollData={pollData} />
       </div>
     </div>
   );

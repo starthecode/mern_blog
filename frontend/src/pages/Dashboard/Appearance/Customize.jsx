@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 
 const settingsData = [
@@ -8,7 +7,12 @@ const settingsData = [
       {
         icon: '⚙️',
         label: 'Industry',
-        link: '/dashboard/customize/industryverticles',
+        link: '/dashboard/customizer/verticles',
+      },
+      {
+        icon: '📊',
+        label: 'Poll',
+        link: '/dashboard/customizer/poll',
       },
     ],
   },

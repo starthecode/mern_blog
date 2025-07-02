@@ -2,9 +2,10 @@ import { submitPollData } from '../../lib/submitPoll';
 import React, { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 
-const PollQuestion = () => {
+const PollQuestion = ({ pollData }) => {
   const [poll, setPoll] = useState({
-    question: 'Which current AI Module are you utilizing?',
+    question:
+      pollData?.data?.title || 'Which current AI Module are you utilizing?',
     answers: ['GPT 4', 'Bard', 'Claude', 'OpenAI'],
     pollcount: 100,
     answerweight: [60, 20, 10, 10], // sum = 100

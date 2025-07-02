@@ -29,8 +29,6 @@ const links = [
 ];
 
 const MarqueeBanner = ({ data, type }) => {
-  console.log('data', data);
-
   return type === 'about-us' ? (
     <div className="container py-20">
       <div className="w-full flex flex-col justify-center items-center">

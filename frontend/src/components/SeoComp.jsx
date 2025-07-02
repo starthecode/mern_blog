@@ -10,8 +10,6 @@ export default function SeoComp({
   keywords = [],
   twitterCard = 'summary_large_image',
 }) {
-  console.log('title', seoTitle);
-
   return (
     <Helmet>
       <title>{seoTitle}</title>

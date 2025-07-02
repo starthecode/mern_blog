@@ -7,7 +7,7 @@ import { verifyToken } from '../utils/verifyUser.js';
 
 const router = express.Router();
 
-router.post('/update', verifyToken, updateCustomizer);
+router.post('/update/:slug', verifyToken, updateCustomizer);
 
 router.get('/get', getCustomizer);
 

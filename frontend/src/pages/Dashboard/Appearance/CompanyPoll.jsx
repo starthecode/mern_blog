@@ -1,19 +1,23 @@
 import React from 'react';
 import toast from 'react-hot-toast';
-import { defaultIndustryData } from '../../../lib/pageFields';
-import IndustryComp from '../../../components/DashComponents/Slider/IndustryComp';
+import { defaultThreeBoxesData } from '../../../lib/pageFields';
 import { useSelector } from 'react-redux';
+import PollFields from '../../../components/Form_Fields/PollFields';
 
-export default function IndustryVerticles() {
+export default function CompanyPoll() {
   const { currentUser } = useSelector((state) => state.user);
 
   const [formData, setFormData] = React.useState({
-    industryTitle: '',
-    industryData: [defaultIndustryData],
+    pollTitle: '',
+    pollData: [
+      {
+        pollinput1: '',
+      },
+    ],
   });
 
   const sectionsRef = React.useRef({
-    industry: null,
+    poll: null,
   });
 
   React.useEffect(() => {
@@ -43,16 +47,13 @@ export default function IndustryVerticles() {
 
         const contentArray = data?.customizers[0].content || [];
 
-        const industryContent = contentArray.find(
-          (item) => item.type === 'industry'
-        );
+        const pollContent = contentArray.find((item) => item.type === 'poll');
 
-
-        if (industryContent?.data) {
+        if (pollContent?.data) {
           setFormData((prev) => ({
             ...prev,
-            industryTitle: industryContent.data.title || '',
-            industryData: industryContent.data.items || [],
+            pollTitle: pollContent.data.title || '',
+            pollData: pollContent.data.items || [],
           }));
         }
       } catch (error) {
@@ -67,15 +68,14 @@ export default function IndustryVerticles() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const currentIndustryData =
-      sectionsRef.current.industry?.getIndustryData?.();
+    const currentpollData = sectionsRef.current.poll?.getData?.();
 
     const customizeContent = [
       {
-        type: 'industry',
+        type: 'poll',
         data: {
-          title: formData.industryTitle,
-          items: currentIndustryData,
+          title: formData.pollTitle,
+          items: currentpollData,
         },
       },
     ];
@@ -110,14 +110,14 @@ export default function IndustryVerticles() {
 
   return (
     <div>
-      <h2 className="text-xl">Industry Verticles</h2>
+      <h2 className="text-xl">Poll Section</h2>
       <form className="mt-10" onSubmit={handleSubmit}>
-        <IndustryComp
-          ref={(el) => (sectionsRef.current.industry = el)}
-          industryData={formData?.industryData}
-          industryTitle={formData?.industryTitle}
-          setIndustryTitle={(title) =>
-            setFormData((prev) => ({ ...prev, industryTitle: title }))
+        <PollFields
+          ref={(el) => (sectionsRef.current.poll = el)}
+          pollData={formData?.pollData}
+          pollTitle={formData?.pollTitle}
+          setPollTitle={(title) =>
+            setFormData((prev) => ({ ...prev, pollTitle: title }))
           }
         />
 

@@ -42,8 +42,6 @@ const IndustryComp = forwardRef(
 
     return (
       <>
-        <h2 className="text-xl font-bold mb-4">Industry</h2>
-
         <InputLabel
           label="Industry Title"
           name="industryTitle"
