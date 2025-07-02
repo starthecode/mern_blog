@@ -34,6 +34,9 @@ import ScrollToTop from './components/ScrollToTop';
 import { PostNewsletters } from './pages/Dashboard/Custom/PostNewsletters';
 import { Newsletters } from './pages/Dashboard/Newsletters';
 import SingleNewsletter from './components/page/Newsletters/SingleNewsletter';
+import { PostCaseStudy } from './pages/Dashboard/Custom/PostCaseStudy';
+import SingleCaseStudy from './components/page/CaseStudy/SingleCaseStudy';
+import { CaseStudies } from './pages/Dashboard/CaseStudies';
 
 export default function App() {
   return (
@@ -49,6 +52,10 @@ export default function App() {
               <Route path="/industries/:slug" element={<Industries />} />
               <Route path="/solutions/:slug" element={<SolutionsPage />} />
               <Route path="/success-stories" element={<SuccessStories />} />
+              <Route
+                path="/success-stories/:slug"
+                element={<SingleCaseStudy />}
+              />
               <Route path="/careers" element={<Careers />} />
               <Route path="/careers/:slug" element={<SingleJobPost />} />
               <Route path="/newsletters/:slug" element={<SingleNewsletter />} />
@@ -81,6 +88,14 @@ export default function App() {
                   <Route
                     path="/dashboard/newsletters"
                     element={<Newsletters />}
+                  />
+                  <Route
+                    path="/dashboard/new-casestudy"
+                    element={<PostCaseStudy />}
+                  />
+                  <Route
+                    path="/dashboard/casestudies"
+                    element={<CaseStudies />}
                   />
                   <Route
                     path="/dashboard/settings/general"

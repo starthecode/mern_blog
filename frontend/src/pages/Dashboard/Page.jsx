@@ -32,6 +32,7 @@ import PostMetaFields from '../../components/DashComponents/PostMetaFields';
 import AboutUsFields from '../../components/DashComponents/Slider/AboutUsFields';
 import { generateRandomPageId } from '../../utils/utils';
 import LifeAtFields from '../../components/DashComponents/Slider/LifeAtFields';
+import ExcerptsField from '../../components/DashComponents/ExcerptsField';
 
 export const Page = () => {
   const navigate = useNavigate();
@@ -53,6 +54,8 @@ export const Page = () => {
   const [parentpageField, setParentPageField] = React.useState('');
 
   const [title, setTitle] = React.useState('');
+  const [excerpts, setExcerpts] = React.useState('');
+
   const [editorContent, setEditorContent] = React.useState('{}');
 
   const [isLoading, setIsLoading] = React.useState(false);
@@ -277,6 +280,7 @@ export const Page = () => {
         setIsLoading(false);
 
         setTitle(data.title);
+        setExcerpts(data.excerpts);
 
         setTemplateField(data.template);
 
@@ -935,6 +939,7 @@ export const Page = () => {
 
     const payload = {
       title,
+      excerpts,
       pageId: postid ? postid : randomPageId,
       template: templateField,
       parentPage: parentpageField,
@@ -1082,6 +1087,10 @@ export const Page = () => {
               ) : null}
             </div>
           )}
+
+          <div>
+            <ExcerptsField excerpts={excerpts} setExcerpts={setExcerpts} />
+          </div>
 
           <div>
             <SeoPanel

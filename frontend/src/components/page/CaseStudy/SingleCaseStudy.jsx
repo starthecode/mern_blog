@@ -1,21 +1,42 @@
 import { useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
+
+import { motion, useAnimation } from 'framer-motion';
 import { useParams } from 'react-router-dom';
-import TempServices from '../components/Templates/TempServices';
-import NotFound from '../NotFound';
-import NumericLoader from '../components/Loader/NumericLoader';
-import SeoComp from '../components/SeoComp';
+import NumericLoader from '../../Loader/NumericLoader';
+import NotFound from '../../../NotFound';
+import PagePostHero from '../../HeroSection/PagePostHero';
 
-export default function Services() {
+import '../CaseStudy/index.css';
+import CaseStudyContent from './content/CaseStudyContent';
+import CaseStudySection from '../../extras/CaseStudySection';
+
+export default function SingleCaseStudy() {
   const { slug } = useParams();
-
-  const startTime = Date.now();
 
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
-  const [title, setTitle] = useState('');
-  const [seoData, setSeoData] = useState({});
+  const [pageHeaderData, setPageHeaderData] = useState({
+    smalltitle: '',
+    title: '',
+    excerpts: '',
+    bannerImg: '',
+  });
 
   const [notFound, setNotFound] = useState(false);
+
+  const controls = useAnimation();
+  const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.2 });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start({ x: 0, opacity: 1 });
+    } else {
+      controls.start({ x: -100, opacity: 0 });
+    }
+  }, [inView, controls]);
+
+  const startTime = Date.now();
 
   useEffect(() => {
     if (!slug) return;
@@ -23,12 +44,12 @@ export default function Services() {
     const fetchPage = async () => {
       setLoading(true);
       setData(null);
-      setTitle('');
       setNotFound(false);
 
       try {
-        const res = await fetch(`/api/page/getpage/${slug}`, {
+        const res = await fetch(`/api/casestudies/singleCasestudies/${slug}`, {
           method: 'GET',
+          // cache: 'force-cache',
           headers: {
             'Content-Type': 'application/json',
           },
@@ -42,8 +63,13 @@ export default function Services() {
         }
 
         setData(json);
-        setTitle(json.title);
-        setSeoData(json?.seo);
+
+        setPageHeaderData({
+          smalltitle: 'Case Study',
+          title: json.title || '',
+          excerpts: json.excerpts || '',
+          bannerImg: json.metaFields?.featuredImage || '',
+        });
       } catch (error) {
         console.error(error.message || 'Something went wrong');
         setNotFound(true);
@@ -70,15 +96,10 @@ export default function Services() {
   if (notFound) return <NotFound />;
 
   return (
-    <div id="services">
-      <SeoComp
-        seoTitle={seoData?.seoTitle}
-        description={seoData?.seoDescription}
-        keywords={seoData?.focusKeyphrase}
-        image={seoData?.image}
-        url={`https://yourdomain.com/blog/${seoData?.slug}`}
-      />
-      <TempServices data={data} title={title} />;
-    </div>
+    <section>
+      <PagePostHero {...pageHeaderData} />
+      <CaseStudyContent data={data} />
+      <CaseStudySection />
+    </section>
   );
 }

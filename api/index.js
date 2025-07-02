@@ -18,6 +18,8 @@ import pageRoutes from './routes/pages/page.route.js';
 import postRoutes from './routes/post.route.js';
 import solutionsRoutes from './routes/solutions.route.js';
 
+import casestudiesRoutes from './routes/casestudies.route.js';
+
 import newslettersRoutes from './routes/newsletters.route.js';
 
 import settingsRoutes from './routes/settings.route.js';
@@ -78,6 +80,7 @@ app.use('/api/page', pageRoutes);
 app.use('/api/post', postRoutes);
 
 app.use('/api/solutions', solutionsRoutes);
+app.use('/api/casestudies', casestudiesRoutes);
 
 app.use('/api/newsletters', newslettersRoutes);
 

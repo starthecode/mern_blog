@@ -17,6 +17,12 @@ const pageSchema = new mongoose.Schema(
       unique: true,
     },
 
+    excerpts: {
+      type: String,
+      required: false,
+      trim: true,
+    },
+
     template: {
       type: String,
     },

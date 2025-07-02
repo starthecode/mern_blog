@@ -81,12 +81,19 @@ export const DashSidebar = () => {
     },
 
     {
+      name: 'Success Stories',
+      icon: <MdPostAdd color="#f2692a" />,
+      subpages: [
+        { name: 'All Case Studies', link: '/dashboard/casestudies' },
+        { name: 'Add New Case Study', link: '/dashboard/new-casestudy' },
+        { name: 'Categories', link: '/dashboard/newsletters/categories' },
+        { name: 'Tags', link: '/dashboard/newsletters/tags' },
+      ],
+    },
+
+    {
       name: 'media',
       icon: <MdOutlinePermMedia color="#f2692a" />,
-      // subpages: [
-      //   { name: 'Library', link: '/dashboard/media' },
-      //   { name: 'Add New Media file', link: '/dashboard/add-media' },
-      // ],
     },
 
     {
@@ -94,14 +101,10 @@ export const DashSidebar = () => {
       icon: <BsFillMenuButtonFill color="#f2692a" />,
     },
 
-    { name: 'Tags', icon: <FiTag color="#f2692a" /> },
-    { name: 'Authors', icon: <FiUsers color="#f2692a" /> },
-    { name: 'Members', icon: <FiMail color="#f2692a" /> },
+    { name: 'Users', icon: <FiMail color="#f2692a" /> },
   ];
 
   const menuItems2 = [
-    { name: 'Domains', icon: <FiGlobe /> },
-    { name: 'Analytics', icon: <FiBarChart /> },
     { name: 'Appearance', icon: <MdOutlineBrush /> },
     { name: 'Profile', icon: <MdOutlineBrush /> },
     { name: 'Settings', icon: <FiSettings /> },

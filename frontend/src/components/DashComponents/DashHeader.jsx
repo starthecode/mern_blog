@@ -1,4 +1,3 @@
-import React from 'react';
 import { UserProfile } from '../Header/UserProfile';
 
 export const DashHeader = () => {
@@ -17,7 +16,7 @@ export const DashHeader = () => {
       </div>
 
       {/* Center: Navigation */}
-      <nav className="flex space-x-6">
+      {/* <nav className="flex space-x-6">
         <a
           href="#"
           className="text-gray-700 hover:text-black text-sm font-medium"
@@ -36,7 +35,7 @@ export const DashHeader = () => {
         >
           Support
         </a>
-      </nav>
+      </nav> */}
 
       {/* Right Side: Profile Image */}
       <div>

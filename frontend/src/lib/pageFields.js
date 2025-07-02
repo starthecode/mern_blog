@@ -221,4 +221,5 @@ export const tabsByTemplate = {
   industries: generateTabs('industryBox', 'Industry Box', 6),
   aboutus: generateTabs('aboutusBox', 'Aboutus Box', 8),
   lifeatbiz: generateTabs('lifeatbizBox', 'Life At Box', 4),
+  casestudies: generateTabs('casestudiesBox', 'Case Studies Box', 5),
 };

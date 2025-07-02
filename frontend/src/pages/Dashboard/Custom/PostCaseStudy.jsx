@@ -1,17 +1,16 @@
 import React from 'react';
 import PageHead from '../../../components/DashComponents/PageHead';
 import PublishPanel from '../../../components/DashComponents/PublishPanel';
-import TextEditor from '../../../components/TextEditor';
 import toast from 'react-hot-toast';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import SeoPanel from '../../../components/DashComponents/SeoPanel';
 import { usePageTitle } from '../../../utils/pathName';
-import { defaultThreeBoxesData, tabsSolutions } from '../../../lib/pageFields';
+import { defaultThreeBoxesData, tabsByTemplate } from '../../../lib/pageFields';
 
 import PostMetaFields from '../../../components/DashComponents/PostMetaFields';
 import ParentPageDropdown from '../../../components/DashComponents/ParentPageDropdown';
-// import SolutionsFields from '../../../components/DashComponents/Slider/SolutionsFields';
 import ExcerptsField from '../../../components/DashComponents/ExcerptsField';
+import CaseStudiesFields from '../../../components/DashComponents/Slider/CaseStudiesFields';
 
 export const PostCaseStudy = () => {
   const navigate = useNavigate();
@@ -24,43 +23,50 @@ export const PostCaseStudy = () => {
 
   const [actionType, setActionType] = React.useState('');
 
-  const [templateField, setTemplateField] = React.useState('casestudy');
+  const [templateField, setTemplateField] = React.useState('casestudies');
   const [parentpageField, setParentPageField] = React.useState([]);
 
   const [title, setTitle] = React.useState('');
   const [excerpts, setExcerpts] = React.useState('');
-
-  const [editorContent, setEditorContent] = React.useState('{}');
 
   const [metaData, setMetaData] = React.useState({
     featuredImage: '',
   });
 
   //Services Page Fields State
-  const [casestudyFields, setCaseStudyFields] = React.useState({
+  const [casestudiesFields, setCaseStudiesFields] = React.useState({
+    inputBoxesData: {
+      title: '',
+      subtitle: '',
+      extratext: '',
+      inputarea: '',
+    },
+
+    inputBoxesData2: {
+      title: '',
+      subtitle: '',
+      extratext: '',
+      inputarea: '',
+    },
+
+    inputBoxesData3: {
+      title: '',
+      subtitle: '',
+      extratext: '',
+      inputarea: '',
+    },
+
     threeBoxesData: {
       title: '',
       subtitle: '',
       extratext: '',
       items: [defaultThreeBoxesData],
     },
-    threeBoxesData2: {
+    inputBoxesData4: {
       title: '',
       subtitle: '',
       extratext: '',
-      items: [defaultThreeBoxesData],
-    },
-    threeBoxesData3: {
-      title: '',
-      subtitle: '',
-      extratext: '',
-      items: [defaultThreeBoxesData],
-    },
-    threeBoxesData4: {
-      title: '',
-      subtitle: '',
-      extratext: '',
-      items: [defaultThreeBoxesData],
+      inputarea: '',
     },
   });
 
@@ -77,12 +83,14 @@ export const PostCaseStudy = () => {
   });
 
   const [activeTab, setActiveTab] = React.useState(
-    templateField === 'casestudy' ? 'tab-casestudyBox1' : null
+    templateField === 'casestudies' ? 'tab-casestudiesBox1' : null
   );
 
   React.useEffect(() => {
     if (templateField) {
-      setActiveTab(templateField === 'casestudy' ? 'tab-casestudyBox1' : null);
+      setActiveTab(
+        templateField === 'casestudies' ? 'tab-casestudiesBox1' : null
+      );
     }
   }, [templateField]);
 
@@ -113,7 +121,7 @@ export const PostCaseStudy = () => {
       if (!postid) return;
 
       try {
-        const res = await fetch(`/api/casestudy/get/${postid}`, {
+        const res = await fetch(`/api/casestudies/get/${postid}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -150,62 +158,61 @@ export const PostCaseStudy = () => {
           });
         }
 
-        if (data?.editorJs) {
-          try {
-            const content =
-              typeof data.editorJs === 'string'
-                ? JSON.parse(data.editorJs) // safely parse stringified data
-                : data.editorJs; // already parsed object
+        const casestudiesBox1Content = contentArray.find(
+          (item) => item.type === 'inputboxes'
+        );
 
-            setEditorContent(JSON.stringify(content));
-          } catch (err) {
-            console.error('Invalid editorJs format', err);
-            setEditorContent(JSON.stringify({ blocks: [] })); // fallback to empty content
-          }
-        }
+        const casestudiesBox2Content = contentArray.find(
+          (item) => item.type === 'inputboxes2'
+        );
 
-        const casestudyBox1Content = contentArray.find(
+        const casestudiesBox3Content = contentArray.find(
+          (item) => item.type === 'inputboxes3'
+        );
+
+        const casestudiesBox4Content = contentArray.find(
           (item) => item.type === 'threeboxes'
         );
 
-        const casestudyBox2Content = contentArray.find(
-          (item) => item.type === 'threeboxes2'
+        const casestudiesBox5Content = contentArray.find(
+          (item) => item.type === 'inputboxes4'
         );
 
-        const casestudyBox3Content = contentArray.find(
-          (item) => item.type === 'threeboxes3'
-        );
-
-        const casestudyBox4Content = contentArray.find(
-          (item) => item.type === 'threeboxes4'
-        );
-
-        if (solutionBox1Content?.data) {
-          setSolutionsFields((prev) => ({
+        if (casestudiesBox1Content?.data) {
+          setCaseStudiesFields((prev) => ({
             ...prev,
+            inputBoxesData: {
+              title: casestudiesBox1Content?.data?.title || '',
+              subtitle: casestudiesBox1Content?.data?.subtitle || '',
+              extratext: casestudiesBox1Content?.data?.extratext || '',
+              inputarea: casestudiesBox1Content?.data?.inputarea || '',
+            },
+
+            inputBoxesData2: {
+              title: casestudiesBox2Content?.data?.title || '',
+              subtitle: casestudiesBox2Content?.data?.subtitle || '',
+              extratext: casestudiesBox2Content?.data?.extratext || '',
+              inputarea: casestudiesBox2Content?.data?.inputarea || '',
+            },
+
+            inputBoxesData3: {
+              title: casestudiesBox3Content?.data?.title || '',
+              subtitle: casestudiesBox3Content?.data?.subtitle || '',
+              extratext: casestudiesBox3Content?.data?.extratext || '',
+              inputarea: casestudiesBox3Content?.data?.inputarea || '',
+            },
+
             threeBoxesData: {
-              title: solutionBox1Content?.data?.title || '',
-              subtitle: solutionBox1Content?.data?.subtitle || '',
-              extratext: solutionBox1Content?.data?.extratext || '',
-              items: solutionBox1Content?.data?.items || [],
+              title: casestudiesBox4Content?.data?.title || '',
+              subtitle: casestudiesBox4Content?.data?.subtitle || '',
+              extratext: casestudiesBox4Content?.data?.extratext || '',
+              items: casestudiesBox4Content?.data?.items || [],
             },
-            threeBoxesData2: {
-              title: solutionBox2Content?.data?.title || '',
-              subtitle: solutionBox2Content?.data?.subtitle || '',
-              extratext: solutionBox2Content?.data?.extratext || '',
-              items: solutionBox2Content?.data?.items || [],
-            },
-            threeBoxesData3: {
-              title: solutionBox3Content?.data?.title || '',
-              subtitle: solutionBox3Content?.data?.subtitle || '',
-              extratext: solutionBox3Content?.data?.extratext || '',
-              items: solutionBox3Content?.data?.items || [],
-            },
-            threeBoxesData4: {
-              title: solutionBox4Content?.data?.title || '',
-              subtitle: solutionBox4Content?.data?.subtitle || '',
-              extratext: solutionBox4Content?.data?.extratext || '',
-              items: solutionBox4Content?.data?.items || [],
+            inputBoxesData4: {
+              title: casestudiesBox5Content?.data?.title || '',
+              subtitle: casestudiesBox5Content?.data?.subtitle || '',
+              extratext: casestudiesBox5Content?.data?.extratext || '',
+              inputarea: casestudiesBox5Content?.data?.inputarea || '',
             },
           }));
         }
@@ -218,10 +225,11 @@ export const PostCaseStudy = () => {
   }, [postid]);
 
   const sectionsRef = React.useRef({
+    InputBoxes: null,
+    InputBoxes2: null,
+    InputBoxes3: null,
     ThreeBoxes: null,
-    ThreeBoxes2: null,
-    ThreeBoxes3: null,
-    ThreeBoxes4: null,
+    InputBoxes4: null,
   });
 
   const handleSubmit = async (e) => {
@@ -238,56 +246,68 @@ export const PostCaseStudy = () => {
       return;
     }
 
-    const currentThreeBoxesData =
+    const currentInputBoxesData = sectionsRef.current.InputBoxes?.getData?.();
+
+    const currentInputBoxesData2 = sectionsRef.current.InputBoxes2?.getData?.();
+
+    const currentInputBoxesData3 = sectionsRef.current.InputBoxes3?.getData?.();
+
+    const currentInputBoxesData4 =
       sectionsRef.current.ThreeBoxes?.getThreeBoxesData?.();
 
-    const currentThreeBoxesData2 =
-      sectionsRef.current.ThreeBoxes2?.getThreeBoxesData?.();
-
-    const currentThreeBoxesData3 =
-      sectionsRef.current.ThreeBoxes3?.getThreeBoxesData?.();
-
-    const currentThreeBoxesData4 =
-      sectionsRef.current.ThreeBoxes4?.getThreeBoxesData?.();
+    const currentInputBoxesData5 = sectionsRef.current.InputBoxes4?.getData?.();
 
     const randomPageId = Math.floor(1000 + Math.random() * 9000); // 4-digit number
 
     // You can customize this part with a different structure for non-homepage templates
-    const solutionTemplateContent = [
+    const casestudiesTemplateContent = [
+      {
+        type: 'inputboxes',
+        data: {
+          title: currentInputBoxesData?.title || '',
+          subtitle: currentInputBoxesData?.subtitle || '',
+          extratext: currentInputBoxesData.extratext || '',
+          inputarea: currentInputBoxesData?.inputarea || '',
+        },
+      },
+
+      {
+        type: 'inputboxes2',
+        data: {
+          title: currentInputBoxesData2?.title || '',
+          subtitle: currentInputBoxesData2?.subtitle || '',
+          extratext: currentInputBoxesData2.extratext || '',
+          inputarea: currentInputBoxesData2?.inputarea || '',
+        },
+      },
+
+      {
+        type: 'inputboxes3',
+        data: {
+          title: currentInputBoxesData3?.title || '',
+          subtitle: currentInputBoxesData3?.subtitle || '',
+          extratext: currentInputBoxesData3.extratext || '',
+          inputarea: currentInputBoxesData3?.inputarea || '',
+        },
+      },
+
       {
         type: 'threeboxes',
         data: {
-          title: currentThreeBoxesData?.title || '',
-          subtitle: currentThreeBoxesData?.subtitle || '',
-          extratext: currentThreeBoxesData.extratext || '',
-          items: currentThreeBoxesData?.items || [],
+          title: currentInputBoxesData4?.title || '',
+          subtitle: currentInputBoxesData4?.subtitle || '',
+          extratext: currentInputBoxesData4.extratext || '',
+          items: currentInputBoxesData4?.items || [],
         },
       },
+
       {
-        type: 'threeboxes2',
+        type: 'inputboxes4',
         data: {
-          title: currentThreeBoxesData2?.title || '',
-          subtitle: currentThreeBoxesData2?.subtitle || '',
-          extratext: currentThreeBoxesData2.extratext || '',
-          items: currentThreeBoxesData2?.items || [],
-        },
-      },
-      {
-        type: 'threeboxes3',
-        data: {
-          title: currentThreeBoxesData3?.title || '',
-          subtitle: currentThreeBoxesData3?.subtitle || '',
-          extratext: currentThreeBoxesData3.extratext || '',
-          items: currentThreeBoxesData3?.items || [],
-        },
-      },
-      {
-        type: 'threeboxes4',
-        data: {
-          title: currentThreeBoxesData4?.title || '',
-          subtitle: currentThreeBoxesData4?.subtitle || '',
-          extratext: currentThreeBoxesData4.extratext || '',
-          items: currentThreeBoxesData4?.items || [],
+          title: currentInputBoxesData5?.title || '',
+          subtitle: currentInputBoxesData5?.subtitle || '',
+          extratext: currentInputBoxesData5.extratext || '',
+          inputarea: currentInputBoxesData5?.inputarea || '',
         },
       },
     ];
@@ -296,10 +316,9 @@ export const PostCaseStudy = () => {
       title,
       excerpts,
       pageId: postid ? postid : randomPageId,
-      template: 'solutions',
+      template: 'casestudies',
       parentPage: parentpageField,
-      editorJs: JSON.parse(editorContent),
-      content: solutionTemplateContent,
+      content: casestudiesTemplateContent,
       seoFields: seoFields,
       metaFields: metaData,
       customMetaFields: customMetaFields,
@@ -309,7 +328,7 @@ export const PostCaseStudy = () => {
       console.log('payload edit', payload);
 
       try {
-        const res = await fetch(`/api/solutions/update/${postid}`, {
+        const res = await fetch(`/api/casestudies/update/${postid}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -335,7 +354,7 @@ export const PostCaseStudy = () => {
     } else {
       // CREATE POST
       try {
-        const res = await fetch('/api/solutions/create', {
+        const res = await fetch('/api/casestudies/create', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -354,7 +373,7 @@ export const PostCaseStudy = () => {
         if (data.success) {
           toast.success('Page Created');
           setActionType('edit');
-          navigate(`/dashboard/new-solution?page=${randomPageId}&action=edit`);
+          navigate(`/dashboard/new-casestudy?page=${randomPageId}&action=edit`);
         }
       } catch (error) {
         toast.error(error.message);
@@ -364,7 +383,7 @@ export const PostCaseStudy = () => {
 
   const pageName = usePageTitle(postid);
 
-  const selectedTabs = tabsSolutions;
+  const selectedTabs = tabsByTemplate[templateField] || [];
 
   return (
     <form onSubmit={handleSubmit}>
@@ -377,13 +396,9 @@ export const PostCaseStudy = () => {
             setTitle={setTitle}
             postId={postid}
           />
-          <TextEditor
-            editorContent={editorContent}
-            setEditorContent={setEditorContent}
-          />
 
           {selectedTabs && (
-            <div className="border border-gray-300 rounded-md">
+            <div className="border border-gray-300 rounded-md mt-10">
               <div className="border-b border-gray-200 flex text-xs">
                 {selectedTabs.map((tab) => (
                   <button
@@ -401,12 +416,15 @@ export const PostCaseStudy = () => {
                 ))}
               </div>
 
-              <SolutionsFields
-                activeTab={activeTab}
-                sectionsRef={sectionsRef}
-                solutionsFields={solutionsFields}
-                setSolutionsFields={setSolutionsFields}
-              />
+              {templateField === 'casestudies' ? (
+                <CaseStudiesFields
+                  activeTab={activeTab}
+                  sectionsRef={sectionsRef}
+                  casestudiesFields={casestudiesFields}
+                />
+              ) : (
+                ''
+              )}
             </div>
           )}
 
@@ -423,7 +441,11 @@ export const PostCaseStudy = () => {
           </div>
         </div>
         <div>
-          <PublishPanel type="solutions" postid={postid} pageDate={pageDate} />
+          <PublishPanel
+            type="casestudies"
+            postid={postid}
+            pageDate={pageDate}
+          />
           <ParentPageDropdown
             parentpageField={parentpageField}
             setParentPageField={setParentPageField}
