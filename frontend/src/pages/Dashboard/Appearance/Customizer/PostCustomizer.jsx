@@ -7,9 +7,8 @@ import {
   defaultThreeBoxesData,
 } from '../../../../lib/pageFields';
 import PollFields from '../../../../components/Form_Fields/PollFields';
-import GoBackButton from '../../GobackButton';
-import IndustryComp from '../../../../components/DashComponents/Slider/IndustryComp';
 import ThreeBoxes from '../../../../components/DashComponents/ServicesPage/ThreeBoxes';
+import GoBackButton from '../../GobackButton';
 
 export default function PostCustomizer() {
   const { currentUser } = useSelector((state) => state.user);
