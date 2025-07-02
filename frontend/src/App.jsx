@@ -20,7 +20,6 @@ import Blogs from './pages/Blogs';
 import ForntLayout from './components/Layouts/ForntLayout';
 import BlogSingle from './components/BlogSingle';
 import Services from './pages/Services';
-import IndustryVerticles from './pages/Dashboard/Appearance/IndustryVerticles';
 import Industries from './pages/Industries';
 import NotFound from './NotFound';
 import { PostSolutions } from './pages/Dashboard/Custom/PostSolutions';
@@ -37,7 +36,6 @@ import SingleNewsletter from './components/page/Newsletters/SingleNewsletter';
 import { PostCaseStudy } from './pages/Dashboard/Custom/PostCaseStudy';
 import SingleCaseStudy from './components/page/CaseStudy/SingleCaseStudy';
 import { CaseStudies } from './pages/Dashboard/CaseStudies';
-import CompanyPoll from './pages/Dashboard/Appearance/CompanyPoll';
 import PostCustomizer from './pages/Dashboard/Appearance/Customizer/PostCustomizer';
 
 export default function App() {
@@ -108,10 +106,6 @@ export default function App() {
                     element={<PostCustomizer />}
                   />
 
-                  <Route
-                    path="/dashboard/customize/companypoll"
-                    element={<CompanyPoll />}
-                  />
                   {/* Add more dashboard routes here */}
                 </Route>
               </Route>
